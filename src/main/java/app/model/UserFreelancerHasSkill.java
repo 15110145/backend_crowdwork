@@ -1,27 +1,29 @@
 package app.model;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "contracts")
-public class Contracts implements Serializable {
+@Table(name = "user_freelancer_has_skill")
+public class UserFreelancerHasSkill {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 
     @Column(name = "user_freelancer_user_id")
-    private Integer userFreelancerUseId;
+    private Integer userFreelancerUserId;
 
-    @Column(name = "user_recruiter_user_id")
-    private Integer userRecruiterUseId;
+    @Column(name = "skill_id")
+    private Integer skillId;
 
-    @Column(name = "job_id")
-    private Integer jobId;
+    @Column(name = "level")
+    private Integer level;
 
-    @Column(name = "status")
-    private String status;
+    @Column(name = "experience")
+    private Integer experience;
+
+    @Column(name = "description")
+    private String description;
 
     @Column(name = "del_flag")
     private Boolean delFlag;
@@ -38,14 +40,14 @@ public class Contracts implements Serializable {
     @Column(name = "update_time")
     private Date updateTime;
 
-    public Contracts() {
+    public UserFreelancerHasSkill() {
     }
 
-    public Contracts(Integer userFreelancerUseId, Integer userRecruiterUseId, Integer jobId, String status, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime) {
-        this.userFreelancerUseId = userFreelancerUseId;
-        this.userRecruiterUseId = userRecruiterUseId;
-        this.jobId = jobId;
-        this.status = status;
+    public UserFreelancerHasSkill(Integer skillId, Integer level, Integer experience, String description, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime) {
+        this.skillId = skillId;
+        this.level = level;
+        this.experience = experience;
+        this.description = description;
         this.delFlag = delFlag;
         this.createUser = createUser;
         this.updateUser = updateUser;
@@ -53,36 +55,44 @@ public class Contracts implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public Integer getUserFreelancerUseId() {
-        return userFreelancerUseId;
+    public Integer getUserFreelancerUserId() {
+        return userFreelancerUserId;
     }
 
-    public void setUserFreelancerUseId(Integer userFreelancerUseId) {
-        this.userFreelancerUseId = userFreelancerUseId;
+    public void setUserFreelancerUserId(Integer userFreelancerUserId) {
+        this.userFreelancerUserId = userFreelancerUserId;
     }
 
-    public Integer getUserRecruiterUseId() {
-        return userRecruiterUseId;
+    public Integer getSkillId() {
+        return skillId;
     }
 
-    public void setUserRecruiterUseId(Integer userRecruiterUseId) {
-        this.userRecruiterUseId = userRecruiterUseId;
+    public void setSkillId(Integer skillId) {
+        this.skillId = skillId;
     }
 
-    public Integer getJobId() {
-        return jobId;
+    public Integer getLevel() {
+        return level;
     }
 
-    public void setJobId(Integer jobId) {
-        this.jobId = jobId;
+    public void setLevel(Integer level) {
+        this.level = level;
     }
 
-    public String getStatus() {
-        return status;
+    public Integer getExperience() {
+        return experience;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setExperience(Integer experience) {
+        this.experience = experience;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Boolean getDelFlag() {

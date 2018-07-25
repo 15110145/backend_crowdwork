@@ -5,16 +5,23 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "skills")
-public class Skills implements Serializable {
+@Table(name = "users_recruiter")
+public class UsersRecruiter implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long id;
+    @GeneratedValue (strategy = GenerationType.AUTO)
 
-    @Column(name = "skillname")
-    private String skillName;
+    @Column(name = "user_id")
+    private Integer userId;
+
+    @Column(name = "company_name")
+    private String companyName;
+
+    @Column(name = "company_profile")
+    private String companyProfile;
+
+    @Column(name = "approved")
+    private Boolean approved;
 
     @Column(name = "del_flag")
     private Boolean delFlag;
@@ -31,11 +38,14 @@ public class Skills implements Serializable {
     @Column(name = "update_time")
     private Date updateTime;
 
-    public Skills() {
+    public UsersRecruiter() {
     }
 
-    public Skills(String skillName, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime) {
-        this.skillName = skillName;
+    public UsersRecruiter(String companyName, String companyProfile, Boolean approved, Integer userId, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime) {
+        this.companyName = companyName;
+        this.companyProfile = companyProfile;
+        this.approved = approved;
+        this.userId = userId;
         this.delFlag = delFlag;
         this.createUser = createUser;
         this.updateUser = updateUser;
@@ -43,20 +53,36 @@ public class Skills implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public Long getId() {
-        return id;
+    public String getCompanyName() {
+        return companyName;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
-    public String getSkillName() {
-        return skillName;
+    public String getCompanyProfile() {
+        return companyProfile;
     }
 
-    public void setSkillName(String skillName) {
-        this.skillName = skillName;
+    public void setCompanyProfile(String companyProfile) {
+        this.companyProfile = companyProfile;
+    }
+
+    public Boolean getApproved() {
+        return approved;
+    }
+
+    public void setApproved(Boolean approved) {
+        this.approved = approved;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public Boolean getDelFlag() {

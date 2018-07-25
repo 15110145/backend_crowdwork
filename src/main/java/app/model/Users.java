@@ -10,25 +10,52 @@ public class Users implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Integer id;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "date_of_birth")
     private Date date_of_birth;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "password")
     private String password;
+
+    @Column(name = "address")
     private String address;
+
+    @Column(name = "cmnd")
     private String cmnd;
+
+    @Column(name = "avatar")
     private String avatar;
+
+    @Column(name = "role")
     private String role;
-    private Boolean del_flag;
-    private Integer create_user;
-    private Integer update_user;
-    private Date create_time;
-    private Date update_time;
+
+    @Column(name = "del_flag")
+    private Boolean delFlag;
+
+    @Column(name = "create_user")
+    private Integer createUser;
+
+    @Column(name = "update_user")
+    private Integer updateUser;
+
+    @Column(name = "create_time")
+    private Date createTime;
+
+    @Column(name = "update_time")
+    private Date updateTime;
 
     public Users() {
     }
 
-    public Users(String name, Date date_of_birth, String email, String password, String address, String cmnd, String avatar, String role, Boolean del_flag, Integer create_user, Integer update_user, Date create_time, Date update_time) {
+    public Users(String name, Date date_of_birth, String email, String password, String address, String cmnd, String avatar, String role, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime) {
         this.name = name;
         this.date_of_birth = date_of_birth;
         this.email = email;
@@ -37,11 +64,11 @@ public class Users implements Serializable {
         this.cmnd = cmnd;
         this.avatar = avatar;
         this.role = role;
-        this.del_flag = del_flag;
-        this.create_user = create_user;
-        this.update_user = update_user;
-        this.create_time = create_time;
-        this.update_time = update_time;
+        this.delFlag = delFlag;
+        this.createUser = createUser;
+        this.updateUser = updateUser;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
     }
 
     public Integer getId() {
@@ -116,43 +143,43 @@ public class Users implements Serializable {
         this.role = role;
     }
 
-    public Boolean getDel_flag() {
-        return del_flag;
+    public Boolean getDelFlag() {
+        return delFlag;
     }
 
-    public void setDel_flag(Boolean del_flag) {
-        this.del_flag = del_flag;
+    public void setDelFlag(Boolean delFlag) {
+        this.delFlag = delFlag;
     }
 
-    public Integer getCreate_user() {
-        return create_user;
+    public Integer getCreateUser() {
+        return createUser;
     }
 
-    public void setCreate_user(Integer create_user) {
-        this.create_user = create_user;
+    public void setCreateUser(Integer createUser) {
+        this.createUser = createUser;
     }
 
-    public Integer getUpdate_user() {
-        return update_user;
+    public Integer getUpdateUser() {
+        return updateUser;
     }
 
-    public void setUpdate_user(Integer update_user) {
-        this.update_user = update_user;
+    public void setUpdateUser(Integer updateUser) {
+        this.updateUser = updateUser;
     }
 
-    public Date getCreate_time() {
-        return create_time;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCreate_time(Date create_time) {
-        this.create_time = create_time;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
-    public Date getUpdate_time() {
-        return update_time;
+    public Date getUpdateTime() {
+        return updateTime;
     }
 
-    public void setUpdate_time(Date update_time) {
-        this.update_time = update_time;
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 }

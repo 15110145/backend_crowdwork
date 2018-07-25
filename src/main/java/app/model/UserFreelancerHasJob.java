@@ -1,27 +1,28 @@
 package app.model;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "contracts")
-public class Contracts implements Serializable {
+@Table(name = "user_freelancer_has_job")
+public class UserFreelancerHasJob {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-
+    @GeneratedValue (strategy = GenerationType.AUTO)
     @Column(name = "user_freelancer_user_id")
-    private Integer userFreelancerUseId;
-
-    @Column(name = "user_recruiter_user_id")
-    private Integer userRecruiterUseId;
+    private Integer userFreelancerUserId;
 
     @Column(name = "job_id")
     private Integer jobId;
 
-    @Column(name = "status")
-    private String status;
+    @Column(name = "date_start")
+    private Date dateStart;
+
+    @Column(name = "date_end")
+    private Date dateEnd;
+
+    @Column(name = "file_url")
+    private String fileURL;
 
     @Column(name = "del_flag")
     private Boolean delFlag;
@@ -38,14 +39,14 @@ public class Contracts implements Serializable {
     @Column(name = "update_time")
     private Date updateTime;
 
-    public Contracts() {
+    public UserFreelancerHasJob() {
     }
 
-    public Contracts(Integer userFreelancerUseId, Integer userRecruiterUseId, Integer jobId, String status, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime) {
-        this.userFreelancerUseId = userFreelancerUseId;
-        this.userRecruiterUseId = userRecruiterUseId;
+    public UserFreelancerHasJob(Integer jobId, Date dateStart, Date dateEnd, String fileURL, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime) {
         this.jobId = jobId;
-        this.status = status;
+        this.dateStart = dateStart;
+        this.dateEnd = dateEnd;
+        this.fileURL = fileURL;
         this.delFlag = delFlag;
         this.createUser = createUser;
         this.updateUser = updateUser;
@@ -53,20 +54,12 @@ public class Contracts implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public Integer getUserFreelancerUseId() {
-        return userFreelancerUseId;
+    public Integer getUserFreelancerUserId() {
+        return userFreelancerUserId;
     }
 
-    public void setUserFreelancerUseId(Integer userFreelancerUseId) {
-        this.userFreelancerUseId = userFreelancerUseId;
-    }
-
-    public Integer getUserRecruiterUseId() {
-        return userRecruiterUseId;
-    }
-
-    public void setUserRecruiterUseId(Integer userRecruiterUseId) {
-        this.userRecruiterUseId = userRecruiterUseId;
+    public void setUserFreelancerUserId(Integer userFreelancerUserId) {
+        this.userFreelancerUserId = userFreelancerUserId;
     }
 
     public Integer getJobId() {
@@ -77,12 +70,28 @@ public class Contracts implements Serializable {
         this.jobId = jobId;
     }
 
-    public String getStatus() {
-        return status;
+    public Date getDateStart() {
+        return dateStart;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setDateStart(Date dateStart) {
+        this.dateStart = dateStart;
+    }
+
+    public Date getDateEnd() {
+        return dateEnd;
+    }
+
+    public void setDateEnd(Date dateEnd) {
+        this.dateEnd = dateEnd;
+    }
+
+    public String getFileURL() {
+        return fileURL;
+    }
+
+    public void setFileURL(String fileURL) {
+        this.fileURL = fileURL;
     }
 
     public Boolean getDelFlag() {
