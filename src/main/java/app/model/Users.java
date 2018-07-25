@@ -10,7 +10,7 @@ public class Users implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Integer id;
     private String name;
     private Date date_of_birth;
     private String email;
@@ -19,16 +19,16 @@ public class Users implements Serializable {
     private String cmnd;
     private String avatar;
     private String role;
-    private boolean del_plag;
-    private int create_user;
-    private int update_user;
+    private Boolean del_flag;
+    private Integer create_user;
+    private Integer update_user;
     private Date create_time;
     private Date update_time;
 
     public Users() {
     }
 
-    public Users(String name, Date date_of_birth, String email, String password, String address, String cmnd, String avatar, String role, boolean del_plag, int create_user, int update_user, Date create_time, Date update_time) {
+    public Users(String name, Date date_of_birth, String email, String password, String address, String cmnd, String avatar, String role, Boolean del_flag, Integer create_user, Integer update_user, Date create_time, Date update_time) {
         this.name = name;
         this.date_of_birth = date_of_birth;
         this.email = email;
@@ -37,18 +37,18 @@ public class Users implements Serializable {
         this.cmnd = cmnd;
         this.avatar = avatar;
         this.role = role;
-        this.del_plag = del_plag;
+        this.del_flag = del_flag;
         this.create_user = create_user;
         this.update_user = update_user;
         this.create_time = create_time;
         this.update_time = update_time;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -116,27 +116,27 @@ public class Users implements Serializable {
         this.role = role;
     }
 
-    public boolean isDel_plag() {
-        return del_plag;
+    public Boolean getDel_flag() {
+        return del_flag;
     }
 
-    public void setDel_plag(boolean del_plag) {
-        this.del_plag = del_plag;
+    public void setDel_flag(Boolean del_flag) {
+        this.del_flag = del_flag;
     }
 
-    public int getCreate_user() {
+    public Integer getCreate_user() {
         return create_user;
     }
 
-    public void setCreate_user(int create_user) {
+    public void setCreate_user(Integer create_user) {
         this.create_user = create_user;
     }
 
-    public int getUpdate_user() {
+    public Integer getUpdate_user() {
         return update_user;
     }
 
-    public void setUpdate_user(int update_user) {
+    public void setUpdate_user(Integer update_user) {
         this.update_user = update_user;
     }
 
