@@ -43,7 +43,7 @@ public class Jobs {
     @Column(name="job_category_id")
     private Integer jobCategoryId;
 
-    @Column(name="del-flag")
+    @Column(name="del_flag")
     private Boolean delFlag;
 
     @Column(name="create_user")
