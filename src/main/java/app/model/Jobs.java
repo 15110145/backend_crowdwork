@@ -12,6 +12,7 @@ public class Jobs implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Integer id;
 
     @Column(name="jobname")

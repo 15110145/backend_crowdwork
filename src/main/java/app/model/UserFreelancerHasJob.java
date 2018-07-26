@@ -1,11 +1,12 @@
 package app.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "user_freelancer_has_job")
-public class UserFreelancerHasJob {
+public class UserFreelancerHasJob implements Serializable {
 
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
