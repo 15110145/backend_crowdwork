@@ -1,30 +1,23 @@
 package app.model;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
-import java.sql.Time;
 import java.util.Date;
 
 @Entity
-@Table(name="comments")
-public class Comments implements Serializable {
+@Table(name="job_require_profession_job")
+public class JobRequireProfessionJob implements Serializable {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-
-    @Column(name="contents")
-    private String content;
-
-    @Column(name="user_id")
-    private Integer userId;
-
     @Column(name="job_id")
     private Integer jobId;
 
-    @Column(name="parent_id")
-    private Integer parentId;
+    @Id
+    @Column(name="profession_job_id")
+    private Integer professionJobId;
 
     @Column(name="del_flag")
     private Boolean delFlag;
@@ -41,42 +34,17 @@ public class Comments implements Serializable {
     @Column(name="update_time")
     private Date updateTime;
 
-    public Comments() { }
+    public JobRequireProfessionJob() {
+    }
 
-    public Comments(String content, Integer userId, Integer jobId, Integer parentId, Boolean delFlag, String createUser, String updateUser, Date createTime, Date updateTime) {
-        this.content = content;
-        this.userId = userId;
+    public JobRequireProfessionJob(Integer jobId, Integer professionJobId, Boolean delFlag, String createUser, String updateUser, Date createTime, Date updateTime) {
         this.jobId = jobId;
-        this.parentId = parentId;
+        this.professionJobId = professionJobId;
         this.delFlag = delFlag;
         this.createUser = createUser;
         this.updateUser = updateUser;
         this.createTime = createTime;
         this.updateTime = updateTime;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
     }
 
     public Integer getJobId() {
@@ -87,12 +55,12 @@ public class Comments implements Serializable {
         this.jobId = jobId;
     }
 
-    public Integer getParentId() {
-        return parentId;
+    public Integer getProfessionJobId() {
+        return professionJobId;
     }
 
-    public void setParentId(Integer parentId) {
-        this.parentId = parentId;
+    public void setProfessionJobId(Integer professionJobId) {
+        this.professionJobId = professionJobId;
     }
 
     public Boolean getDelFlag() {
@@ -137,12 +105,9 @@ public class Comments implements Serializable {
 
     @Override
     public String toString() {
-        return "Comments{" +
-                "id=" + id +
-                ", content='" + content + '\'' +
-                ", userId=" + userId +
-                ", jobId=" + jobId +
-                ", parentId=" + parentId +
+        return "JobRequireProfessionJob{" +
+                "jobId=" + jobId +
+                ", professionJobId=" + professionJobId +
                 ", delFlag=" + delFlag +
                 ", createUser='" + createUser + '\'' +
                 ", updateUser='" + updateUser + '\'' +

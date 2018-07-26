@@ -3,11 +3,12 @@ package app.model;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "jobs")
-public class Jobs {
+public class Jobs implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
