@@ -9,11 +9,10 @@ import java.util.Date;
 public class UserFreelancerHasSkill implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-
     @Column(name = "user_freelancer_user_id")
     private Integer userFreelancerUserId;
 
+    @Id
     @Column(name = "skill_id")
     private Integer skillId;
 
@@ -41,7 +40,24 @@ public class UserFreelancerHasSkill implements Serializable {
     @Column(name = "update_time")
     private Date updateTime;
 
+    @ManyToOne
+    @JoinColumn(name = "user_freelancer_user_id")
+    private UsersFreelancer userFreelancerUser;
+
+    @ManyToOne
+    @JoinColumn(name = "skill_id")
+    private Skills skill;
+
     public UserFreelancerHasSkill() {
+    }
+
+    public UserFreelancerHasSkill(Integer userFreelancerUserId, Integer skillId, Integer level, Integer experience, String description, Boolean delFlag) {
+        this.userFreelancerUserId = userFreelancerUserId;
+        this.skillId = skillId;
+        this.level = level;
+        this.experience = experience;
+        this.description = description;
+        this.delFlag = delFlag;
     }
 
     public UserFreelancerHasSkill(Integer skillId, Integer level, Integer experience, String description, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime) {

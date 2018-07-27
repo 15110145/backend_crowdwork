@@ -3,6 +3,8 @@ package app.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users_freelancer")
@@ -14,8 +16,8 @@ public class UsersFreelancer implements Serializable {
     @Column(name = "user_id")
     private Integer userId;
 
-    @Column(name = "status")
-    private String status;
+    @Column(name = "status_id")
+    private String statusId;
 
     @Column(name = "working_time")
     private String workingTime;
@@ -47,11 +49,30 @@ public class UsersFreelancer implements Serializable {
     @Column(name = "update_time")
     private Date updateTime;
 
+    @OneToMany(mappedBy = "userFreelancerUserId")
+    private List<UserFreelancerHasSkill> userFreelancerHasSkills;
+
+    @OneToMany(mappedBy = "userFreelancerUserId")
+    private List<UserFreelancerHasJob> userFreelancerHasJobs;
+
+    @OneToMany(mappedBy = "userFreelancerUseId")
+    private List<Contracts> contracts;
+
     public UsersFreelancer() {
     }
 
-    public UsersFreelancer(String status, String workingTime, Long salaryPerHour, String about, String usernameGithub, String degree, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime) {
-        this.status = status;
+    public UsersFreelancer(String statusId, String workingTime, Long salaryPerHour, String about, String usernameGithub, String degree, Boolean delFlag) {
+        this.statusId = statusId;
+        this.workingTime = workingTime;
+        this.salaryPerHour = salaryPerHour;
+        this.about = about;
+        this.usernameGithub = usernameGithub;
+        this.degree = degree;
+        this.delFlag = delFlag;
+    }
+
+    public UsersFreelancer(String statusId, String workingTime, Long salaryPerHour, String about, String usernameGithub, String degree, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime) {
+        this.statusId = statusId;
         this.workingTime = workingTime;
         this.salaryPerHour = salaryPerHour;
         this.about = about;
@@ -72,12 +93,12 @@ public class UsersFreelancer implements Serializable {
         this.userId = userId;
     }
 
-    public String getStatus() {
-        return status;
+    public String getStatusId() {
+        return statusId;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setStatusId(String statusId) {
+        this.statusId = statusId;
     }
 
     public String getWorkingTime() {
