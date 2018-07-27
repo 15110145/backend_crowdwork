@@ -32,7 +32,7 @@ public class Skills implements Serializable {
     @Column(name = "update_time")
     private Date updateTime;
 
-    @OneToMany(mappedBy = "skillId")
+    @OneToMany(mappedBy = "skill")
     private List<UserFreelancerHasSkill> userFreelancerHasSkills;
 
     @OneToMany(mappedBy = "skills")
