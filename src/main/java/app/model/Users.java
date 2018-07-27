@@ -1,5 +1,7 @@
 package app.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -17,6 +19,7 @@ public class Users implements Serializable {
     private String name;
 
     @Column(name = "date_of_birth")
+//    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date_of_birth;
 
     @Column(name = "email")
@@ -47,9 +50,11 @@ public class Users implements Serializable {
     private Integer updateUser;
 
     @Column(name = "create_time")
+//    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     @Column(name = "update_time")
+//    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
 
     public Users() {
