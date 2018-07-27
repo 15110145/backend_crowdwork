@@ -1,4 +1,4 @@
-package app.dao;
+package app.reponsitory;
 
 import app.model.Comments;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -35,7 +35,7 @@ public class Skills implements Serializable {
     @OneToMany(mappedBy = "skillId")
     private List<UserFreelancerHasSkill> userFreelancerHasSkills;
 
-    @OneToMany(mappedBy = "skillId")
+    @OneToMany(mappedBy = "skills")
     private List<JobRequireSkill> jobRequireSkill;
 
     public Skills() {
