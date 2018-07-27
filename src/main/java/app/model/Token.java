@@ -3,19 +3,24 @@ package app.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 @Entity
-@Table(name = "skills")
-public class Skills implements Serializable {
+@Table(name = "token")
+public class Token implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private Long id;
+    private Integer id;
 
-    @Column(name = "skillname")
-    private String skillName;
+    @Column(name = "user_id")
+    private Integer userId;
+
+    @Column(name = "status_id")
+    private Integer statusId;
+
+    @Column(name = "time")
+    private Integer time;
 
     @Column(name = "del_flag")
     private Boolean delFlag;
@@ -32,22 +37,20 @@ public class Skills implements Serializable {
     @Column(name = "update_time")
     private Date updateTime;
 
-    @OneToMany(mappedBy = "skillId")
-    private List<UserFreelancerHasSkill> userFreelancerHasSkills;
-
-    @OneToMany(mappedBy = "skillId")
-    private List<JobRequireSkill> jobRequireSkill;
-
-    public Skills() {
+    public Token() {
     }
 
-    public Skills(String skillName, Boolean delFlag) {
-        this.skillName = skillName;
+    public Token(Integer userId, Integer statusId, Integer time, Boolean delFlag) {
+        this.userId = userId;
+        this.statusId = statusId;
+        this.time = time;
         this.delFlag = delFlag;
     }
 
-    public Skills(String skillName, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime) {
-        this.skillName = skillName;
+    public Token(Integer userId, Integer statusId, Integer time, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime) {
+        this.userId = userId;
+        this.statusId = statusId;
+        this.time = time;
         this.delFlag = delFlag;
         this.createUser = createUser;
         this.updateUser = updateUser;
@@ -55,20 +58,36 @@ public class Skills implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getSkillName() {
-        return skillName;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setSkillName(String skillName) {
-        this.skillName = skillName;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Integer getStatusId() {
+        return statusId;
+    }
+
+    public void setStatusId(Integer statusId) {
+        this.statusId = statusId;
+    }
+
+    public Integer getTime() {
+        return time;
+    }
+
+    public void setTime(Integer time) {
+        this.time = time;
     }
 
     public Boolean getDelFlag() {

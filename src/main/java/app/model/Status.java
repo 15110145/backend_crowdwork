@@ -3,19 +3,21 @@ package app.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 @Entity
-@Table(name = "skills")
-public class Skills implements Serializable {
+@Table(name = "status")
+public class Status implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private Long id;
+    private Integer id;
 
-    @Column(name = "skillname")
-    private String skillName;
+    @Column(name = "statusname")
+    private String statusName;
+
+    @Column(name = "kind")
+    private String kind;
 
     @Column(name = "del_flag")
     private Boolean delFlag;
@@ -32,22 +34,18 @@ public class Skills implements Serializable {
     @Column(name = "update_time")
     private Date updateTime;
 
-    @OneToMany(mappedBy = "skillId")
-    private List<UserFreelancerHasSkill> userFreelancerHasSkills;
-
-    @OneToMany(mappedBy = "skillId")
-    private List<JobRequireSkill> jobRequireSkill;
-
-    public Skills() {
+    public Status() {
     }
 
-    public Skills(String skillName, Boolean delFlag) {
-        this.skillName = skillName;
+    public Status(String statusName, String kind, Boolean delFlag) {
+        this.statusName = statusName;
+        this.kind = kind;
         this.delFlag = delFlag;
     }
 
-    public Skills(String skillName, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime) {
-        this.skillName = skillName;
+    public Status(String statusName, String kind, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime) {
+        this.statusName = statusName;
+        this.kind = kind;
         this.delFlag = delFlag;
         this.createUser = createUser;
         this.updateUser = updateUser;
@@ -55,20 +53,28 @@ public class Skills implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getSkillName() {
-        return skillName;
+    public String getStatusName() {
+        return statusName;
     }
 
-    public void setSkillName(String skillName) {
-        this.skillName = skillName;
+    public void setStatusName(String statusName) {
+        this.statusName = statusName;
+    }
+
+    public String getKind() {
+        return kind;
+    }
+
+    public void setKind(String kind) {
+        this.kind = kind;
     }
 
     public Boolean getDelFlag() {

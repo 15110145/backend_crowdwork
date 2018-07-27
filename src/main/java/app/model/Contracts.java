@@ -9,19 +9,18 @@ import java.util.Date;
 public class Contracts implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-
     @Column(name = "user_freelancer_user_id")
     private Integer userFreelancerUseId;
 
+    @Id
     @Column(name = "user_recruiter_user_id")
     private Integer userRecruiterUseId;
 
     @Column(name = "job_id")
     private Integer jobId;
 
-    @Column(name = "status")
-    private String status;
+    @Column(name = "status_id")
+    private String statusId;
 
     @Column(name = "del_flag")
     private Boolean delFlag;
@@ -38,14 +37,30 @@ public class Contracts implements Serializable {
     @Column(name = "update_time")
     private Date updateTime;
 
+    @ManyToOne
+    @JoinColumn(name = "user_freelancer_user_id")
+    private UsersFreelancer userFreelancerUse;
+
+    @ManyToOne
+    @JoinColumn(name = "user_recruiter_user_id")
+    private UsersRecruiter userRecruiterUse;
+
     public Contracts() {
     }
 
-    public Contracts(Integer userFreelancerUseId, Integer userRecruiterUseId, Integer jobId, String status, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime) {
+    public Contracts(Integer userFreelancerUseId, Integer userRecruiterUseId, Integer jobId, String statusId, Boolean delFlag) {
         this.userFreelancerUseId = userFreelancerUseId;
         this.userRecruiterUseId = userRecruiterUseId;
         this.jobId = jobId;
-        this.status = status;
+        this.statusId = statusId;
+        this.delFlag = delFlag;
+    }
+
+    public Contracts(Integer userFreelancerUseId, Integer userRecruiterUseId, Integer jobId, String statusId, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime) {
+        this.userFreelancerUseId = userFreelancerUseId;
+        this.userRecruiterUseId = userRecruiterUseId;
+        this.jobId = jobId;
+        this.statusId = statusId;
         this.delFlag = delFlag;
         this.createUser = createUser;
         this.updateUser = updateUser;
@@ -77,12 +92,12 @@ public class Contracts implements Serializable {
         this.jobId = jobId;
     }
 
-    public String getStatus() {
-        return status;
+    public String getStatusId() {
+        return statusId;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setStatusId(String statusId) {
+        this.statusId = statusId;
     }
 
     public Boolean getDelFlag() {

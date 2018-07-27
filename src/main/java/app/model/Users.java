@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -57,10 +58,29 @@ public class Users implements Serializable {
 //    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
 
+    @Column(name = "isverifyemail")
+    private Boolean isVerifyEmail;
+
+    @OneToMany(mappedBy = "userId")
+    private List<Comments> comments;
+
     public Users() {
     }
 
-    public Users(String name, Date date_of_birth, String email, String password, String address, String cmnd, String avatar, String role, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime) {
+    public Users(String name, Date date_of_birth, String email, String password, String address, String cmnd, String avatar, String role, Boolean delFlag, Boolean isVerifyEmail) {
+        this.name = name;
+        this.date_of_birth = date_of_birth;
+        this.email = email;
+        this.password = password;
+        this.address = address;
+        this.cmnd = cmnd;
+        this.avatar = avatar;
+        this.role = role;
+        this.delFlag = delFlag;
+        this.isVerifyEmail = isVerifyEmail;
+    }
+
+    public Users(String name, Date date_of_birth, String email, String password, String address, String cmnd, String avatar, String role, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime, Boolean isVerifyEmail) {
         this.name = name;
         this.date_of_birth = date_of_birth;
         this.email = email;
@@ -74,6 +94,7 @@ public class Users implements Serializable {
         this.updateUser = updateUser;
         this.createTime = createTime;
         this.updateTime = updateTime;
+        this.isVerifyEmail = isVerifyEmail;
     }
 
     public Integer getId() {
@@ -186,5 +207,13 @@ public class Users implements Serializable {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public List<Comments> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comments> comments) {
+        this.comments = comments;
     }
 }

@@ -3,6 +3,8 @@ package app.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users_recruiter")
@@ -38,7 +40,23 @@ public class UsersRecruiter implements Serializable {
     @Column(name = "update_time")
     private Date updateTime;
 
+    @OneToMany(mappedBy = "userRecruiterUseId")
+    private List<Contracts> contracts;
+
+    @OneToMany(mappedBy = "userRecruiterUserId")
+    private List<Jobs> jobs;
+
+    @OneToMany(mappedBy = "userRecruiterUserId")
+    private List<UserRecruiterJobRequirement> userRecruiterJobRequirements;
+
     public UsersRecruiter() {
+    }
+
+    public UsersRecruiter(String companyName, String companyProfile, Boolean approved, Boolean delFlag) {
+        this.companyName = companyName;
+        this.companyProfile = companyProfile;
+        this.approved = approved;
+        this.delFlag = delFlag;
     }
 
     public UsersRecruiter(String companyName, String companyProfile, Boolean approved, Integer userId, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime) {
