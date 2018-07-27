@@ -1,9 +1,6 @@
 package app.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -12,21 +9,25 @@ import java.util.Date;
 public class JobRequireProfessionJob implements Serializable {
 
     @Id
-    @Column(name="job_id")
-    private Integer jobId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "job_id")
+    private Jobs jobs;
 
     @Id
-    @Column(name="profession_job_id")
-    private Integer professionJobId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "profession_job_id")
+    private ProfessionJob professionJob;
 
     @Column(name="del_flag")
     private Boolean delFlag;
 
-    @Column(name="create_user")
-    private String createUser;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "create_user")
+    private Users createUser;
 
-    @Column(name="update_user")
-    private String updateUser;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "update_user")
+    private Users updateUser;
 
     @Column(name="create_time")
     private Date createTime;
@@ -37,9 +38,9 @@ public class JobRequireProfessionJob implements Serializable {
     public JobRequireProfessionJob() {
     }
 
-    public JobRequireProfessionJob(Integer jobId, Integer professionJobId, Boolean delFlag, String createUser, String updateUser, Date createTime, Date updateTime) {
-        this.jobId = jobId;
-        this.professionJobId = professionJobId;
+    public JobRequireProfessionJob(Jobs jobs, ProfessionJob professionJob, Boolean delFlag, Users createUser, Users updateUser, Date createTime, Date updateTime) {
+        this.jobs = jobs;
+        this.professionJob = professionJob;
         this.delFlag = delFlag;
         this.createUser = createUser;
         this.updateUser = updateUser;
@@ -47,20 +48,20 @@ public class JobRequireProfessionJob implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public Integer getJobId() {
-        return jobId;
+    public Jobs getJobs() {
+        return jobs;
     }
 
-    public void setJobId(Integer jobId) {
-        this.jobId = jobId;
+    public void setJobs(Jobs jobs) {
+        this.jobs = jobs;
     }
 
-    public Integer getProfessionJobId() {
-        return professionJobId;
+    public ProfessionJob getProfessionJob() {
+        return professionJob;
     }
 
-    public void setProfessionJobId(Integer professionJobId) {
-        this.professionJobId = professionJobId;
+    public void setProfessionJob(ProfessionJob professionJob) {
+        this.professionJob = professionJob;
     }
 
     public Boolean getDelFlag() {
@@ -71,19 +72,19 @@ public class JobRequireProfessionJob implements Serializable {
         this.delFlag = delFlag;
     }
 
-    public String getCreateUser() {
+    public Users getCreateUser() {
         return createUser;
     }
 
-    public void setCreateUser(String createUser) {
+    public void setCreateUser(Users createUser) {
         this.createUser = createUser;
     }
 
-    public String getUpdateUser() {
+    public Users getUpdateUser() {
         return updateUser;
     }
 
-    public void setUpdateUser(String updateUser) {
+    public void setUpdateUser(Users updateUser) {
         this.updateUser = updateUser;
     }
 
@@ -106,11 +107,11 @@ public class JobRequireProfessionJob implements Serializable {
     @Override
     public String toString() {
         return "JobRequireProfessionJob{" +
-                "jobId=" + jobId +
-                ", professionJobId=" + professionJobId +
+                "jobs=" + jobs.getId() +
+                ", professionJob=" + professionJob.getId() +
                 ", delFlag=" + delFlag +
-                ", createUser='" + createUser + '\'' +
-                ", updateUser='" + updateUser + '\'' +
+                ", createUser=" + createUser +
+                ", updateUser=" + updateUser +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
                 '}';

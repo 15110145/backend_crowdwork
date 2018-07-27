@@ -3,6 +3,7 @@ package app.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "job_category")
@@ -29,6 +30,9 @@ public class JobCategory implements Serializable {
 
     @Column(name="update_time")
     private Date updateTime;
+
+    @OneToMany(mappedBy = "jobCategories")
+    private List<Jobs> jobs;
 
     public JobCategory() {
     }
@@ -96,6 +100,14 @@ public class JobCategory implements Serializable {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public List<Jobs> getJobs() {
+        return jobs;
+    }
+
+    public void setJobs(List<Jobs> jobs) {
+        this.jobs = jobs;
     }
 
     @Override

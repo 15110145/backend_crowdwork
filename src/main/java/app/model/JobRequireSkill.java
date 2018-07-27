@@ -9,21 +9,25 @@ import java.util.Date;
 public class JobRequireSkill implements Serializable {
 
     @Id
-    @Column(name="job_id")
-    private Integer jobId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "job_id")
+    private Jobs jobs;
 
     @Id
-    @Column(name="skill_id")
-    private Integer skillId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "skill_id")
+    private Skills skills;
 
     @Column(name="del_flag")
     private Boolean delFlag;
 
-    @Column(name="create_user")
-    private String createUser;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "create_user")
+    private Users createUser;
 
-    @Column(name="update_user")
-    private String updateUser;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "update_user")
+    private Users updateUser;
 
     @Column(name="create_time")
     private Date createTime;
@@ -34,9 +38,15 @@ public class JobRequireSkill implements Serializable {
     public JobRequireSkill() {
     }
 
-    public JobRequireSkill(Integer jobId, Integer skillId, Boolean delFlag, String createUser, String updateUser, Date createTime, Date updateTime) {
-        this.jobId = jobId;
-        this.skillId = skillId;
+    public JobRequireSkill(Jobs jobs, Skills skills, Boolean delFlag) {
+        this.jobs = jobs;
+        this.skills = skills;
+        this.delFlag = delFlag;
+    }
+
+    public JobRequireSkill(Jobs jobs, Skills skills, Boolean delFlag, Users createUser, Users updateUser, Date createTime, Date updateTime) {
+        this.jobs = jobs;
+        this.skills = skills;
         this.delFlag = delFlag;
         this.createUser = createUser;
         this.updateUser = updateUser;
@@ -44,20 +54,20 @@ public class JobRequireSkill implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public Integer getJobId() {
-        return jobId;
+    public Jobs getJobs() {
+        return jobs;
     }
 
-    public void setJobId(Integer jobId) {
-        this.jobId = jobId;
+    public void setJobs(Jobs jobs) {
+        this.jobs = jobs;
     }
 
-    public Integer getSkillId() {
-        return skillId;
+    public Skills getSkills() {
+        return skills;
     }
 
-    public void setSkillId(Integer skillId) {
-        this.skillId = skillId;
+    public void setSkills(Skills skills) {
+        this.skills = skills;
     }
 
     public Boolean getDelFlag() {
@@ -68,19 +78,19 @@ public class JobRequireSkill implements Serializable {
         this.delFlag = delFlag;
     }
 
-    public String getCreateUser() {
+    public Users getCreateUser() {
         return createUser;
     }
 
-    public void setCreateUser(String createUser) {
+    public void setCreateUser(Users createUser) {
         this.createUser = createUser;
     }
 
-    public String getUpdateUser() {
+    public Users getUpdateUser() {
         return updateUser;
     }
 
-    public void setUpdateUser(String updateUser) {
+    public void setUpdateUser(Users updateUser) {
         this.updateUser = updateUser;
     }
 
@@ -103,11 +113,11 @@ public class JobRequireSkill implements Serializable {
     @Override
     public String toString() {
         return "JobRequireSkill{" +
-                "jobId=" + jobId +
-                ", skillId=" + skillId +
+                "jobs=" + jobs.getId() +
+                ", skills=" + skills.getId() +
                 ", delFlag=" + delFlag +
-                ", createUser='" + createUser + '\'' +
-                ", updateUser='" + updateUser + '\'' +
+                ", createUser=" + createUser +
+                ", updateUser=" + updateUser +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
                 '}';

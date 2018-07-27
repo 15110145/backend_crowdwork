@@ -17,11 +17,13 @@ public class Comments implements Serializable {
     @Column(name="contents")
     private String content;
 
-    @Column(name="user_id")
-    private Integer userId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private Users users;
 
-    @Column(name="job_id")
-    private Integer jobId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "job_id")
+    private Jobs jobs;
 
     @Column(name="parent_id")
     private Integer parentId;
@@ -29,11 +31,13 @@ public class Comments implements Serializable {
     @Column(name="del_flag")
     private Boolean delFlag;
 
-    @Column(name="create_user")
-    private String createUser;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "create_user")
+    private Users createUser;
 
-    @Column(name="update_user")
-    private String updateUser;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "update_user")
+    private Users updateUser;
 
     @Column(name="create_time")
     private Date createTime;
@@ -43,10 +47,18 @@ public class Comments implements Serializable {
 
     public Comments() { }
 
-    public Comments(String content, Integer userId, Integer jobId, Integer parentId, Boolean delFlag, String createUser, String updateUser, Date createTime, Date updateTime) {
+    public Comments(String content, Users users, Jobs jobs, Integer parentId, Boolean delFlag) {
         this.content = content;
-        this.userId = userId;
-        this.jobId = jobId;
+        this.users = users;
+        this.jobs = jobs;
+        this.parentId = parentId;
+        this.delFlag = delFlag;
+    }
+
+    public Comments(String content, Users users, Jobs jobs, Integer parentId, Boolean delFlag, Users createUser, Users updateUser, Date createTime, Date updateTime) {
+        this.content = content;
+        this.users = users;
+        this.jobs = jobs;
         this.parentId = parentId;
         this.delFlag = delFlag;
         this.createUser = createUser;
@@ -71,20 +83,20 @@ public class Comments implements Serializable {
         this.content = content;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public Users getUsers() {
+        return users;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUsers(Users users) {
+        this.users = users;
     }
 
-    public Integer getJobId() {
-        return jobId;
+    public Jobs getJobs() {
+        return jobs;
     }
 
-    public void setJobId(Integer jobId) {
-        this.jobId = jobId;
+    public void setJobs(Jobs jobs) {
+        this.jobs = jobs;
     }
 
     public Integer getParentId() {
@@ -103,19 +115,19 @@ public class Comments implements Serializable {
         this.delFlag = delFlag;
     }
 
-    public String getCreateUser() {
+    public Users getCreateUser() {
         return createUser;
     }
 
-    public void setCreateUser(String createUser) {
+    public void setCreateUser(Users createUser) {
         this.createUser = createUser;
     }
 
-    public String getUpdateUser() {
+    public Users getUpdateUser() {
         return updateUser;
     }
 
-    public void setUpdateUser(String updateUser) {
+    public void setUpdateUser(Users updateUser) {
         this.updateUser = updateUser;
     }
 
@@ -140,12 +152,12 @@ public class Comments implements Serializable {
         return "Comments{" +
                 "id=" + id +
                 ", content='" + content + '\'' +
-                ", userId=" + userId +
-                ", jobId=" + jobId +
+                ", users=" + users.getId() +
+                ", jobs=" + jobs.getId() +
                 ", parentId=" + parentId +
                 ", delFlag=" + delFlag +
-                ", createUser='" + createUser + '\'' +
-                ", updateUser='" + updateUser + '\'' +
+                ", createUser=" + createUser.getId() +
+                ", updateUser=" + updateUser.getId() +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
                 '}';

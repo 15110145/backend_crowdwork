@@ -3,6 +3,7 @@ package app.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="profession_job")
@@ -33,7 +34,19 @@ public class ProfessionJob implements Serializable {
     @Column(name="update_time")
     private Date updateTime;
 
+    @OneToMany(mappedBy = "professionJob")
+    private List<UserRecruiterJobRequirement> userRecruiterJobRequirementList;
+
+    @OneToMany(mappedBy = "professionJob")
+    private List<JobRequireProfessionJob> jobRequireProfessionJobs;
+
     public ProfessionJob() {
+    }
+
+    public ProfessionJob(String professionJobName, Integer parrentId, Boolean delFlag) {
+        this.professionJobName = professionJobName;
+        this.parrentId = parrentId;
+        this.delFlag = delFlag;
     }
 
     public ProfessionJob(String professionJobName, Integer parrentId, Boolean delFlag, String createUser, String updateUser, Date createTime, Date updateTime) {
@@ -108,6 +121,22 @@ public class ProfessionJob implements Serializable {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public List<UserRecruiterJobRequirement> getUserRecruiterJobRequirementList() {
+        return userRecruiterJobRequirementList;
+    }
+
+    public void setUserRecruiterJobRequirementList(List<UserRecruiterJobRequirement> userRecruiterJobRequirementList) {
+        this.userRecruiterJobRequirementList = userRecruiterJobRequirementList;
+    }
+
+    public List<JobRequireProfessionJob> getJobRequireProfessionJobs() {
+        return jobRequireProfessionJobs;
+    }
+
+    public void setJobRequireProfessionJobs(List<JobRequireProfessionJob> jobRequireProfessionJobs) {
+        this.jobRequireProfessionJobs = jobRequireProfessionJobs;
     }
 
     @Override
