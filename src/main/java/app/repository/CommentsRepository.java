@@ -1,4 +1,4 @@
-package app.reponsitory;
+package app.repository;
 
 import app.model.Comments;
 import org.springframework.data.jpa.repository.JpaRepository;

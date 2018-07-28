@@ -1,7 +1,7 @@
 package app.services;
 
 import app.model.UsersRecruiter;
-import app.reponsitory.UsersRecruiterReponsitory;
+import app.repository.UsersRecruiterReponsitory;
 
 import java.util.ArrayList;
 import java.util.List;

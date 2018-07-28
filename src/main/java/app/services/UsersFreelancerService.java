@@ -1,7 +1,7 @@
 package app.services;
 
 import app.model.UsersFreelancer;
-import app.reponsitory.UsersFreelancerReponsitory;
+import app.repository.UsersFreelancerReponsitory;
 
 import java.util.ArrayList;
 import java.util.List;
