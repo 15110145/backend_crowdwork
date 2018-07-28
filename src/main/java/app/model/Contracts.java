@@ -8,23 +8,13 @@ import java.util.Date;
 @Table(name = "contracts")
 public class Contracts implements Serializable {
 
-//    @Id
-//    @Column(name = "user_freelancer_user_id")
-//    private Integer userFreelancerUseId;
-//
-//    @Id
-//    @Column(name = "user_recruiter_user_id")
-//    private Integer userRecruiterUseId;
+    @Id
+    @Column(name = "user_freelancer_user_id")
+    private Integer userFreelancerUseId;
 
     @Id
-    @ManyToOne
-    @JoinColumn(name = "user_freelancer_user_id")
-    private UsersFreelancer userFreelancerUse;
-
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "user_recruiter_user_id")
-    private UsersRecruiter userRecruiterUse;
+    @Column(name = "user_recruiter_user_id")
+    private Integer userRecruiterUseId;
 
     @Column(name = "job_id")
     private Integer jobId;
@@ -47,22 +37,28 @@ public class Contracts implements Serializable {
     @Column(name = "update_time")
     private Date updateTime;
 
+    @ManyToOne
+    @JoinColumn(name = "user_freelancer_user_id")
+    private UsersFreelancer userFreelancerUse;
 
+    @ManyToOne
+    @JoinColumn(name = "user_recruiter_user_id")
+    private UsersRecruiter userRecruiterUse;
 
     public Contracts() {
     }
 
-    public Contracts(UsersFreelancer userFreelancerUse, UsersRecruiter userRecruiterUse, Integer jobId, String statusId, Boolean delFlag) {
-        this.userFreelancerUse = userFreelancerUse;
-        this.userRecruiterUse = userRecruiterUse;
+    public Contracts(Integer userFreelancerUseId, Integer userRecruiterUseId, Integer jobId, String statusId, Boolean delFlag) {
+        this.userFreelancerUseId = userFreelancerUseId;
+        this.userRecruiterUseId = userRecruiterUseId;
         this.jobId = jobId;
         this.statusId = statusId;
         this.delFlag = delFlag;
     }
 
-    public Contracts(UsersFreelancer userFreelancerUse, UsersRecruiter userRecruiterUse, Integer jobId, String statusId, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime) {
-        this.userFreelancerUse = userFreelancerUse;
-        this.userRecruiterUse = userRecruiterUse;
+    public Contracts(Integer userFreelancerUseId, Integer userRecruiterUseId, Integer jobId, String statusId, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime) {
+        this.userFreelancerUseId = userFreelancerUseId;
+        this.userRecruiterUseId = userRecruiterUseId;
         this.jobId = jobId;
         this.statusId = statusId;
         this.delFlag = delFlag;
@@ -72,20 +68,20 @@ public class Contracts implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public UsersFreelancer getUserFreelancerUse() {
-        return userFreelancerUse;
+    public Integer getUserFreelancerUseId() {
+        return userFreelancerUseId;
     }
 
-    public void setUserFreelancerUse(UsersFreelancer userFreelancerUse) {
-        this.userFreelancerUse = userFreelancerUse;
+    public void setUserFreelancerUseId(Integer userFreelancerUseId) {
+        this.userFreelancerUseId = userFreelancerUseId;
     }
 
-    public UsersRecruiter getUserRecruiterUse() {
-        return userRecruiterUse;
+    public Integer getUserRecruiterUseId() {
+        return userRecruiterUseId;
     }
 
-    public void setUserRecruiterUse(UsersRecruiter userRecruiterUse) {
-        this.userRecruiterUse = userRecruiterUse;
+    public void setUserRecruiterUseId(Integer userRecruiterUseId) {
+        this.userRecruiterUseId = userRecruiterUseId;
     }
 
     public Integer getJobId() {

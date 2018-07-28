@@ -61,7 +61,7 @@ public class Users implements Serializable {
     @Column(name = "isverifyemail")
     private Boolean isVerifyEmail;
 
-    @OneToMany(mappedBy = "users")
+    @OneToMany(mappedBy = "userId")
     private List<Comments> comments;
 
     public Users() {

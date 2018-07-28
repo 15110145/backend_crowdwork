@@ -1,6 +1,9 @@
 package app.model;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -9,25 +12,21 @@ import java.util.Date;
 public class UserRecruiterJobRequirement implements Serializable {
 
     @Id
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_recruiter_user_id")
-    private UsersRecruiter usersRecruiter;
+    @Column(name ="user_recruiter_user_id")
+    private Integer userRecruiterUserId;
 
     @Id
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "profession_job")
-    private ProfessionJob professionJob;
+    @Column(name ="profession_job")
+    private Integer profession_job_id;
 
     @Column(name="del_flag")
     private Boolean delFlag;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "create_user")
-    private Users createUser;
+    @Column(name="create_user")
+    private String createUser;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "update_user")
-    private Users updateUser;
+    @Column(name="update_user")
+    private String updateUser;
 
     @Column(name="create_time")
     private Date createTime;
@@ -38,9 +37,9 @@ public class UserRecruiterJobRequirement implements Serializable {
     public UserRecruiterJobRequirement() {
     }
 
-    public UserRecruiterJobRequirement(UsersRecruiter usersRecruiter, ProfessionJob professionJob, Boolean delFlag, Users createUser, Users updateUser, Date createTime, Date updateTime) {
-        this.usersRecruiter = usersRecruiter;
-        this.professionJob = professionJob;
+    public UserRecruiterJobRequirement(Integer userRecruiterUserId, Integer profession_job_id, Boolean delFlag, String createUser, String updateUser, Date createTime, Date updateTime) {
+        this.userRecruiterUserId = userRecruiterUserId;
+        this.profession_job_id = profession_job_id;
         this.delFlag = delFlag;
         this.createUser = createUser;
         this.updateUser = updateUser;
@@ -48,20 +47,20 @@ public class UserRecruiterJobRequirement implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public UsersRecruiter getUsersRecruiter() {
-        return usersRecruiter;
+    public Integer getUserRecruiterUserId() {
+        return userRecruiterUserId;
     }
 
-    public void setUsersRecruiter(UsersRecruiter usersRecruiter) {
-        this.usersRecruiter = usersRecruiter;
+    public void setUserRecruiterUserId(Integer userRecruiterUserId) {
+        this.userRecruiterUserId = userRecruiterUserId;
     }
 
-    public ProfessionJob getProfessionJob() {
-        return professionJob;
+    public Integer getProfession_job_id() {
+        return profession_job_id;
     }
 
-    public void setProfessionJob(ProfessionJob professionJob) {
-        this.professionJob = professionJob;
+    public void setProfession_job_id(Integer profession_job_id) {
+        this.profession_job_id = profession_job_id;
     }
 
     public Boolean getDelFlag() {
@@ -72,19 +71,19 @@ public class UserRecruiterJobRequirement implements Serializable {
         this.delFlag = delFlag;
     }
 
-    public Users getCreateUser() {
+    public String getCreateUser() {
         return createUser;
     }
 
-    public void setCreateUser(Users createUser) {
+    public void setCreateUser(String createUser) {
         this.createUser = createUser;
     }
 
-    public Users getUpdateUser() {
+    public String getUpdateUser() {
         return updateUser;
     }
 
-    public void setUpdateUser(Users updateUser) {
+    public void setUpdateUser(String updateUser) {
         this.updateUser = updateUser;
     }
 
@@ -107,11 +106,11 @@ public class UserRecruiterJobRequirement implements Serializable {
     @Override
     public String toString() {
         return "UserRecruiterJobRequirement{" +
-                "usersRecruiter=" + usersRecruiter.getUserId() +
-                ", professionJob=" + professionJob.getId() +
+                "userRecruiterUserId=" + userRecruiterUserId +
+                ", profession_job_id=" + profession_job_id +
                 ", delFlag=" + delFlag +
-                ", createUser=" + createUser.getId() +
-                ", updateUser=" + updateUser.getId() +
+                ", createUser='" + createUser + '\'' +
+                ", updateUser='" + updateUser + '\'' +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
                 '}';

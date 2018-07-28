@@ -8,23 +8,13 @@ import java.util.Date;
 @Table(name = "user_freelancer_has_skill")
 public class UserFreelancerHasSkill implements Serializable {
 
-//    @Id
-//    @Column(name = "user_freelancer_user_id")
-//    private Integer userFreelancerUserId;
-//
-//    @Id
-//    @Column(name = "skill_id")
-//    private Integer skillId;
+    @Id
+    @Column(name = "user_freelancer_user_id")
+    private Integer userFreelancerUserId;
 
     @Id
-    @ManyToOne
-    @JoinColumn(name = "user_freelancer_user_id")
-    private UsersFreelancer userFreelancerUser;
-
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "skill_id")
-    private Skills skill;
+    @Column(name = "skill_id")
+    private Integer skillId;
 
     @Column(name = "level")
     private Integer level;
@@ -50,23 +40,28 @@ public class UserFreelancerHasSkill implements Serializable {
     @Column(name = "update_time")
     private Date updateTime;
 
+    @ManyToOne
+    @JoinColumn(name = "user_freelancer_user_id")
+    private UsersFreelancer userFreelancerUser;
 
+    @ManyToOne
+    @JoinColumn(name = "skill_id")
+    private Skills skill;
 
     public UserFreelancerHasSkill() {
     }
 
-    public UserFreelancerHasSkill(UsersFreelancer userFreelancerUser, Skills skill, Integer level, Integer experience, String description, Boolean delFlag) {
-        this.userFreelancerUser = userFreelancerUser;
-        this.skill = skill;
+    public UserFreelancerHasSkill(Integer userFreelancerUserId, Integer skillId, Integer level, Integer experience, String description, Boolean delFlag) {
+        this.userFreelancerUserId = userFreelancerUserId;
+        this.skillId = skillId;
         this.level = level;
         this.experience = experience;
         this.description = description;
         this.delFlag = delFlag;
     }
 
-    public UserFreelancerHasSkill(UsersFreelancer userFreelancerUser, Skills skill, Integer level, Integer experience, String description, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime) {
-        this.userFreelancerUser = userFreelancerUser;
-        this.skill = skill;
+    public UserFreelancerHasSkill(Integer skillId, Integer level, Integer experience, String description, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime) {
+        this.skillId = skillId;
         this.level = level;
         this.experience = experience;
         this.description = description;
@@ -77,20 +72,20 @@ public class UserFreelancerHasSkill implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public UsersFreelancer getUserFreelancerUser() {
-        return userFreelancerUser;
+    public Integer getUserFreelancerUserId() {
+        return userFreelancerUserId;
     }
 
-    public void setUserFreelancerUser(UsersFreelancer userFreelancerUser) {
-        this.userFreelancerUser = userFreelancerUser;
+    public void setUserFreelancerUserId(Integer userFreelancerUserId) {
+        this.userFreelancerUserId = userFreelancerUserId;
     }
 
-    public Skills getSkill() {
-        return skill;
+    public Integer getSkillId() {
+        return skillId;
     }
 
-    public void setSkill(Skills skill) {
-        this.skill = skill;
+    public void setSkillId(Integer skillId) {
+        this.skillId = skillId;
     }
 
     public Integer getLevel() {
