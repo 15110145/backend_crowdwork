@@ -21,10 +21,6 @@ public class UsersController {
     private UsersFreelancerService usersFreelancerService;
     private UsersRecruiterService usersRecruiterService;
 
-    @GetMapping("/hello")
-    public String hello(){
-        return "Spring Boot hello world !!!!!";
-    }
 
     @RequestMapping(value = "/finduser", //
             method = RequestMethod.GET, //

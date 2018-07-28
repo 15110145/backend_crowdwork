@@ -19,11 +19,5 @@ public class MainController {
         return "Spring Boot hello world !!!!!";
     }
 
-    @RequestMapping(value = "/finduser", //
-            method = RequestMethod.GET, //
-            produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Optional<Users> findUser(@RequestParam int id){
-        return userService.findUser(id);
-//        return list;
-    }
+
 }
