@@ -1,5 +1,7 @@
 package app.model;
 
+import app.model.Identity.JobRequireProfessionJobIdentity;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -8,15 +10,8 @@ import java.util.Date;
 @Table(name="job_require_profession_job")
 public class JobRequireProfessionJob implements Serializable {
 
-    @Id
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "job_id")
-    private Jobs jobs;
-
-    @Id
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "profession_job_id")
-    private ProfessionJob professionJob;
+    @EmbeddedId
+    private JobRequireProfessionJobIdentity jobRequireProfessionJobIdentity;
 
     @Column(name="del_flag")
     private Boolean delFlag;
@@ -36,9 +31,8 @@ public class JobRequireProfessionJob implements Serializable {
     public JobRequireProfessionJob() {
     }
 
-    public JobRequireProfessionJob(Jobs jobs, ProfessionJob professionJob, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime) {
-        this.jobs = jobs;
-        this.professionJob = professionJob;
+    public JobRequireProfessionJob(JobRequireProfessionJobIdentity jobRequireProfessionJobIdentity, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime) {
+        this.jobRequireProfessionJobIdentity = jobRequireProfessionJobIdentity;
         this.delFlag = delFlag;
         this.createUser = createUser;
         this.updateUser = updateUser;
@@ -46,20 +40,12 @@ public class JobRequireProfessionJob implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public Jobs getJobs() {
-        return jobs;
+    public JobRequireProfessionJobIdentity getJobRequireProfessionJobIdentity() {
+        return jobRequireProfessionJobIdentity;
     }
 
-    public void setJobs(Jobs jobs) {
-        this.jobs = jobs;
-    }
-
-    public ProfessionJob getProfessionJob() {
-        return professionJob;
-    }
-
-    public void setProfessionJob(ProfessionJob professionJob) {
-        this.professionJob = professionJob;
+    public void setJobRequireProfessionJobIdentity(JobRequireProfessionJobIdentity jobRequireProfessionJobIdentity) {
+        this.jobRequireProfessionJobIdentity = jobRequireProfessionJobIdentity;
     }
 
     public Boolean getDelFlag() {

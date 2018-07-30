@@ -1,5 +1,7 @@
 package app.model;
 
+import app.model.Identity.JobRequireSkillIdentity;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -8,15 +10,8 @@ import java.util.Date;
 @Table(name= "job_require_skill")
 public class JobRequireSkill implements Serializable {
 
-    @Id
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "job_id")
-    private Jobs jobs;
-
-    @Id
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "skill_id")
-    private Skills skills;
+    @EmbeddedId
+    private JobRequireSkillIdentity jobRequireSkillIdentity;
 
     @Column(name="del_flag")
     private Boolean delFlag;
@@ -36,15 +31,8 @@ public class JobRequireSkill implements Serializable {
     public JobRequireSkill() {
     }
 
-    public JobRequireSkill(Jobs jobs, Skills skills, Boolean delFlag) {
-        this.jobs = jobs;
-        this.skills = skills;
-        this.delFlag = delFlag;
-    }
-
-    public JobRequireSkill(Jobs jobs, Skills skills, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime) {
-        this.jobs = jobs;
-        this.skills = skills;
+    public JobRequireSkill(JobRequireSkillIdentity jobRequireSkillIdentity, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime) {
+        this.jobRequireSkillIdentity = jobRequireSkillIdentity;
         this.delFlag = delFlag;
         this.createUser = createUser;
         this.updateUser = updateUser;
@@ -52,20 +40,12 @@ public class JobRequireSkill implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public Jobs getJobs() {
-        return jobs;
+    public JobRequireSkillIdentity getJobRequireSkillIdentity() {
+        return jobRequireSkillIdentity;
     }
 
-    public void setJobs(Jobs jobs) {
-        this.jobs = jobs;
-    }
-
-    public Skills getSkills() {
-        return skills;
-    }
-
-    public void setSkills(Skills skills) {
-        this.skills = skills;
+    public void setJobRequireSkillIdentity(JobRequireSkillIdentity jobRequireSkillIdentity) {
+        this.jobRequireSkillIdentity = jobRequireSkillIdentity;
     }
 
     public Boolean getDelFlag() {

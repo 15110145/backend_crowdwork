@@ -1,5 +1,7 @@
 package app.model;
 
+import app.model.Identity.UserRecruiterJobRequirementIdentity;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -8,15 +10,8 @@ import java.util.Date;
 @Table(name="user_recruiter_job_requirement")
 public class UserRecruiterJobRequirement implements Serializable {
 
-    @Id
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_recruiter_user_id")
-    private UsersRecruiter usersRecruiter;
-
-    @Id
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "profession_job")
-    private ProfessionJob professionJob;
+    @EmbeddedId
+    private UserRecruiterJobRequirementIdentity userRecruiterJobRequirementIdentity;
 
     @Column(name="del_flag")
     private Boolean delFlag;
@@ -36,9 +31,8 @@ public class UserRecruiterJobRequirement implements Serializable {
     public UserRecruiterJobRequirement() {
     }
 
-    public UserRecruiterJobRequirement(UsersRecruiter usersRecruiter, ProfessionJob professionJob, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime) {
-        this.usersRecruiter = usersRecruiter;
-        this.professionJob = professionJob;
+    public UserRecruiterJobRequirement(UserRecruiterJobRequirementIdentity userRecruiterJobRequirementIdentity, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime) {
+        this.userRecruiterJobRequirementIdentity = userRecruiterJobRequirementIdentity;
         this.delFlag = delFlag;
         this.createUser = createUser;
         this.updateUser = updateUser;
@@ -46,20 +40,12 @@ public class UserRecruiterJobRequirement implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public UsersRecruiter getUsersRecruiter() {
-        return usersRecruiter;
+    public UserRecruiterJobRequirementIdentity getUserRecruiterJobRequirementIdentity() {
+        return userRecruiterJobRequirementIdentity;
     }
 
-    public void setUsersRecruiter(UsersRecruiter usersRecruiter) {
-        this.usersRecruiter = usersRecruiter;
-    }
-
-    public ProfessionJob getProfessionJob() {
-        return professionJob;
-    }
-
-    public void setProfessionJob(ProfessionJob professionJob) {
-        this.professionJob = professionJob;
+    public void setUserRecruiterJobRequirementIdentity(UserRecruiterJobRequirementIdentity userRecruiterJobRequirementIdentity) {
+        this.userRecruiterJobRequirementIdentity = userRecruiterJobRequirementIdentity;
     }
 
     public Boolean getDelFlag() {
