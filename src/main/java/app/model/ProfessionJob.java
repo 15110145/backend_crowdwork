@@ -3,6 +3,7 @@ package app.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="profession_job")
@@ -21,22 +22,37 @@ public class ProfessionJob implements Serializable {
     @Column(name="del_flag")
     private Boolean delFlag;
 
-    @Column(name="create_user")
-    private String createUser;
+    @Column(name = "create_user")
+    private Integer createUser;
 
-    @Column(name="update_user")
-    private String updateUser;
+    @Column(name = "update_user")
+    private Integer updateUser;
 
-    @Column(name="create_time")
+    @Column(name = "create_time")
     private Date createTime;
 
-    @Column(name="update_time")
+    @Column(name = "update_time")
     private Date updateTime;
+
+    @OneToMany(mappedBy = "professionJob")
+    private List<UserRecruiterJobRequirement> userRecruiterJobRequirementList;
+
+    @OneToMany(mappedBy = "professionJob")
+    private List<JobRequireProfessionJob> jobRequireProfessionJobList;
+
+    @OneToMany(mappedBy = "professionJob")
+    private List<UserFreelancerJobRequirement> userFreelancerJobRequirementList;
 
     public ProfessionJob() {
     }
 
-    public ProfessionJob(String professionJobName, Integer parrentId, Boolean delFlag, String createUser, String updateUser, Date createTime, Date updateTime) {
+    public ProfessionJob(String professionJobName, Integer parrentId, Boolean delFlag) {
+        this.professionJobName = professionJobName;
+        this.parrentId = parrentId;
+        this.delFlag = delFlag;
+    }
+
+    public ProfessionJob(String professionJobName, Integer parrentId, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime, List<UserRecruiterJobRequirement> userRecruiterJobRequirementList, List<JobRequireProfessionJob> jobRequireProfessionJobList) {
         this.professionJobName = professionJobName;
         this.parrentId = parrentId;
         this.delFlag = delFlag;
@@ -44,6 +60,8 @@ public class ProfessionJob implements Serializable {
         this.updateUser = updateUser;
         this.createTime = createTime;
         this.updateTime = updateTime;
+        this.userRecruiterJobRequirementList = userRecruiterJobRequirementList;
+        this.jobRequireProfessionJobList = jobRequireProfessionJobList;
     }
 
     public Integer getId() {
@@ -78,19 +96,19 @@ public class ProfessionJob implements Serializable {
         this.delFlag = delFlag;
     }
 
-    public String getCreateUser() {
+    public Integer getCreateUser() {
         return createUser;
     }
 
-    public void setCreateUser(String createUser) {
+    public void setCreateUser(Integer createUser) {
         this.createUser = createUser;
     }
 
-    public String getUpdateUser() {
+    public Integer getUpdateUser() {
         return updateUser;
     }
 
-    public void setUpdateUser(String updateUser) {
+    public void setUpdateUser(Integer updateUser) {
         this.updateUser = updateUser;
     }
 
@@ -110,17 +128,19 @@ public class ProfessionJob implements Serializable {
         this.updateTime = updateTime;
     }
 
-    @Override
-    public String toString() {
-        return "ProfessionJob{" +
-                "id=" + id +
-                ", professionJobName='" + professionJobName + '\'' +
-                ", parrentId=" + parrentId +
-                ", delFlag=" + delFlag +
-                ", createUser='" + createUser + '\'' +
-                ", updateUser='" + updateUser + '\'' +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-                '}';
+    public List<UserRecruiterJobRequirement> getUserRecruiterJobRequirementList() {
+        return userRecruiterJobRequirementList;
+    }
+
+    public void setUserRecruiterJobRequirementList(List<UserRecruiterJobRequirement> userRecruiterJobRequirementList) {
+        this.userRecruiterJobRequirementList = userRecruiterJobRequirementList;
+    }
+
+    public List<JobRequireProfessionJob> getJobRequireProfessionJobList() {
+        return jobRequireProfessionJobList;
+    }
+
+    public void setJobRequireProfessionJobList(List<JobRequireProfessionJob> jobRequireProfessionJobList) {
+        this.jobRequireProfessionJobList = jobRequireProfessionJobList;
     }
 }

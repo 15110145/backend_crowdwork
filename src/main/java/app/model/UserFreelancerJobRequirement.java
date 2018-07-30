@@ -5,17 +5,17 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name="job_require_profession_job")
-public class JobRequireProfessionJob implements Serializable {
+@Table(name="user_freelancer_job_requirement")
+public class UserFreelancerJobRequirement implements Serializable {
 
     @Id
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "job_id")
-    private Jobs jobs;
+    @JoinColumn(name = "user_freelancer_user_id")
+    private UsersFreelancer usersFreelancer;
 
     @Id
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "profession_job_id")
+    @JoinColumn(name = "profession_job")
     private ProfessionJob professionJob;
 
     @Column(name="del_flag")
@@ -33,11 +33,11 @@ public class JobRequireProfessionJob implements Serializable {
     @Column(name = "update_time")
     private Date updateTime;
 
-    public JobRequireProfessionJob() {
+    public UserFreelancerJobRequirement() {
     }
 
-    public JobRequireProfessionJob(Jobs jobs, ProfessionJob professionJob, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime) {
-        this.jobs = jobs;
+    public UserFreelancerJobRequirement(UsersFreelancer usersFreelancer, ProfessionJob professionJob, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime) {
+        this.usersFreelancer = usersFreelancer;
         this.professionJob = professionJob;
         this.delFlag = delFlag;
         this.createUser = createUser;
@@ -46,12 +46,12 @@ public class JobRequireProfessionJob implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public Jobs getJobs() {
-        return jobs;
+    public UsersFreelancer getUsersFreelancer() {
+        return usersFreelancer;
     }
 
-    public void setJobs(Jobs jobs) {
-        this.jobs = jobs;
+    public void setUsersFreelancer(UsersFreelancer usersFreelancer) {
+        this.usersFreelancer = usersFreelancer;
     }
 
     public ProfessionJob getProfessionJob() {

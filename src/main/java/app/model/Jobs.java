@@ -5,6 +5,7 @@ import com.sun.org.apache.xpath.internal.operations.Bool;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "jobs")
@@ -36,31 +37,49 @@ public class Jobs implements Serializable {
     @Column(name="slot")
     private Integer slot;
 
-    @Column(name="status")
-    private String status;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "status_id")
+    private Status status;
 
-    @Column(name="user_recruiter_user_id")
-    private Integer userRecruiterUserId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_recruiter_user_id")
+    private UsersRecruiter usersRecruiter;
 
-    @Column(name="job_category_id")
-    private Integer jobCategoryId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "job_category_id")
+    private JobCategory jobCategory;
 
     @Column(name="del_flag")
     private Boolean delFlag;
 
-    @Column(name="create_user")
+    @Column(name = "create_user")
     private Integer createUser;
 
-    @Column(name="update_user")
+    @Column(name = "update_user")
     private Integer updateUser;
 
-    @Column(name="create_time")
+    @Column(name = "create_time")
     private Date createTime;
 
-    @Column(name="update_time")
+    @Column(name = "update_time")
     private Date updateTime;
 
-    public Jobs(String jobName, Date deadline, Double salary, String title, String description, Integer experience, Integer slot, String status, Integer userRecruiterUserId, Integer jobCategoryId, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime) {
+    @OneToMany(mappedBy = "jobs")
+    private List<Comments> commentsList;
+
+    @OneToMany(mappedBy = "jobs")
+    private List<JobRequireProfessionJob> jobRequireProfessionJobList;
+
+    @OneToMany(mappedBy = "jobs")
+    private List<JobRequireSkill> jobRequireSkillList;
+
+    @OneToMany(mappedBy = "jobs")
+    private List<UserFreelancerHasJob> userFreelancerHasJobList;
+
+    public Jobs() {
+    }
+
+    public Jobs(String jobName, Date deadline, Double salary, String title, String description, Integer experience, Integer slot, Status status, UsersRecruiter usersRecruiter, JobCategory jobCategory, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime) {
         this.jobName = jobName;
         this.deadline = deadline;
         this.salary = salary;
@@ -69,8 +88,8 @@ public class Jobs implements Serializable {
         this.experience = experience;
         this.slot = slot;
         this.status = status;
-        this.userRecruiterUserId = userRecruiterUserId;
-        this.jobCategoryId = jobCategoryId;
+        this.usersRecruiter = usersRecruiter;
+        this.jobCategory = jobCategory;
         this.delFlag = delFlag;
         this.createUser = createUser;
         this.updateUser = updateUser;
@@ -142,28 +161,28 @@ public class Jobs implements Serializable {
         this.slot = slot;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
-    public Integer getUserRecruiterUserId() {
-        return userRecruiterUserId;
+    public UsersRecruiter getUsersRecruiter() {
+        return usersRecruiter;
     }
 
-    public void setUserRecruiterUserId(Integer userRecruiterUserId) {
-        this.userRecruiterUserId = userRecruiterUserId;
+    public void setUsersRecruiter(UsersRecruiter usersRecruiter) {
+        this.usersRecruiter = usersRecruiter;
     }
 
-    public Integer getJobCategoryId() {
-        return jobCategoryId;
+    public JobCategory getJobCategory() {
+        return jobCategory;
     }
 
-    public void setJobCategoryId(Integer jobCategoryId) {
-        this.jobCategoryId = jobCategoryId;
+    public void setJobCategory(JobCategory jobCategory) {
+        this.jobCategory = jobCategory;
     }
 
     public Boolean getDelFlag() {
@@ -206,25 +225,35 @@ public class Jobs implements Serializable {
         this.updateTime = updateTime;
     }
 
-    @Override
-    public String toString() {
-        return "Jobs{" +
-                "id=" + id +
-                ", jobName='" + jobName + '\'' +
-                ", deadline=" + deadline +
-                ", salary=" + salary +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", experience=" + experience +
-                ", slot=" + slot +
-                ", status='" + status + '\'' +
-                ", userRecruiterUserId=" + userRecruiterUserId +
-                ", jobCategoryId=" + jobCategoryId +
-                ", delFlag=" + delFlag +
-                ", createUser=" + createUser +
-                ", updateUser=" + updateUser +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-                '}';
+    public List<Comments> getCommentsList() {
+        return commentsList;
+    }
+
+    public void setCommentsList(List<Comments> commentsList) {
+        this.commentsList = commentsList;
+    }
+
+    public List<JobRequireProfessionJob> getJobRequireProfessionJobList() {
+        return jobRequireProfessionJobList;
+    }
+
+    public void setJobRequireProfessionJobList(List<JobRequireProfessionJob> jobRequireProfessionJobList) {
+        this.jobRequireProfessionJobList = jobRequireProfessionJobList;
+    }
+
+    public List<JobRequireSkill> getJobRequireSkillList() {
+        return jobRequireSkillList;
+    }
+
+    public void setJobRequireSkillList(List<JobRequireSkill> jobRequireSkillList) {
+        this.jobRequireSkillList = jobRequireSkillList;
+    }
+
+    public List<UserFreelancerHasJob> getUserFreelancerHasJobList() {
+        return userFreelancerHasJobList;
+    }
+
+    public void setUserFreelancerHasJobList(List<UserFreelancerHasJob> userFreelancerHasJobList) {
+        this.userFreelancerHasJobList = userFreelancerHasJobList;
     }
 }

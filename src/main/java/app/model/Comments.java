@@ -17,11 +17,13 @@ public class Comments implements Serializable {
     @Column(name="contents")
     private String content;
 
-    @Column(name="user_id")
-    private Integer userId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private Users users;
 
-    @Column(name="job_id")
-    private Integer jobId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "job_id")
+    private Jobs jobs;
 
     @Column(name="parent_id")
     private Integer parentId;
@@ -29,24 +31,24 @@ public class Comments implements Serializable {
     @Column(name="del_flag")
     private Boolean delFlag;
 
-    @Column(name="create_user")
-    private String createUser;
+    @Column(name = "create_user")
+    private Integer createUser;
 
-    @Column(name="update_user")
-    private String updateUser;
+    @Column(name = "update_user")
+    private Integer updateUser;
 
-    @Column(name="create_time")
+    @Column(name = "create_time")
     private Date createTime;
 
-    @Column(name="update_time")
+    @Column(name = "update_time")
     private Date updateTime;
 
     public Comments() { }
 
-    public Comments(String content, Integer userId, Integer jobId, Integer parentId, Boolean delFlag, String createUser, String updateUser, Date createTime, Date updateTime) {
+    public Comments(String content, Users users, Jobs jobs, Integer parentId, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime) {
         this.content = content;
-        this.userId = userId;
-        this.jobId = jobId;
+        this.users = users;
+        this.jobs = jobs;
         this.parentId = parentId;
         this.delFlag = delFlag;
         this.createUser = createUser;
@@ -71,20 +73,20 @@ public class Comments implements Serializable {
         this.content = content;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public Users getUsers() {
+        return users;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUsers(Users users) {
+        this.users = users;
     }
 
-    public Integer getJobId() {
-        return jobId;
+    public Jobs getJobs() {
+        return jobs;
     }
 
-    public void setJobId(Integer jobId) {
-        this.jobId = jobId;
+    public void setJobs(Jobs jobs) {
+        this.jobs = jobs;
     }
 
     public Integer getParentId() {
@@ -103,19 +105,19 @@ public class Comments implements Serializable {
         this.delFlag = delFlag;
     }
 
-    public String getCreateUser() {
+    public Integer getCreateUser() {
         return createUser;
     }
 
-    public void setCreateUser(String createUser) {
+    public void setCreateUser(Integer createUser) {
         this.createUser = createUser;
     }
 
-    public String getUpdateUser() {
+    public Integer getUpdateUser() {
         return updateUser;
     }
 
-    public void setUpdateUser(String updateUser) {
+    public void setUpdateUser(Integer updateUser) {
         this.updateUser = updateUser;
     }
 
@@ -133,21 +135,5 @@ public class Comments implements Serializable {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
-    }
-
-    @Override
-    public String toString() {
-        return "Comments{" +
-                "id=" + id +
-                ", content='" + content + '\'' +
-                ", userId=" + userId +
-                ", jobId=" + jobId +
-                ", parentId=" + parentId +
-                ", delFlag=" + delFlag +
-                ", createUser='" + createUser + '\'' +
-                ", updateUser='" + updateUser + '\'' +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-                '}';
     }
 }
