@@ -18,7 +18,11 @@ public class UsersController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
     private UsersFreelancerService usersFreelancerService;
+
+    @Autowired
     private UsersRecruiterService usersRecruiterService;
 
 
