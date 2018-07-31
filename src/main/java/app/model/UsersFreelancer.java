@@ -49,13 +49,13 @@ public class UsersFreelancer implements Serializable {
     @Column(name = "update_time")
     private Date updateTime;
 
-    @OneToMany(mappedBy = "userFreelancerUserId")
+    @OneToMany(mappedBy = "userFreelancerUser")
     private List<UserFreelancerHasSkill> userFreelancerHasSkills;
 
-    @OneToMany(mappedBy = "userFreelancerUserId")
+    @OneToMany(mappedBy = "userFreelancerUser")
     private List<UserFreelancerHasJob> userFreelancerHasJobs;
 
-    @OneToMany(mappedBy = "userFreelancerUseId")
+    @OneToMany(mappedBy = "userFreelancerUse")
     private List<Contracts> contracts;
 
     public UsersFreelancer() {

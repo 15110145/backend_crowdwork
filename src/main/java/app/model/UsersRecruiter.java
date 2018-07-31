@@ -40,7 +40,7 @@ public class UsersRecruiter implements Serializable {
     @Column(name = "update_time")
     private Date updateTime;
 
-    @OneToMany(mappedBy = "userRecruiterUseId")
+    @OneToMany(mappedBy = "userRecruiterUse")
     private List<Contracts> contracts;
 
     @OneToMany(mappedBy = "userRecruiterUserId")
