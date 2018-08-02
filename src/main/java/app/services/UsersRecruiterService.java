@@ -2,10 +2,12 @@ package app.services;
 
 import app.model.UsersRecruiter;
 import app.repository.UsersRecruiterReponsitory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,11 +15,8 @@ import java.util.Optional;
 @Transactional
 public class UsersRecruiterService {
 
-    private final UsersRecruiterReponsitory usersRecruiterReponsitory;
-
-    public UsersRecruiterService(UsersRecruiterReponsitory usersRecruiterReponsitory) {
-        this.usersRecruiterReponsitory = usersRecruiterReponsitory;
-    }
+    @Autowired
+    UsersRecruiterReponsitory usersRecruiterReponsitory;
 
     public List<UsersRecruiter> findAll(){
         List<UsersRecruiter> usersRecruiters = new ArrayList<UsersRecruiter>();
@@ -31,5 +30,38 @@ public class UsersRecruiterService {
 
     public Optional<UsersRecruiter> findUserRecruiter(int id){
         return usersRecruiterReponsitory.findById(id);
+    }
+
+    public void save(UsersRecruiter usersRecruiter){
+        usersRecruiterReponsitory.save(usersRecruiter);
+    }
+
+    public void update(UsersRecruiter users) {
+//        Users existinguser = null;
+        Optional<UsersRecruiter> user = findUserRecruiter(users.getUserId());
+        if (user.isPresent()) {
+            UsersRecruiter existinguser = user.get();
+            if (users.getCompanyName() != null) {
+                existinguser.setCompanyName(users.getCompanyName());
+            }
+            if (users.getCompanyProfile() != null) {
+                existinguser.setCompanyProfile(users.getCompanyProfile());
+            }
+            if (users.getUpdateUser() != null) {
+                existinguser.setUpdateUser(users.getUpdateUser());
+            }
+            if(users.getDelFlag() != null){
+                existinguser.setDelFlag(users.getDelFlag());
+            }
+            if(users.getApproved() != null){
+                existinguser.setApproved(users.getApproved());
+            }
+            existinguser.setUpdateTime(new Date());
+            usersRecruiterReponsitory.save(existinguser);
+        }
+    }
+
+    public void delete(int id){
+        usersRecruiterReponsitory.deleteById(id);
     }
 }

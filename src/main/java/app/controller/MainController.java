@@ -11,9 +11,6 @@ import java.util.Optional;
 @RestController
 public class MainController {
 
-    @Autowired
-    private UserService userService;
-
     @GetMapping("/hello")
     public String hello(){
         return "Spring Boot hello world !!!!!";

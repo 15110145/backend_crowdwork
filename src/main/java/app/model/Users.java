@@ -1,5 +1,7 @@
 package app.model;
 
+import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.SelectBeforeUpdate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -9,6 +11,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
+//@SelectBeforeUpdate
+@DynamicUpdate
 public class Users implements Serializable {
 
     @Id
@@ -215,5 +219,13 @@ public class Users implements Serializable {
 
     public void setComments(List<Comments> comments) {
         this.comments = comments;
+    }
+
+    public Boolean getVerifyEmail() {
+        return isVerifyEmail;
+    }
+
+    public void setVerifyEmail(Boolean verifyEmail) {
+        isVerifyEmail = verifyEmail;
     }
 }

@@ -9,12 +9,14 @@ import java.util.Date;
 public class UserFreelancerHasJob implements Serializable {
 
     @Id
-    @Column(name = "user_freelancer_user_id")
-    private Integer userFreelancerUserId;
+    @ManyToOne
+    @JoinColumn(name = "user_freelancer_user_id")
+    private UsersFreelancer userFreelancerUser;
 
     @Id
-    @Column(name = "job_id")
-    private Integer jobId;
+    @ManyToOne
+    @JoinColumn(name = "job_id")
+    private Jobs job;
 
     @Column(name = "date_start")
     private Date dateStart;
@@ -40,28 +42,21 @@ public class UserFreelancerHasJob implements Serializable {
     @Column(name = "update_time")
     private Date updateTime;
 
-    @ManyToOne
-    @JoinColumn(name = "user_freelancer_user_id")
-    private UsersFreelancer userFreelancerUser;
-
-    @ManyToOne
-    @JoinColumn(name = "job_id")
-    private Jobs job;
-
     public UserFreelancerHasJob() {
     }
 
-    public UserFreelancerHasJob(Integer userFreelancerUserId, Integer jobId, Date dateStart, Date dateEnd, String fileURL, Boolean delFlag) {
-        this.userFreelancerUserId = userFreelancerUserId;
-        this.jobId = jobId;
+    public UserFreelancerHasJob(UsersFreelancer userFreelancerUser, Jobs job, Date dateStart, Date dateEnd, String fileURL, Boolean delFlag) {
+        this.userFreelancerUser = userFreelancerUser;
+        this.job = job;
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
         this.fileURL = fileURL;
         this.delFlag = delFlag;
     }
 
-    public UserFreelancerHasJob(Integer jobId, Date dateStart, Date dateEnd, String fileURL, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime) {
-        this.jobId = jobId;
+    public UserFreelancerHasJob(UsersFreelancer userFreelancerUser, Jobs job, Date dateStart, Date dateEnd, String fileURL, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime) {
+        this.userFreelancerUser = userFreelancerUser;
+        this.job = job;
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
         this.fileURL = fileURL;
@@ -72,20 +67,20 @@ public class UserFreelancerHasJob implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public Integer getUserFreelancerUserId() {
-        return userFreelancerUserId;
+    public UsersFreelancer getUserFreelancerUser() {
+        return userFreelancerUser;
     }
 
-    public void setUserFreelancerUserId(Integer userFreelancerUserId) {
-        this.userFreelancerUserId = userFreelancerUserId;
+    public void setUserFreelancerUser(UsersFreelancer userFreelancerUser) {
+        this.userFreelancerUser = userFreelancerUser;
     }
 
-    public Integer getJobId() {
-        return jobId;
+    public Jobs getJob() {
+        return job;
     }
 
-    public void setJobId(Integer jobId) {
-        this.jobId = jobId;
+    public void setJob(Jobs job) {
+        this.job = job;
     }
 
     public Date getDateStart() {
