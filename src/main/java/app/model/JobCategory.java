@@ -31,8 +31,8 @@ public class JobCategory implements Serializable {
     @Column(name="update_time")
     private Date updateTime;
 
-    @OneToMany(mappedBy = "jobCategory")
-    private List<Jobs> jobsList;
+//    @OneToMany(mappedBy = "jobCategory")
+//    private List<Jobs> jobsList;
 
     public JobCategory() {
     }
@@ -102,13 +102,13 @@ public class JobCategory implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public List<Jobs> getJobsList() {
-        return jobsList;
-    }
-
-    public void setJobsList(List<Jobs> jobsList) {
-        this.jobsList = jobsList;
-    }
+//    public List<Jobs> getJobsList() {
+//        return jobsList;
+//    }
+//
+//    public void setJobsList(List<Jobs> jobsList) {
+//        this.jobsList = jobsList;
+//    }
 
     @Override
     public String toString() {

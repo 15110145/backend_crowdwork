@@ -5,6 +5,7 @@ import app.model.Skills;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Embeddable
 public class JobRequireSkillIdentity implements Serializable {
@@ -39,5 +40,20 @@ public class JobRequireSkillIdentity implements Serializable {
 
     public void setSkills(Skills skills) {
         this.skills = skills;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        JobRequireSkillIdentity that = (JobRequireSkillIdentity) o;
+        return Objects.equals(jobs, that.jobs) &&
+                Objects.equals(skills, that.skills);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(jobs, skills);
     }
 }

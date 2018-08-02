@@ -5,6 +5,7 @@ import app.model.UsersFreelancer;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Embeddable
 public class UserFreelancerJobRequirementIdentity implements Serializable {
@@ -14,7 +15,7 @@ public class UserFreelancerJobRequirementIdentity implements Serializable {
     private UsersFreelancer usersFreelancer;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "profession_job")
+    @JoinColumn(name = "profession_job_id")
     private ProfessionJob professionJob;
 
     public UserFreelancerJobRequirementIdentity() {
@@ -39,5 +40,20 @@ public class UserFreelancerJobRequirementIdentity implements Serializable {
 
     public void setProfessionJob(ProfessionJob professionJob) {
         this.professionJob = professionJob;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserFreelancerJobRequirementIdentity that = (UserFreelancerJobRequirementIdentity) o;
+        return Objects.equals(usersFreelancer, that.usersFreelancer) &&
+                Objects.equals(professionJob, that.professionJob);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(usersFreelancer, professionJob);
     }
 }

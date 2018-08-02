@@ -64,17 +64,17 @@ public class Jobs implements Serializable {
     @Column(name = "update_time")
     private Date updateTime;
 
-    @OneToMany(mappedBy = "jobs")
-    private List<Comments> commentsList;
-
-    @OneToMany(mappedBy = "jobs")
-    private List<JobRequireProfessionJob> jobRequireProfessionJobList;
-
-    @OneToMany(mappedBy = "jobs")
-    private List<JobRequireSkill> jobRequireSkillList;
-
-    @OneToMany(mappedBy = "jobs")
-    private List<UserFreelancerHasJob> userFreelancerHasJobList;
+//    @OneToMany(mappedBy = "jobs")
+//    private List<Comments> commentsList;
+//
+//    @OneToMany(mappedBy = "jobRequireProfessionJobIdentity.jobs")
+//    private List<JobRequireProfessionJob> jobRequireProfessionJobList;
+//
+//    @OneToMany(mappedBy = "jobs")
+//    private List<JobRequireSkill> jobRequireSkillList;
+//
+//    @OneToMany(mappedBy = "jobs")
+//    private List<UserFreelancerHasJob> userFreelancerHasJobList;
 
     public Jobs() {
     }
@@ -225,35 +225,35 @@ public class Jobs implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public List<Comments> getCommentsList() {
-        return commentsList;
-    }
-
-    public void setCommentsList(List<Comments> commentsList) {
-        this.commentsList = commentsList;
-    }
-
-    public List<JobRequireProfessionJob> getJobRequireProfessionJobList() {
-        return jobRequireProfessionJobList;
-    }
-
-    public void setJobRequireProfessionJobList(List<JobRequireProfessionJob> jobRequireProfessionJobList) {
-        this.jobRequireProfessionJobList = jobRequireProfessionJobList;
-    }
-
-    public List<JobRequireSkill> getJobRequireSkillList() {
-        return jobRequireSkillList;
-    }
-
-    public void setJobRequireSkillList(List<JobRequireSkill> jobRequireSkillList) {
-        this.jobRequireSkillList = jobRequireSkillList;
-    }
-
-    public List<UserFreelancerHasJob> getUserFreelancerHasJobList() {
-        return userFreelancerHasJobList;
-    }
-
-    public void setUserFreelancerHasJobList(List<UserFreelancerHasJob> userFreelancerHasJobList) {
-        this.userFreelancerHasJobList = userFreelancerHasJobList;
-    }
+//    public List<Comments> getCommentsList() {
+//        return commentsList;
+//    }
+//
+//    public void setCommentsList(List<Comments> commentsList) {
+//        this.commentsList = commentsList;
+//    }
+//
+//    public List<JobRequireProfessionJob> getJobRequireProfessionJobList() {
+//        return jobRequireProfessionJobList;
+//    }
+//
+//    public void setJobRequireProfessionJobList(List<JobRequireProfessionJob> jobRequireProfessionJobList) {
+//        this.jobRequireProfessionJobList = jobRequireProfessionJobList;
+//    }
+//
+//    public List<JobRequireSkill> getJobRequireSkillList() {
+//        return jobRequireSkillList;
+//    }
+//
+//    public void setJobRequireSkillList(List<JobRequireSkill> jobRequireSkillList) {
+//        this.jobRequireSkillList = jobRequireSkillList;
+//    }
+//
+//    public List<UserFreelancerHasJob> getUserFreelancerHasJobList() {
+//        return userFreelancerHasJobList;
+//    }
+//
+//    public void setUserFreelancerHasJobList(List<UserFreelancerHasJob> userFreelancerHasJobList) {
+//        this.userFreelancerHasJobList = userFreelancerHasJobList;
+//    }
 }

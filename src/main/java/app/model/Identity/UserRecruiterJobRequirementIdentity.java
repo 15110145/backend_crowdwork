@@ -5,6 +5,7 @@ import app.model.UsersRecruiter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Embeddable
 public class UserRecruiterJobRequirementIdentity implements Serializable {
@@ -39,5 +40,20 @@ public class UserRecruiterJobRequirementIdentity implements Serializable {
 
     public void setProfessionJob(ProfessionJob professionJob) {
         this.professionJob = professionJob;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserRecruiterJobRequirementIdentity that = (UserRecruiterJobRequirementIdentity) o;
+        return Objects.equals(usersRecruiter, that.usersRecruiter) &&
+                Objects.equals(professionJob, that.professionJob);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(usersRecruiter, professionJob);
     }
 }

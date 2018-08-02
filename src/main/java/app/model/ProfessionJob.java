@@ -34,14 +34,14 @@ public class ProfessionJob implements Serializable {
     @Column(name = "update_time")
     private Date updateTime;
 
-    @OneToMany(mappedBy = "professionJob")
-    private List<UserRecruiterJobRequirement> userRecruiterJobRequirementList;
-
-    @OneToMany(mappedBy = "professionJob")
-    private List<JobRequireProfessionJob> jobRequireProfessionJobList;
-
-    @OneToMany(mappedBy = "professionJob")
-    private List<UserFreelancerJobRequirement> userFreelancerJobRequirementList;
+//    @OneToMany(mappedBy = "professionJob")
+//    private List<UserRecruiterJobRequirement> userRecruiterJobRequirementList;
+//
+//    @OneToMany(mappedBy = "professionJob")
+//    private List<JobRequireProfessionJob> jobRequireProfessionJobList;
+//
+//    @OneToMany(mappedBy = "professionJob")
+//    private List<UserFreelancerJobRequirement> userFreelancerJobRequirementList;
 
     public ProfessionJob() {
     }
@@ -52,17 +52,17 @@ public class ProfessionJob implements Serializable {
         this.delFlag = delFlag;
     }
 
-    public ProfessionJob(String professionJobName, Integer parrentId, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime, List<UserRecruiterJobRequirement> userRecruiterJobRequirementList, List<JobRequireProfessionJob> jobRequireProfessionJobList) {
-        this.professionJobName = professionJobName;
-        this.parrentId = parrentId;
-        this.delFlag = delFlag;
-        this.createUser = createUser;
-        this.updateUser = updateUser;
-        this.createTime = createTime;
-        this.updateTime = updateTime;
-        this.userRecruiterJobRequirementList = userRecruiterJobRequirementList;
-        this.jobRequireProfessionJobList = jobRequireProfessionJobList;
-    }
+//    public ProfessionJob(String professionJobName, Integer parrentId, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime, List<UserRecruiterJobRequirement> userRecruiterJobRequirementList, List<JobRequireProfessionJob> jobRequireProfessionJobList) {
+//        this.professionJobName = professionJobName;
+//        this.parrentId = parrentId;
+//        this.delFlag = delFlag;
+//        this.createUser = createUser;
+//        this.updateUser = updateUser;
+//        this.createTime = createTime;
+//        this.updateTime = updateTime;
+//        this.userRecruiterJobRequirementList = userRecruiterJobRequirementList;
+//        this.jobRequireProfessionJobList = jobRequireProfessionJobList;
+//    }
 
     public Integer getId() {
         return id;
@@ -128,19 +128,19 @@ public class ProfessionJob implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public List<UserRecruiterJobRequirement> getUserRecruiterJobRequirementList() {
-        return userRecruiterJobRequirementList;
-    }
-
-    public void setUserRecruiterJobRequirementList(List<UserRecruiterJobRequirement> userRecruiterJobRequirementList) {
-        this.userRecruiterJobRequirementList = userRecruiterJobRequirementList;
-    }
-
-    public List<JobRequireProfessionJob> getJobRequireProfessionJobList() {
-        return jobRequireProfessionJobList;
-    }
-
-    public void setJobRequireProfessionJobList(List<JobRequireProfessionJob> jobRequireProfessionJobList) {
-        this.jobRequireProfessionJobList = jobRequireProfessionJobList;
-    }
+//    public List<UserRecruiterJobRequirement> getUserRecruiterJobRequirementList() {
+//        return userRecruiterJobRequirementList;
+//    }
+//
+//    public void setUserRecruiterJobRequirementList(List<UserRecruiterJobRequirement> userRecruiterJobRequirementList) {
+//        this.userRecruiterJobRequirementList = userRecruiterJobRequirementList;
+//    }
+//
+//    public List<JobRequireProfessionJob> getJobRequireProfessionJobList() {
+//        return jobRequireProfessionJobList;
+//    }
+//
+//    public void setJobRequireProfessionJobList(List<JobRequireProfessionJob> jobRequireProfessionJobList) {
+//        this.jobRequireProfessionJobList = jobRequireProfessionJobList;
+//    }
 }
