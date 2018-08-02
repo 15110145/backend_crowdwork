@@ -38,7 +38,7 @@ public class UsersRecruiterService {
 
     public void update(UsersRecruiter users) {
 //        Users existinguser = null;
-        Optional<UsersRecruiter> user = findUserRecruiter(users.getUserId());
+        Optional<UsersRecruiter> user = findUserRecruiter(users.getUserId().getId());
         if (user.isPresent()) {
             UsersRecruiter existinguser = user.get();
             if (users.getCompanyName() != null) {
@@ -47,14 +47,14 @@ public class UsersRecruiterService {
             if (users.getCompanyProfile() != null) {
                 existinguser.setCompanyProfile(users.getCompanyProfile());
             }
+            if(users.getApproved() != null){
+                existinguser.setApproved(users.getApproved());
+            }
             if (users.getUpdateUser() != null) {
                 existinguser.setUpdateUser(users.getUpdateUser());
             }
             if(users.getDelFlag() != null){
                 existinguser.setDelFlag(users.getDelFlag());
-            }
-            if(users.getApproved() != null){
-                existinguser.setApproved(users.getApproved());
             }
             existinguser.setUpdateTime(new Date());
             usersRecruiterReponsitory.save(existinguser);

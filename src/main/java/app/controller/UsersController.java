@@ -26,13 +26,17 @@ public class UsersController {
     @Autowired
     private UsersRecruiterService usersRecruiterService;
 
+    /**
+     *
+     * @Users service
+     *
+     */
 // tim kiem user thong qua id
-    @RequestMapping(value = "/finduser", //
+    @RequestMapping(value = "/finduser/{id}", //
             method = RequestMethod.GET, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Optional<Users> findUser(@RequestParam int id){
+    public Optional<Users> findUser(@PathVariable int id){
         return userService.findUser(id);
-//        return list;
     }
 
     //lay tat ca user
@@ -48,7 +52,6 @@ public class UsersController {
             method = RequestMethod.POST, //
             produces = { MediaType.APPLICATION_JSON_VALUE })
     public String saveUser(@RequestBody Users user){
-        user.setCreateTime(new Date());
         user.setDelFlag(false);
         user.setVerifyEmail(false);
         userService.save(user);
@@ -65,11 +68,16 @@ public class UsersController {
         return "User updated !";
     }
 
+    /**
+     *
+     * @UsersFreelancer
+     *
+     */
     //tim kiem user freelancer theo id
-    @RequestMapping(value = "/finduserfreelancer", //
+    @RequestMapping(value = "/finduserfreelancer/{id}", //
             method = RequestMethod.GET, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Optional<UsersFreelancer> findUserFrelancer(@RequestParam int id){
+    public Optional<UsersFreelancer> findUserFrelancer(@PathVariable int id){
         return usersFreelancerService.findUserFreelancer(id);
     }
 
@@ -92,11 +100,25 @@ public class UsersController {
         return "UserFreelancer saved !";
     }
 
+    //update userfreelancer
+    @RequestMapping(value = "/updateuserfreelancer", //
+            method = RequestMethod.PUT, //
+            produces = { MediaType.APPLICATION_JSON_VALUE })
+    public String updateUserFreelancer(@RequestBody UsersFreelancer user){
+        usersFreelancerService.update(user);
+        return "Freelancer updated !";
+    }
+
+    /**
+     *
+     * @UsersRecruiter
+     *
+     */
     //tim kiem user recruiter
-    @RequestMapping(value = "/finduserrecruiter", //
+    @RequestMapping(value = "/finduserrecruiter/{id}", //
                    method = RequestMethod.GET, //
                    produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Optional<UsersRecruiter> findUserRecruiter(@RequestParam int id){
+    public Optional<UsersRecruiter> findUserRecruiter(@PathVariable int id){
         return usersRecruiterService.findUserRecruiter(id);
 //        return list;
     }
@@ -118,6 +140,15 @@ public class UsersController {
         user.setDelFlag(false);
         usersRecruiterService.save(user);
         return "UserRecruiter saved !";
+    }
+
+    //update userrecruiter
+    @RequestMapping(value = "/updateuserrecruiter", //
+            method = RequestMethod.PUT, //
+            produces = { MediaType.APPLICATION_JSON_VALUE })
+    public String updateUserRecruiter(@RequestBody UsersRecruiter user){
+        usersRecruiterService.update(user);
+        return "Recruiter updated !";
     }
 
 }

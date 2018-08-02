@@ -11,10 +11,9 @@ import java.util.Set;
 public class UsersRecruiter implements Serializable {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
-
-    @Column(name = "user_id")
-    private Integer userId;
+//    @OneToOne
+    @JoinColumn(name = "user_id")
+    private Users userId;
 
     @Column(name = "company_name")
     private String companyName;
@@ -59,11 +58,10 @@ public class UsersRecruiter implements Serializable {
         this.delFlag = delFlag;
     }
 
-    public UsersRecruiter(String companyName, String companyProfile, Boolean approved, Integer userId, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime) {
+    public UsersRecruiter(String companyName, String companyProfile, Boolean approved, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime) {
         this.companyName = companyName;
         this.companyProfile = companyProfile;
         this.approved = approved;
-        this.userId = userId;
         this.delFlag = delFlag;
         this.createUser = createUser;
         this.updateUser = updateUser;
@@ -93,14 +91,6 @@ public class UsersRecruiter implements Serializable {
 
     public void setApproved(Boolean approved) {
         this.approved = approved;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
     }
 
     public Boolean getDelFlag() {
@@ -141,5 +131,13 @@ public class UsersRecruiter implements Serializable {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public Users getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Users userId) {
+        this.userId = userId;
     }
 }

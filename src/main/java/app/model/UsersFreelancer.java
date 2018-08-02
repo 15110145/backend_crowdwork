@@ -11,10 +11,9 @@ import java.util.Set;
 public class UsersFreelancer implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-
-    @Column(name = "user_id")
-    private Integer userId;
+//    @OneToOne
+    @JoinColumn(name = "user_id")
+    private Users userId;
 
     @Column(name = "status_id")
     private String statusId;
@@ -85,11 +84,11 @@ public class UsersFreelancer implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public Integer getUserId() {
+    public Users getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(Users userId) {
         this.userId = userId;
     }
 

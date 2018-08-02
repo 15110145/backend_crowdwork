@@ -14,7 +14,6 @@ import java.util.Optional;
 
 @Service
 @Transactional
-
 public class UserService {
 
     @Autowired
@@ -38,9 +37,9 @@ public class UserService {
         userRepository.save(users);
     }
 
-    public void update1(Users users){
-        userRepository.updateUser(users.getId(),users.getName(),users.getUpdateTime());
-    }
+//    public void update1(Users users){
+//        userRepository.updateUser(users.getId(),users.getName(),users.getUpdateTime());
+//    }
 
     public void update(Users users){
 //        Users existinguser = null;
@@ -65,7 +64,9 @@ public class UserService {
             if(users.getEmail() != null){
                 existinguser.setEmail(users.getEmail());
             }
-            existinguser.setUpdateTime(new Date());
+            if(users.getVerifyEmail() != null){
+                existinguser.setVerifyEmail(users.getVerifyEmail());
+            }
             userRepository.save(existinguser);
         }
     }

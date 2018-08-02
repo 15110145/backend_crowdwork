@@ -36,8 +36,8 @@ public class Jobs implements Serializable {
     @Column(name="slot")
     private Integer slot;
 
-    @Column(name="status")
-    private String status;
+    @Column(name="status_id")
+    private String statusId;
 
     @Column(name="user_recruiter_user_id")
     private Integer userRecruiterUserId;
@@ -60,7 +60,7 @@ public class Jobs implements Serializable {
     @Column(name="update_time")
     private Date updateTime;
 
-    public Jobs(String jobName, Date deadline, Double salary, String title, String description, Integer experience, Integer slot, String status, Integer userRecruiterUserId, Integer jobCategoryId, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime) {
+    public Jobs(String jobName, Date deadline, Double salary, String title, String description, Integer experience, Integer slot, String statusId, Integer userRecruiterUserId, Integer jobCategoryId, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime) {
         this.jobName = jobName;
         this.deadline = deadline;
         this.salary = salary;
@@ -68,7 +68,7 @@ public class Jobs implements Serializable {
         this.description = description;
         this.experience = experience;
         this.slot = slot;
-        this.status = status;
+        this.statusId = statusId;
         this.userRecruiterUserId = userRecruiterUserId;
         this.jobCategoryId = jobCategoryId;
         this.delFlag = delFlag;
@@ -142,12 +142,12 @@ public class Jobs implements Serializable {
         this.slot = slot;
     }
 
-    public String getStatus() {
-        return status;
+    public String getstatusId() {
+        return statusId;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setstatusId(String statusId) {
+        this.statusId = statusId;
     }
 
     public Integer getUserRecruiterUserId() {
@@ -217,7 +217,7 @@ public class Jobs implements Serializable {
                 ", description='" + description + '\'' +
                 ", experience=" + experience +
                 ", slot=" + slot +
-                ", status='" + status + '\'' +
+                ", statusId='" + statusId + '\'' +
                 ", userRecruiterUserId=" + userRecruiterUserId +
                 ", jobCategoryId=" + jobCategoryId +
                 ", delFlag=" + delFlag +

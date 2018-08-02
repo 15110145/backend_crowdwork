@@ -15,8 +15,8 @@ public class ProfessionJob implements Serializable {
     @Column(name="pjobname")
     private String professionJobName;
 
-    @Column(name="parrent_id")
-    private Integer parrentId;
+    @Column(name="parent_id")
+    private Integer parentId;
 
     @Column(name="del_flag")
     private Boolean delFlag;
@@ -36,9 +36,9 @@ public class ProfessionJob implements Serializable {
     public ProfessionJob() {
     }
 
-    public ProfessionJob(String professionJobName, Integer parrentId, Boolean delFlag, String createUser, String updateUser, Date createTime, Date updateTime) {
+    public ProfessionJob(String professionJobName, Integer parentId, Boolean delFlag, String createUser, String updateUser, Date createTime, Date updateTime) {
         this.professionJobName = professionJobName;
-        this.parrentId = parrentId;
+        this.parentId = parentId;
         this.delFlag = delFlag;
         this.createUser = createUser;
         this.updateUser = updateUser;
@@ -62,12 +62,12 @@ public class ProfessionJob implements Serializable {
         this.professionJobName = professionJobName;
     }
 
-    public Integer getParrentId() {
-        return parrentId;
+    public Integer getparentId() {
+        return parentId;
     }
 
-    public void setParrentId(Integer parrentId) {
-        this.parrentId = parrentId;
+    public void setparentId(Integer parentId) {
+        this.parentId = parentId;
     }
 
     public Boolean getDelFlag() {
@@ -115,7 +115,7 @@ public class ProfessionJob implements Serializable {
         return "ProfessionJob{" +
                 "id=" + id +
                 ", professionJobName='" + professionJobName + '\'' +
-                ", parrentId=" + parrentId +
+                ", parentId=" + parentId +
                 ", delFlag=" + delFlag +
                 ", createUser='" + createUser + '\'' +
                 ", updateUser='" + updateUser + '\'' +

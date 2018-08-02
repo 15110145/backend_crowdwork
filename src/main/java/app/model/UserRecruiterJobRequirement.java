@@ -16,7 +16,7 @@ public class UserRecruiterJobRequirement implements Serializable {
     private Integer userRecruiterUserId;
 
     @Id
-    @Column(name ="profession_job")
+    @Column(name ="profession_job_id")
     private Integer profession_job_id;
 
     @Column(name="del_flag")

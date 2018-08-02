@@ -13,7 +13,7 @@ import java.util.List;
 @Table(name = "users")
 //@SelectBeforeUpdate
 @DynamicUpdate
-public class Users implements Serializable {
+public class Users extends Auditable<Integer> implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -48,25 +48,31 @@ public class Users implements Serializable {
     @Column(name = "del_flag")
     private Boolean delFlag;
 
-    @Column(name = "create_user")
-    private Integer createUser;
-
-    @Column(name = "update_user")
-    private Integer updateUser;
-
-    @Column(name = "create_time")
-//    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date createTime;
-
-    @Column(name = "update_time")
-//    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date updateTime;
+//    @Column(name = "create_user")
+//    private Integer createUser;
+//
+//    @Column(name = "update_user")
+//    private Integer updateUser;
+//
+//    @Column(name = "create_time")
+////    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+//    private Date createTime;
+//
+//    @Column(name = "update_time")
+////    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+//    private Date updateTime;
 
     @Column(name = "isverifyemail")
     private Boolean isVerifyEmail;
 
     @OneToMany(mappedBy = "userId")
     private List<Comments> comments;
+
+//    @OneToOne(mappedBy = "userId")
+//    private UsersFreelancer usersFreelancer;
+//
+//    @OneToOne(mappedBy = "userId")
+//    private UsersRecruiter usersRecruiter;
 
     public Users() {
     }
@@ -81,23 +87,6 @@ public class Users implements Serializable {
         this.avatar = avatar;
         this.role = role;
         this.delFlag = delFlag;
-        this.isVerifyEmail = isVerifyEmail;
-    }
-
-    public Users(String name, Date date_of_birth, String email, String password, String address, String cmnd, String avatar, String role, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime, Boolean isVerifyEmail) {
-        this.name = name;
-        this.date_of_birth = date_of_birth;
-        this.email = email;
-        this.password = password;
-        this.address = address;
-        this.cmnd = cmnd;
-        this.avatar = avatar;
-        this.role = role;
-        this.delFlag = delFlag;
-        this.createUser = createUser;
-        this.updateUser = updateUser;
-        this.createTime = createTime;
-        this.updateTime = updateTime;
         this.isVerifyEmail = isVerifyEmail;
     }
 
@@ -179,38 +168,6 @@ public class Users implements Serializable {
 
     public void setDelFlag(Boolean delFlag) {
         this.delFlag = delFlag;
-    }
-
-    public Integer getCreateUser() {
-        return createUser;
-    }
-
-    public void setCreateUser(Integer createUser) {
-        this.createUser = createUser;
-    }
-
-    public Integer getUpdateUser() {
-        return updateUser;
-    }
-
-    public void setUpdateUser(Integer updateUser) {
-        this.updateUser = updateUser;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
     }
 
     public List<Comments> getComments() {

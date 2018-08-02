@@ -12,7 +12,7 @@ import java.util.Date;
 @Repository
 public interface UserRepository extends JpaRepository<Users, Integer> {
 
-    @Modifying
-    @Query("UPDATE Users SET name = :name, update_time = :updateTime WHERE id = :id")
-    void updateUser(@Param("id") Integer id, @Param("name") String name, @Param("updateTime")Date updateTime);
+//    @Modifying
+//    @Query("UPDATE Users SET name = :name, update_time = :updateTime WHERE id = :id")
+//    void updateUser(@Param("id") Integer id, @Param("name") String name, @Param("updateTime")Date updateTime);
 }
