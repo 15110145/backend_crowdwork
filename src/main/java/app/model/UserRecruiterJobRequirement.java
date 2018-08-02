@@ -1,9 +1,8 @@
 package app.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import app.model.Identity.UserRecruiterJobRequirementIdentity;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -11,35 +10,29 @@ import java.util.Date;
 @Table(name="user_recruiter_job_requirement")
 public class UserRecruiterJobRequirement implements Serializable {
 
-    @Id
-    @Column(name ="user_recruiter_user_id")
-    private Integer userRecruiterUserId;
-
-    @Id
-    @Column(name ="profession_job_id")
-    private Integer profession_job_id;
+    @EmbeddedId
+    private UserRecruiterJobRequirementIdentity userRecruiterJobRequirementIdentity;
 
     @Column(name="del_flag")
     private Boolean delFlag;
 
-    @Column(name="create_user")
-    private String createUser;
+    @Column(name = "create_user")
+    private Integer createUser;
 
-    @Column(name="update_user")
-    private String updateUser;
+    @Column(name = "update_user")
+    private Integer updateUser;
 
-    @Column(name="create_time")
+    @Column(name = "create_time")
     private Date createTime;
 
-    @Column(name="update_time")
+    @Column(name = "update_time")
     private Date updateTime;
 
     public UserRecruiterJobRequirement() {
     }
 
-    public UserRecruiterJobRequirement(Integer userRecruiterUserId, Integer profession_job_id, Boolean delFlag, String createUser, String updateUser, Date createTime, Date updateTime) {
-        this.userRecruiterUserId = userRecruiterUserId;
-        this.profession_job_id = profession_job_id;
+    public UserRecruiterJobRequirement(UserRecruiterJobRequirementIdentity userRecruiterJobRequirementIdentity, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime) {
+        this.userRecruiterJobRequirementIdentity = userRecruiterJobRequirementIdentity;
         this.delFlag = delFlag;
         this.createUser = createUser;
         this.updateUser = updateUser;
@@ -47,20 +40,12 @@ public class UserRecruiterJobRequirement implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public Integer getUserRecruiterUserId() {
-        return userRecruiterUserId;
+    public UserRecruiterJobRequirementIdentity getUserRecruiterJobRequirementIdentity() {
+        return userRecruiterJobRequirementIdentity;
     }
 
-    public void setUserRecruiterUserId(Integer userRecruiterUserId) {
-        this.userRecruiterUserId = userRecruiterUserId;
-    }
-
-    public Integer getProfession_job_id() {
-        return profession_job_id;
-    }
-
-    public void setProfession_job_id(Integer profession_job_id) {
-        this.profession_job_id = profession_job_id;
+    public void setUserRecruiterJobRequirementIdentity(UserRecruiterJobRequirementIdentity userRecruiterJobRequirementIdentity) {
+        this.userRecruiterJobRequirementIdentity = userRecruiterJobRequirementIdentity;
     }
 
     public Boolean getDelFlag() {
@@ -71,19 +56,19 @@ public class UserRecruiterJobRequirement implements Serializable {
         this.delFlag = delFlag;
     }
 
-    public String getCreateUser() {
+    public Integer getCreateUser() {
         return createUser;
     }
 
-    public void setCreateUser(String createUser) {
+    public void setCreateUser(Integer createUser) {
         this.createUser = createUser;
     }
 
-    public String getUpdateUser() {
+    public Integer getUpdateUser() {
         return updateUser;
     }
 
-    public void setUpdateUser(String updateUser) {
+    public void setUpdateUser(Integer updateUser) {
         this.updateUser = updateUser;
     }
 
@@ -101,18 +86,5 @@ public class UserRecruiterJobRequirement implements Serializable {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
-    }
-
-    @Override
-    public String toString() {
-        return "UserRecruiterJobRequirement{" +
-                "userRecruiterUserId=" + userRecruiterUserId +
-                ", profession_job_id=" + profession_job_id +
-                ", delFlag=" + delFlag +
-                ", createUser='" + createUser + '\'' +
-                ", updateUser='" + updateUser + '\'' +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-                '}';
     }
 }

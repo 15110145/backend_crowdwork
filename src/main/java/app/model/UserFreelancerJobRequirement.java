@@ -1,17 +1,17 @@
 package app.model;
 
-import app.model.Identity.JobRequireProfessionJobIdentity;
+import app.model.Identity.UserFreelancerJobRequirementIdentity;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name="job_require_profession_job")
-public class JobRequireProfessionJob implements Serializable {
+@Table(name="user_freelancer_job_requirement")
+public class UserFreelancerJobRequirement implements Serializable {
 
     @EmbeddedId
-    private JobRequireProfessionJobIdentity jobRequireProfessionJobIdentity;
+    private UserFreelancerJobRequirementIdentity userFreelancerJobRequirementIdentity;
 
     @Column(name="del_flag")
     private Boolean delFlag;
@@ -28,11 +28,11 @@ public class JobRequireProfessionJob implements Serializable {
     @Column(name = "update_time")
     private Date updateTime;
 
-    public JobRequireProfessionJob() {
+    public UserFreelancerJobRequirement() {
     }
 
-    public JobRequireProfessionJob(JobRequireProfessionJobIdentity jobRequireProfessionJobIdentity, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime) {
-        this.jobRequireProfessionJobIdentity = jobRequireProfessionJobIdentity;
+    public UserFreelancerJobRequirement(UserFreelancerJobRequirementIdentity userFreelancerJobRequirementIdentity, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime) {
+        this.userFreelancerJobRequirementIdentity = userFreelancerJobRequirementIdentity;
         this.delFlag = delFlag;
         this.createUser = createUser;
         this.updateUser = updateUser;
@@ -40,12 +40,12 @@ public class JobRequireProfessionJob implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public JobRequireProfessionJobIdentity getJobRequireProfessionJobIdentity() {
-        return jobRequireProfessionJobIdentity;
+    public UserFreelancerJobRequirementIdentity getUserFreelancerJobRequirementIdentity() {
+        return userFreelancerJobRequirementIdentity;
     }
 
-    public void setJobRequireProfessionJobIdentity(JobRequireProfessionJobIdentity jobRequireProfessionJobIdentity) {
-        this.jobRequireProfessionJobIdentity = jobRequireProfessionJobIdentity;
+    public void setUserFreelancerJobRequirementIdentity(UserFreelancerJobRequirementIdentity userFreelancerJobRequirementIdentity) {
+        this.userFreelancerJobRequirementIdentity = userFreelancerJobRequirementIdentity;
     }
 
     public Boolean getDelFlag() {

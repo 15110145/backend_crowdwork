@@ -65,7 +65,7 @@ public class Users extends Auditable<Integer> implements Serializable {
     @Column(name = "isverifyemail")
     private Boolean isVerifyEmail;
 
-    @OneToMany(mappedBy = "userId")
+    @OneToMany(mappedBy = "users")
     private List<Comments> comments;
 
 //    @OneToOne(mappedBy = "userId")

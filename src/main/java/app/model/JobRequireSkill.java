@@ -1,5 +1,7 @@
 package app.model;
 
+import app.model.Identity.JobRequireSkillIdentity;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -8,35 +10,29 @@ import java.util.Date;
 @Table(name= "job_require_skill")
 public class JobRequireSkill implements Serializable {
 
-    @Id
-    @Column(name="job_id")
-    private Integer jobId;
-
-    @Id
-    @Column(name="skill_id")
-    private Integer skillId;
+    @EmbeddedId
+    private JobRequireSkillIdentity jobRequireSkillIdentity;
 
     @Column(name="del_flag")
     private Boolean delFlag;
 
-    @Column(name="create_user")
-    private String createUser;
+    @Column(name = "create_user")
+    private Integer createUser;
 
-    @Column(name="update_user")
-    private String updateUser;
+    @Column(name = "update_user")
+    private Integer updateUser;
 
-    @Column(name="create_time")
+    @Column(name = "create_time")
     private Date createTime;
 
-    @Column(name="update_time")
+    @Column(name = "update_time")
     private Date updateTime;
 
     public JobRequireSkill() {
     }
 
-    public JobRequireSkill(Integer jobId, Integer skillId, Boolean delFlag, String createUser, String updateUser, Date createTime, Date updateTime) {
-        this.jobId = jobId;
-        this.skillId = skillId;
+    public JobRequireSkill(JobRequireSkillIdentity jobRequireSkillIdentity, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime) {
+        this.jobRequireSkillIdentity = jobRequireSkillIdentity;
         this.delFlag = delFlag;
         this.createUser = createUser;
         this.updateUser = updateUser;
@@ -44,20 +40,12 @@ public class JobRequireSkill implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public Integer getJobId() {
-        return jobId;
+    public JobRequireSkillIdentity getJobRequireSkillIdentity() {
+        return jobRequireSkillIdentity;
     }
 
-    public void setJobId(Integer jobId) {
-        this.jobId = jobId;
-    }
-
-    public Integer getSkillId() {
-        return skillId;
-    }
-
-    public void setSkillId(Integer skillId) {
-        this.skillId = skillId;
+    public void setJobRequireSkillIdentity(JobRequireSkillIdentity jobRequireSkillIdentity) {
+        this.jobRequireSkillIdentity = jobRequireSkillIdentity;
     }
 
     public Boolean getDelFlag() {
@@ -68,19 +56,19 @@ public class JobRequireSkill implements Serializable {
         this.delFlag = delFlag;
     }
 
-    public String getCreateUser() {
+    public Integer getCreateUser() {
         return createUser;
     }
 
-    public void setCreateUser(String createUser) {
+    public void setCreateUser(Integer createUser) {
         this.createUser = createUser;
     }
 
-    public String getUpdateUser() {
+    public Integer getUpdateUser() {
         return updateUser;
     }
 
-    public void setUpdateUser(String updateUser) {
+    public void setUpdateUser(Integer updateUser) {
         this.updateUser = updateUser;
     }
 
@@ -98,18 +86,5 @@ public class JobRequireSkill implements Serializable {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
-    }
-
-    @Override
-    public String toString() {
-        return "JobRequireSkill{" +
-                "jobId=" + jobId +
-                ", skillId=" + skillId +
-                ", delFlag=" + delFlag +
-                ", createUser='" + createUser + '\'' +
-                ", updateUser='" + updateUser + '\'' +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-                '}';
     }
 }
