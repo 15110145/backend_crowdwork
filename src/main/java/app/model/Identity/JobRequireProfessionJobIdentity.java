@@ -10,36 +10,32 @@ import java.util.Objects;
 @Embeddable
 public class JobRequireProfessionJobIdentity implements Serializable {
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "job_id")
-    private Jobs jobs;
+    private Integer jobId;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "profession_job_id")
-    private ProfessionJob professionJob;
+    private Integer professionJobId;
 
     public JobRequireProfessionJobIdentity() {
     }
 
-    public JobRequireProfessionJobIdentity(Jobs jobs, ProfessionJob professionJob) {
-        this.jobs = jobs;
-        this.professionJob = professionJob;
+    public JobRequireProfessionJobIdentity(Integer jobId, Integer professionJobId) {
+        this.jobId = jobId;
+        this.professionJobId = professionJobId;
     }
 
-    public Jobs getJobs() {
-        return jobs;
+    public Integer getJobId() {
+        return jobId;
     }
 
-    public void setJobs(Jobs jobs) {
-        this.jobs = jobs;
+    public void setJobId(Integer jobId) {
+        this.jobId = jobId;
     }
 
-    public ProfessionJob getProfessionJob() {
-        return professionJob;
+    public Integer getProfessionJobId() {
+        return professionJobId;
     }
 
-    public void setProfessionJob(ProfessionJob professionJob) {
-        this.professionJob = professionJob;
+    public void setProfessionJobId(Integer professionJobId) {
+        this.professionJobId = professionJobId;
     }
 
     @Override
@@ -47,13 +43,13 @@ public class JobRequireProfessionJobIdentity implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         JobRequireProfessionJobIdentity that = (JobRequireProfessionJobIdentity) o;
-        return Objects.equals(jobs, that.jobs) &&
-                Objects.equals(professionJob, that.professionJob);
+        return Objects.equals(jobId, that.jobId) &&
+                Objects.equals(professionJobId, that.professionJobId);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(jobs, professionJob);
+        return Objects.hash(jobId, professionJobId);
     }
 }

@@ -13,6 +13,16 @@ public class JobRequireSkill implements Serializable {
     @EmbeddedId
     private JobRequireSkillIdentity jobRequireSkillIdentity;
 
+    @MapsId("jobId")
+    @ManyToOne
+    @JoinColumn(name = "job_id")
+    private Jobs jobs;
+
+    @MapsId("skillId")
+    @ManyToOne
+    @JoinColumn(name = "skill_id")
+    private Skills skills;
+
     @Column(name="del_flag")
     private Boolean delFlag;
 

@@ -1,5 +1,7 @@
 package app.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -31,8 +33,9 @@ public class JobCategory implements Serializable {
     @Column(name="update_time")
     private Date updateTime;
 
-//    @OneToMany(mappedBy = "jobCategory")
-//    private List<Jobs> jobsList;
+    @JsonIgnore
+    @OneToMany(mappedBy = "jobCategory")
+    private List<Jobs> jobsList;
 
     public JobCategory() {
     }

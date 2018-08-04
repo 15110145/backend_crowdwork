@@ -1,5 +1,7 @@
 package app.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -34,14 +36,17 @@ public class ProfessionJob implements Serializable {
     @Column(name = "update_time")
     private Date updateTime;
 
-//    @OneToMany(mappedBy = "professionJob")
-//    private List<UserRecruiterJobRequirement> userRecruiterJobRequirementList;
-//
-//    @OneToMany(mappedBy = "professionJob")
-//    private List<JobRequireProfessionJob> jobRequireProfessionJobList;
-//
-//    @OneToMany(mappedBy = "professionJob")
-//    private List<UserFreelancerJobRequirement> userFreelancerJobRequirementList;
+    @JsonIgnore
+    @OneToMany(mappedBy = "professionJob")
+    private List<UserRecruiterJobRequirement> userRecruiterJobRequirementList;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "professionJob")
+    private List<JobRequireProfessionJob> jobRequireProfessionJobList;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "professionJob")
+    private List<UserFreelancerJobRequirement> userFreelancerJobRequirementList;
 
     public ProfessionJob() {
     }
@@ -136,11 +141,11 @@ public class ProfessionJob implements Serializable {
 //        this.userRecruiterJobRequirementList = userRecruiterJobRequirementList;
 //    }
 //
-//    public List<JobRequireProfessionJob> getJobRequireProfessionJobList() {
-//        return jobRequireProfessionJobList;
-//    }
-//
-//    public void setJobRequireProfessionJobList(List<JobRequireProfessionJob> jobRequireProfessionJobList) {
-//        this.jobRequireProfessionJobList = jobRequireProfessionJobList;
-//    }
+    public List<JobRequireProfessionJob> getJobRequireProfessionJobList() {
+        return jobRequireProfessionJobList;
+    }
+
+    public void setJobRequireProfessionJobList(List<JobRequireProfessionJob> jobRequireProfessionJobList) {
+        this.jobRequireProfessionJobList = jobRequireProfessionJobList;
+    }
 }

@@ -1,5 +1,6 @@
 package app.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import javax.persistence.*;
@@ -64,17 +65,21 @@ public class Jobs implements Serializable {
     @Column(name = "update_time")
     private Date updateTime;
 
-//    @OneToMany(mappedBy = "jobs")
-//    private List<Comments> commentsList;
-//
-//    @OneToMany(mappedBy = "jobRequireProfessionJobIdentity.jobs")
-//    private List<JobRequireProfessionJob> jobRequireProfessionJobList;
-//
-//    @OneToMany(mappedBy = "jobs")
-//    private List<JobRequireSkill> jobRequireSkillList;
-//
-//    @OneToMany(mappedBy = "jobs")
-//    private List<UserFreelancerHasJob> userFreelancerHasJobList;
+    @JsonIgnore
+    @OneToMany(mappedBy = "jobs")
+    private List<Comments> commentsList;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "jobs")
+    private List<JobRequireProfessionJob> jobRequireProfessionJobList;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "jobs")
+    private List<JobRequireSkill> jobRequireSkillList;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "jobs")
+    private List<UserFreelancerHasJob> userFreelancerHasJobList;
 
     public Jobs() {
     }
@@ -234,14 +239,14 @@ public class Jobs implements Serializable {
 //        this.commentsList = commentsList;
 //    }
 //
-//    public List<JobRequireProfessionJob> getJobRequireProfessionJobList() {
-//        return jobRequireProfessionJobList;
-//    }
-//
-//    public void setJobRequireProfessionJobList(List<JobRequireProfessionJob> jobRequireProfessionJobList) {
-//        this.jobRequireProfessionJobList = jobRequireProfessionJobList;
-//    }
-//
+    public List<JobRequireProfessionJob> getJobRequireProfessionJobList() {
+        return jobRequireProfessionJobList;
+    }
+
+    public void setJobRequireProfessionJobList(List<JobRequireProfessionJob> jobRequireProfessionJobList) {
+        this.jobRequireProfessionJobList = jobRequireProfessionJobList;
+    }
+
 //    public List<JobRequireSkill> getJobRequireSkillList() {
 //        return jobRequireSkillList;
 //    }

@@ -13,6 +13,16 @@ public class UserRecruiterJobRequirement implements Serializable {
     @EmbeddedId
     private UserRecruiterJobRequirementIdentity userRecruiterJobRequirementIdentity;
 
+    @MapsId("usersRecruiterId")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_recruiter_user_id")
+    private UsersRecruiter usersRecruiter;
+
+    @MapsId("professionJobId")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "profession_job_id")
+    private ProfessionJob professionJob;
+
     @Column(name="del_flag")
     private Boolean delFlag;
 

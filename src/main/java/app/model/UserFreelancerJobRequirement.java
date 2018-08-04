@@ -13,6 +13,16 @@ public class UserFreelancerJobRequirement implements Serializable {
     @EmbeddedId
     private UserFreelancerJobRequirementIdentity userFreelancerJobRequirementIdentity;
 
+    @MapsId("usersFreelancerId")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_freelancer_user_id")
+    private UsersFreelancer usersFreelancer;
+
+    @MapsId("professionJobId")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "profession_job_id")
+    private ProfessionJob professionJob;
+
     @Column(name="del_flag")
     private Boolean delFlag;
 

@@ -1,8 +1,11 @@
 package app.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "status")
@@ -33,6 +36,22 @@ public class Status implements Serializable {
 
     @Column(name = "update_time")
     private Date updateTime;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "status")
+    private List<Jobs> jobsList;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "status")
+    private List<UsersFreelancer> usersFreelancerList;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "status")
+    private List<Contracts> contractsList;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "status")
+    private List<Token> tokenList;
 
     public Status() {
     }

@@ -1,5 +1,7 @@
 package app.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -11,9 +13,7 @@ import java.util.Set;
 public class UsersRecruiter implements Serializable {
 
     @Id
-//    @OneToOne
-    @JoinColumn(name = "user_id")
-    private Users userId;
+    private Integer userId;
 
     @Column(name = "company_name")
     private String companyName;
@@ -39,105 +39,23 @@ public class UsersRecruiter implements Serializable {
     @Column(name = "update_time")
     private Date updateTime;
 
-//    @OneToMany(mappedBy = "userRecruiterUseId")
-//    private List<Contracts> contracts;
-//
-//    @OneToMany(mappedBy = "userRecruiterUserId")
-//    private List<Jobs> jobs;
-//
-//    @OneToMany(mappedBy = "userRecruiterUserId")
-//    private List<UserRecruiterJobRequirement> userRecruiterJobRequirements;
+    @JsonIgnore
+    @MapsId("userId")
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private Users users;
 
-    public UsersRecruiter() {
-    }
+    @JsonIgnore
+    @OneToMany(mappedBy = "usersRecruiter")
+    private List<Contracts> contracts;
 
-    public UsersRecruiter(String companyName, String companyProfile, Boolean approved, Boolean delFlag) {
-        this.companyName = companyName;
-        this.companyProfile = companyProfile;
-        this.approved = approved;
-        this.delFlag = delFlag;
-    }
+    @JsonIgnore
+    @OneToMany(mappedBy = "usersRecruiter")
+    private List<Jobs> jobs;
 
-    public UsersRecruiter(String companyName, String companyProfile, Boolean approved, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime) {
-        this.companyName = companyName;
-        this.companyProfile = companyProfile;
-        this.approved = approved;
-        this.delFlag = delFlag;
-        this.createUser = createUser;
-        this.updateUser = updateUser;
-        this.createTime = createTime;
-        this.updateTime = updateTime;
-    }
+    @JsonIgnore
+    @OneToMany(mappedBy = "usersRecruiter")
+    private List<UserRecruiterJobRequirement> userRecruiterJobRequirements;
 
-    public String getCompanyName() {
-        return companyName;
-    }
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
-    }
-
-    public String getCompanyProfile() {
-        return companyProfile;
-    }
-
-    public void setCompanyProfile(String companyProfile) {
-        this.companyProfile = companyProfile;
-    }
-
-    public Boolean getApproved() {
-        return approved;
-    }
-
-    public void setApproved(Boolean approved) {
-        this.approved = approved;
-    }
-
-    public Boolean getDelFlag() {
-        return delFlag;
-    }
-
-    public void setDelFlag(Boolean delFlag) {
-        this.delFlag = delFlag;
-    }
-
-    public Integer getCreateUser() {
-        return createUser;
-    }
-
-    public void setCreateUser(Integer createUser) {
-        this.createUser = createUser;
-    }
-
-    public Integer getUpdateUser() {
-        return updateUser;
-    }
-
-    public void setUpdateUser(Integer updateUser) {
-        this.updateUser = updateUser;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    public Users getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Users userId) {
-        this.userId = userId;
-    }
 }
