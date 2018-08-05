@@ -37,18 +37,18 @@ public class JobCategoryService {
         return jobCategoryRepository.findById(jobCategoryId).get();
     }
 
-    public void addJobCategory(JobCategory jobCategory,Integer currentUser)
-    {
-        JobCategory jobCategoryAdd = new JobCategory(
-                jobCategory.getName(),
-                Boolean.FALSE,
-                currentUser,
-                null,
-                new Date(),
-                null
-        );
-        jobCategoryRepository.save(jobCategoryAdd);
-    }
+//    public void addJobCategory(JobCategory jobCategory,Integer currentUser)
+//    {
+//        JobCategory jobCategoryAdd = new JobCategory(
+//                jobCategory.getName(),
+//                Boolean.FALSE,
+//                currentUser,
+//                null,
+//                new Date(),
+//                null
+//        );
+//        jobCategoryRepository.save(jobCategoryAdd);
+//    }
 
     public void editJobCategory(Integer jobCategoryId, JobCategory editedJobCategory, Integer currentUser)
     {

@@ -2,6 +2,8 @@ package app.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.org.apache.xpath.internal.operations.Bool;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -10,7 +12,9 @@ import java.util.List;
 
 @Entity
 @Table(name = "jobs")
-public class Jobs implements Serializable {
+@DynamicInsert
+@DynamicUpdate
+public class Jobs extends Auditable<Integer> implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -53,18 +57,6 @@ public class Jobs implements Serializable {
     @Column(name="del_flag")
     private Boolean delFlag;
 
-    @Column(name = "create_user")
-    private Integer createUser;
-
-    @Column(name = "update_user")
-    private Integer updateUser;
-
-    @Column(name = "create_time")
-    private Date createTime;
-
-    @Column(name = "update_time")
-    private Date updateTime;
-
     @JsonIgnore
     @OneToMany(mappedBy = "jobs")
     private List<Comments> commentsList;
@@ -84,7 +76,7 @@ public class Jobs implements Serializable {
     public Jobs() {
     }
 
-    public Jobs(String jobName, Date deadline, Double salary, String title, String description, Integer experience, Integer slot, Status status, UsersRecruiter usersRecruiter, JobCategory jobCategory, Boolean delFlag, Integer createUser, Integer updateUser, Date createTime, Date updateTime) {
+    public Jobs(String jobName, Date deadline, Double salary, String title, String description, Integer experience, Integer slot, Status status, UsersRecruiter usersRecruiter, JobCategory jobCategory, Boolean delFlag) {
         this.jobName = jobName;
         this.deadline = deadline;
         this.salary = salary;
@@ -96,10 +88,6 @@ public class Jobs implements Serializable {
         this.usersRecruiter = usersRecruiter;
         this.jobCategory = jobCategory;
         this.delFlag = delFlag;
-        this.createUser = createUser;
-        this.updateUser = updateUser;
-        this.createTime = createTime;
-        this.updateTime = updateTime;
     }
 
     public Integer getId() {
@@ -197,38 +185,6 @@ public class Jobs implements Serializable {
 
     public void setDelFlag(Boolean delFlag) {
         this.delFlag = delFlag;
-    }
-
-    public Integer getCreateUser() {
-        return createUser;
-    }
-
-    public void setCreateUser(Integer createUser) {
-        this.createUser = createUser;
-    }
-
-    public Integer getUpdateUser() {
-        return updateUser;
-    }
-
-    public void setUpdateUser(Integer updateUser) {
-        this.updateUser = updateUser;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
     }
 
 //    public List<Comments> getCommentsList() {

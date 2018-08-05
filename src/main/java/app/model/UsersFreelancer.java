@@ -1,6 +1,8 @@
 package app.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -10,7 +12,9 @@ import java.util.Set;
 
 @Entity
 @Table(name = "users_freelancer")
-public class UsersFreelancer implements Serializable {
+@DynamicInsert
+@DynamicUpdate
+public class UsersFreelancer extends Auditable<Integer> implements Serializable {
 
     @Id
     private Integer userId;
@@ -37,18 +41,6 @@ public class UsersFreelancer implements Serializable {
     @Column(name = "del_flag")
     private Boolean delFlag;
 
-    @Column(name = "create_user")
-    private Integer createUser;
-
-    @Column(name = "update_user")
-    private Integer updateUser;
-
-    @Column(name = "create_time")
-    private Date createTime;
-
-    @Column(name = "update_time")
-    private Date updateTime;
-
     @JsonIgnore
     @MapsId("userId")
     @OneToOne
@@ -74,5 +66,118 @@ public class UsersFreelancer implements Serializable {
     public UsersFreelancer() {
     }
 
+    public UsersFreelancer(Integer userId, Status status, String workingTime, Long salaryPerHour, String about, String usernameGithub, String degree, Boolean delFlag) {
+        this.userId = userId;
+        this.status = status;
+        this.workingTime = workingTime;
+        this.salaryPerHour = salaryPerHour;
+        this.about = about;
+        this.usernameGithub = usernameGithub;
+        this.degree = degree;
+        this.delFlag = delFlag;
+    }
 
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public String getWorkingTime() {
+        return workingTime;
+    }
+
+    public void setWorkingTime(String workingTime) {
+        this.workingTime = workingTime;
+    }
+
+    public Long getSalaryPerHour() {
+        return salaryPerHour;
+    }
+
+    public void setSalaryPerHour(Long salaryPerHour) {
+        this.salaryPerHour = salaryPerHour;
+    }
+
+    public String getAbout() {
+        return about;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
+    }
+
+    public String getUsernameGithub() {
+        return usernameGithub;
+    }
+
+    public void setUsernameGithub(String usernameGithub) {
+        this.usernameGithub = usernameGithub;
+    }
+
+    public String getDegree() {
+        return degree;
+    }
+
+    public void setDegree(String degree) {
+        this.degree = degree;
+    }
+
+    public Boolean getDelFlag() {
+        return delFlag;
+    }
+
+    public void setDelFlag(Boolean delFlag) {
+        this.delFlag = delFlag;
+    }
+
+    public Users getUsers() {
+        return users;
+    }
+
+    public void setUsers(Users users) {
+        this.users = users;
+    }
+
+    public List<UserFreelancerHasSkill> getUserFreelancerHasSkillList() {
+        return userFreelancerHasSkillList;
+    }
+
+    public void setUserFreelancerHasSkillList(List<UserFreelancerHasSkill> userFreelancerHasSkillList) {
+        this.userFreelancerHasSkillList = userFreelancerHasSkillList;
+    }
+
+    public List<UserFreelancerHasJob> getUserFreelancerHasJobs() {
+        return userFreelancerHasJobs;
+    }
+
+    public void setUserFreelancerHasJobs(List<UserFreelancerHasJob> userFreelancerHasJobs) {
+        this.userFreelancerHasJobs = userFreelancerHasJobs;
+    }
+
+    public List<Contracts> getContracts() {
+        return contracts;
+    }
+
+    public void setContracts(List<Contracts> contracts) {
+        this.contracts = contracts;
+    }
+
+    public List<UserFreelancerJobRequirement> getUserFreelancerJobRequirementList() {
+        return userFreelancerJobRequirementList;
+    }
+
+    public void setUserFreelancerJobRequirementList(List<UserFreelancerJobRequirement> userFreelancerJobRequirementList) {
+        this.userFreelancerJobRequirementList = userFreelancerJobRequirementList;
+    }
 }

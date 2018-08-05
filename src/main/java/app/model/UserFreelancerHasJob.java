@@ -1,6 +1,8 @@
 package app.model;
 
 import app.model.Identity.UserFreelancerHasJobIdentity;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -8,7 +10,9 @@ import java.util.Date;
 
 @Entity
 @Table(name = "user_freelancer_has_job")
-public class UserFreelancerHasJob implements Serializable {
+@DynamicInsert
+@DynamicUpdate
+public class UserFreelancerHasJob extends Auditable<Integer> implements Serializable {
 
     @EmbeddedId
     private UserFreelancerHasJobIdentity userFreelancerHasJobIdentity;
@@ -35,18 +39,62 @@ public class UserFreelancerHasJob implements Serializable {
     @Column(name = "del_flag")
     private Boolean delFlag;
 
-    @Column(name = "create_user")
-    private Integer createUser;
-
-    @Column(name = "update_user")
-    private Integer updateUser;
-
-    @Column(name = "create_time")
-    private Date createTime;
-
-    @Column(name = "update_time")
-    private Date updateTime;
-
     public UserFreelancerHasJob() {
+    }
+
+    public UserFreelancerHasJobIdentity getUserFreelancerHasJobIdentity() {
+        return userFreelancerHasJobIdentity;
+    }
+
+    public void setUserFreelancerHasJobIdentity(UserFreelancerHasJobIdentity userFreelancerHasJobIdentity) {
+        this.userFreelancerHasJobIdentity = userFreelancerHasJobIdentity;
+    }
+
+    public UsersFreelancer getUsersFreelancer() {
+        return usersFreelancer;
+    }
+
+    public void setUsersFreelancer(UsersFreelancer usersFreelancer) {
+        this.usersFreelancer = usersFreelancer;
+    }
+
+    public Jobs getJobs() {
+        return jobs;
+    }
+
+    public void setJobs(Jobs jobs) {
+        this.jobs = jobs;
+    }
+
+    public Date getDateStart() {
+        return dateStart;
+    }
+
+    public void setDateStart(Date dateStart) {
+        this.dateStart = dateStart;
+    }
+
+    public Date getDateEnd() {
+        return dateEnd;
+    }
+
+    public void setDateEnd(Date dateEnd) {
+        this.dateEnd = dateEnd;
+    }
+
+    public String getFileURL() {
+        return fileURL;
+    }
+
+    public void setFileURL(String fileURL) {
+        this.fileURL = fileURL;
+    }
+
+    public Boolean getDelFlag() {
+        return delFlag;
+    }
+
+    public void setDelFlag(Boolean delFlag) {
+        this.delFlag = delFlag;
     }
 }

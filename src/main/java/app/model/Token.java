@@ -1,12 +1,17 @@
 package app.model;
 
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "token")
-public class Token implements Serializable {
+@DynamicInsert
+@DynamicUpdate
+public class Token extends Auditable<Integer> implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,20 +32,53 @@ public class Token implements Serializable {
     @Column(name = "del_flag")
     private Boolean delFlag;
 
-    @Column(name = "create_user")
-    private Integer createUser;
-
-    @Column(name = "update_user")
-    private Integer updateUser;
-
-    @Column(name = "create_time")
-    private Date createTime;
-
-    @Column(name = "update_time")
-    private Date updateTime;
-
     public Token() {
     }
 
+    public Token(Users users, Status status, Integer time, Boolean delFlag) {
+        this.users = users;
+        this.status = status;
+        this.time = time;
+        this.delFlag = delFlag;
+    }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Users getUsers() {
+        return users;
+    }
+
+    public void setUsers(Users users) {
+        this.users = users;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public Integer getTime() {
+        return time;
+    }
+
+    public void setTime(Integer time) {
+        this.time = time;
+    }
+
+    public Boolean getDelFlag() {
+        return delFlag;
+    }
+
+    public void setDelFlag(Boolean delFlag) {
+        this.delFlag = delFlag;
+    }
 }

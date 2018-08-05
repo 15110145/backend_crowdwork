@@ -1,6 +1,8 @@
 package app.model;
 
 import app.model.Identity.UserFreelancerHasSkillIdentity;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -8,7 +10,9 @@ import java.util.Date;
 
 @Entity
 @Table(name = "user_freelancer_has_skill")
-public class UserFreelancerHasSkill implements Serializable {
+@DynamicInsert
+@DynamicUpdate
+public class UserFreelancerHasSkill extends Auditable<Integer> implements Serializable {
 
     @EmbeddedId
     private UserFreelancerHasSkillIdentity userFreelancerHasSkillIdentity;
@@ -35,20 +39,62 @@ public class UserFreelancerHasSkill implements Serializable {
     @Column(name = "del_flag")
     private Boolean delFlag;
 
-    @Column(name = "create_user")
-    private Integer createUser;
-
-    @Column(name = "update_user")
-    private Integer updateUser;
-
-    @Column(name = "create_time")
-    private Date createTime;
-
-    @Column(name = "update_time")
-    private Date updateTime;
-
     public UserFreelancerHasSkill() {
     }
 
+    public UserFreelancerHasSkillIdentity getUserFreelancerHasSkillIdentity() {
+        return userFreelancerHasSkillIdentity;
+    }
 
+    public void setUserFreelancerHasSkillIdentity(UserFreelancerHasSkillIdentity userFreelancerHasSkillIdentity) {
+        this.userFreelancerHasSkillIdentity = userFreelancerHasSkillIdentity;
+    }
+
+    public UsersFreelancer getUsersFreelancer() {
+        return usersFreelancer;
+    }
+
+    public void setUsersFreelancer(UsersFreelancer usersFreelancer) {
+        this.usersFreelancer = usersFreelancer;
+    }
+
+    public Skills getSkills() {
+        return skills;
+    }
+
+    public void setSkills(Skills skills) {
+        this.skills = skills;
+    }
+
+    public Integer getLevel() {
+        return level;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
+    }
+
+    public Integer getExperience() {
+        return experience;
+    }
+
+    public void setExperience(Integer experience) {
+        this.experience = experience;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Boolean getDelFlag() {
+        return delFlag;
+    }
+
+    public void setDelFlag(Boolean delFlag) {
+        this.delFlag = delFlag;
+    }
 }

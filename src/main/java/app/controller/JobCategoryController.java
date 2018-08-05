@@ -44,16 +44,16 @@ public class JobCategoryController {
 //        return jobCategoryService.findbyIdandName(Integer.valueOf(jobCategoryId),jobCategoryName);
 //    }
     //Add JobCategory
-    @RequestMapping(value = "/jobcategory", //
-            method = RequestMethod.POST, //
-            produces = { MediaType.APPLICATION_JSON_VALUE})
-    @ResponseBody
-    public JobCategory addJobCategory(@RequestBody JobCategory jobCategory) {
-
-        System.out.println("(Service Side) Creating jobCategory: " + jobCategory.getId());
-        jobCategoryService.addJobCategory(jobCategory,0);
-        return jobCategory;
-    }
+//    @RequestMapping(value = "/jobcategory", //
+//            method = RequestMethod.POST, //
+//            produces = { MediaType.APPLICATION_JSON_VALUE})
+//    @ResponseBody
+//    public JobCategory addJobCategory(@RequestBody JobCategory jobCategory) {
+//
+//        System.out.println("(Service Side) Creating jobCategory: " + jobCategory.getId());
+//        jobCategoryService.addJobCategory(jobCategory,0);
+//        return jobCategory;
+//    }
 
     //
     @RequestMapping(value = "/jobcategory", //

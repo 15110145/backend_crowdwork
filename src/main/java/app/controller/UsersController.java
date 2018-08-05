@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,8 +52,6 @@ public class UsersController {
             method = RequestMethod.POST, //
             produces = { MediaType.APPLICATION_JSON_VALUE })
     public String saveUser(@RequestBody Users user){
-        user.setDelFlag(false);
-        user.setVerifyEmail(false);
         userService.save(user);
         return "User saved !";
     }
@@ -63,9 +61,17 @@ public class UsersController {
             method = RequestMethod.PUT, //
             produces = { MediaType.APPLICATION_JSON_VALUE })
     public String updateUser(@RequestBody Users user){
-//        user.setUpdateTime(new Date());
         userService.update(user);
         return "User updated !";
+    }
+
+    //delete user
+    @RequestMapping(value = "/deleteuser/{id}", //
+            method = RequestMethod.DELETE, //
+            produces = { MediaType.APPLICATION_JSON_VALUE })
+    public String deleteUser(@PathVariable int id){
+        userService.delete(id);
+        return "User Deleted !";
     }
 
     /**
@@ -81,6 +87,14 @@ public class UsersController {
         return usersFreelancerService.findUserFreelancer(id);
     }
 
+//    //tim kiem user freelancer theo id
+//    @RequestMapping(value = "/finduserfreelancer1/{id}/{s_id}", //
+//            method = RequestMethod.GET, //
+//            produces = {MediaType.APPLICATION_JSON_VALUE})
+//    public List<UsersFreelancer> findUserFrelancer1(@PathVariable int id, @PathVariable int s_id){
+//        return usersFreelancerService.findUserFreelancer1(id, s_id);
+//    }
+
     //lay tat ca user freelancer
     @RequestMapping(value = "/findalluserfreelancer",//
             method = RequestMethod.GET, //
@@ -94,8 +108,6 @@ public class UsersController {
             method = RequestMethod.POST, //
             produces = { MediaType.APPLICATION_JSON_VALUE })
     public String saveUserFreelancer(@RequestBody UsersFreelancer user){
-        user.setCreateTime(new Date());
-        user.setDelFlag(false);
         usersFreelancerService.save(user);
         return "UserFreelancer saved !";
     }
@@ -136,8 +148,6 @@ public class UsersController {
             method = RequestMethod.POST, //
             produces = { MediaType.APPLICATION_JSON_VALUE })
     public String saveUserRecruiter(@RequestBody UsersRecruiter user){
-        user.setCreateTime(new Date());
-        user.setDelFlag(false);
         usersRecruiterService.save(user);
         return "UserRecruiter saved !";
     }

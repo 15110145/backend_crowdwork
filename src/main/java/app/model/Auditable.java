@@ -5,6 +5,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;
@@ -20,52 +21,55 @@ abstract class Auditable<Integer> {
 
     @CreatedBy
     @Column(name = "create_user")
-    private Integer createdBy;
+    private Integer createdUser;
 
     @CreatedDate
     @Column(name = "create_time")
     @Temporal(TIMESTAMP)
-    private Date createdDate;
+//    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date createdTime;
 
     @LastModifiedBy
     @Column(name = "update_user")
-    private Integer lastModifiedBy;
+    private Integer updateUser;
 
     @LastModifiedDate
     @Column(name = "update_time")
     @Temporal(TIMESTAMP)
-    private Date lastModifiedDate;
+    private Date updateTime;
 
-    public Integer getCreatedBy() {
-        return createdBy;
+    public Auditable() {
     }
 
-    public void setCreatedBy(Integer createdBy) {
-        this.createdBy = createdBy;
+    public Integer getCreatedUser() {
+        return createdUser;
     }
 
-    public Date getCreatedDate() {
-        return createdDate;
+    public void setCreatedUser(Integer createdUser) {
+        this.createdUser = createdUser;
     }
 
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
+    public Date getCreatedTime() {
+        return createdTime;
     }
 
-    public Integer getLastModifiedBy() {
-        return lastModifiedBy;
+    public void setCreatedTime(Date createdTime) {
+        this.createdTime = createdTime;
     }
 
-    public void setLastModifiedBy(Integer lastModifiedBy) {
-        this.lastModifiedBy = lastModifiedBy;
+    public Integer getUpdateUser() {
+        return updateUser;
     }
 
-    public Date getLastModifiedDate() {
-        return lastModifiedDate;
+    public void setUpdateUser(Integer updateUser) {
+        this.updateUser = updateUser;
     }
 
-    public void setLastModifiedDate(Date lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
+    public Date getUpdateTime() {
+        return updateTime;
     }
 
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
 }

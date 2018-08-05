@@ -1,6 +1,8 @@
 package app.model;
 
 import app.model.Identity.ContractsIdentity;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -8,7 +10,9 @@ import java.util.Date;
 
 @Entity
 @Table(name = "contracts")
-public class Contracts implements Serializable {
+@DynamicInsert
+@DynamicUpdate
+public class Contracts extends Auditable<Integer> implements Serializable {
 
     @EmbeddedId
     private ContractsIdentity contractsIdentity;
@@ -33,20 +37,54 @@ public class Contracts implements Serializable {
     @Column(name = "del_flag")
     private Boolean delFlag;
 
-    @Column(name = "create_user")
-    private Integer createUser;
-
-    @Column(name = "update_user")
-    private Integer updateUser;
-
-    @Column(name = "create_time")
-    private Date createTime;
-
-    @Column(name = "update_time")
-    private Date updateTime;
-
     public Contracts() {
     }
 
+    public ContractsIdentity getContractsIdentity() {
+        return contractsIdentity;
+    }
 
+    public void setContractsIdentity(ContractsIdentity contractsIdentity) {
+        this.contractsIdentity = contractsIdentity;
+    }
+
+    public UsersFreelancer getUsersFreelancer() {
+        return usersFreelancer;
+    }
+
+    public void setUsersFreelancer(UsersFreelancer usersFreelancer) {
+        this.usersFreelancer = usersFreelancer;
+    }
+
+    public UsersRecruiter getUsersRecruiter() {
+        return usersRecruiter;
+    }
+
+    public void setUsersRecruiter(UsersRecruiter usersRecruiter) {
+        this.usersRecruiter = usersRecruiter;
+    }
+
+    public Integer getJobId() {
+        return jobId;
+    }
+
+    public void setJobId(Integer jobId) {
+        this.jobId = jobId;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public Boolean getDelFlag() {
+        return delFlag;
+    }
+
+    public void setDelFlag(Boolean delFlag) {
+        this.delFlag = delFlag;
+    }
 }

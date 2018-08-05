@@ -38,9 +38,6 @@ public class StatusService implements Serializable {
         Status statusAdd = new Status();
         statusAdd.setStatusName(status.getStatusName());
         statusAdd.setKind(status.getKind());
-        statusAdd.setDelFlag(Boolean.FALSE);
-        statusAdd.setCreateUser(currentUser);
-        statusAdd.setCreateTime(new Date());
         statusRepository.save(status);
     }
 

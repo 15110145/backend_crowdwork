@@ -1,6 +1,8 @@
 package app.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -10,7 +12,9 @@ import java.util.Set;
 
 @Entity
 @Table(name = "users_recruiter")
-public class UsersRecruiter implements Serializable {
+@DynamicInsert
+@DynamicUpdate
+public class UsersRecruiter extends Auditable<Integer> implements Serializable {
 
     @Id
     private Integer userId;
@@ -26,18 +30,6 @@ public class UsersRecruiter implements Serializable {
 
     @Column(name = "del_flag")
     private Boolean delFlag;
-
-    @Column(name = "create_user")
-    private Integer createUser;
-
-    @Column(name = "update_user")
-    private Integer updateUser;
-
-    @Column(name = "create_time")
-    private Date createTime;
-
-    @Column(name = "update_time")
-    private Date updateTime;
 
     @JsonIgnore
     @MapsId("userId")
@@ -57,5 +49,78 @@ public class UsersRecruiter implements Serializable {
     @OneToMany(mappedBy = "usersRecruiter")
     private List<UserRecruiterJobRequirement> userRecruiterJobRequirements;
 
+    public UsersRecruiter() {
+    }
 
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public String getCompanyProfile() {
+        return companyProfile;
+    }
+
+    public void setCompanyProfile(String companyProfile) {
+        this.companyProfile = companyProfile;
+    }
+
+    public Boolean getApproved() {
+        return approved;
+    }
+
+    public void setApproved(Boolean approved) {
+        this.approved = approved;
+    }
+
+    public Boolean getDelFlag() {
+        return delFlag;
+    }
+
+    public void setDelFlag(Boolean delFlag) {
+        this.delFlag = delFlag;
+    }
+
+    public Users getUsers() {
+        return users;
+    }
+
+    public void setUsers(Users users) {
+        this.users = users;
+    }
+
+    public List<Contracts> getContracts() {
+        return contracts;
+    }
+
+    public void setContracts(List<Contracts> contracts) {
+        this.contracts = contracts;
+    }
+
+    public List<Jobs> getJobs() {
+        return jobs;
+    }
+
+    public void setJobs(List<Jobs> jobs) {
+        this.jobs = jobs;
+    }
+
+    public List<UserRecruiterJobRequirement> getUserRecruiterJobRequirements() {
+        return userRecruiterJobRequirements;
+    }
+
+    public void setUserRecruiterJobRequirements(List<UserRecruiterJobRequirement> userRecruiterJobRequirements) {
+        this.userRecruiterJobRequirements = userRecruiterJobRequirements;
+    }
 }
