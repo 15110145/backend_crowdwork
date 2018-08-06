@@ -61,20 +61,11 @@ public class JobCategory extends Auditable<Integer> implements Serializable {
         this.delFlag = delFlag;
     }
 
-//    public List<Jobs> getJobsList() {
-//        return jobsList;
-//    }
-//
-//    public void setJobsList(List<Jobs> jobsList) {
-//        this.jobsList = jobsList;
-//    }
+    public List<Jobs> getJobsList() {
+        return jobsList;
+    }
 
-    @Override
-    public String toString() {
-        return "JobCategory{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", delFlag=" + delFlag +
-                '}';
+    public void setJobsList(List<Jobs> jobsList) {
+        this.jobsList = jobsList;
     }
 }

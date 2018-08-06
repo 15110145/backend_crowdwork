@@ -53,4 +53,20 @@ public class UserFreelancerJobRequirement extends Auditable<Integer> implements 
     public void setDelFlag(Boolean delFlag) {
         this.delFlag = delFlag;
     }
+
+    public UsersFreelancer getUsersFreelancer() {
+        return usersFreelancer;
+    }
+
+    public void setUsersFreelancer(UsersFreelancer usersFreelancer) {
+        this.usersFreelancer = usersFreelancer;
+    }
+
+    public ProfessionJob getProfessionJob() {
+        return professionJob;
+    }
+
+    public void setProfessionJob(ProfessionJob professionJob) {
+        this.professionJob = professionJob;
+    }
 }

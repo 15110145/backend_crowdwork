@@ -27,4 +27,27 @@ public class JobRequireProfessionJob extends Auditable<Integer> implements Seria
     @JoinColumn(name = "profession_job_id")
     private ProfessionJob professionJob;
 
+    public JobRequireProfessionJobIdentity getJobRequireProfessionJobIdentity() {
+        return jobRequireProfessionJobIdentity;
+    }
+
+    public void setJobRequireProfessionJobIdentity(JobRequireProfessionJobIdentity jobRequireProfessionJobIdentity) {
+        this.jobRequireProfessionJobIdentity = jobRequireProfessionJobIdentity;
+    }
+
+    public Jobs getJobs() {
+        return jobs;
+    }
+
+    public void setJobs(Jobs jobs) {
+        this.jobs = jobs;
+    }
+
+    public ProfessionJob getProfessionJob() {
+        return professionJob;
+    }
+
+    public void setProfessionJob(ProfessionJob professionJob) {
+        this.professionJob = professionJob;
+    }
 }

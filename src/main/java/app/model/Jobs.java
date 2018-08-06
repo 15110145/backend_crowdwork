@@ -76,20 +76,6 @@ public class Jobs extends Auditable<Integer> implements Serializable {
     public Jobs() {
     }
 
-    public Jobs(String jobName, Date deadline, Double salary, String title, String description, Integer experience, Integer slot, Status status, UsersRecruiter usersRecruiter, JobCategory jobCategory, Boolean delFlag) {
-        this.jobName = jobName;
-        this.deadline = deadline;
-        this.salary = salary;
-        this.title = title;
-        this.description = description;
-        this.experience = experience;
-        this.slot = slot;
-        this.status = status;
-        this.usersRecruiter = usersRecruiter;
-        this.jobCategory = jobCategory;
-        this.delFlag = delFlag;
-    }
-
     public Integer getId() {
         return id;
     }
@@ -160,7 +146,6 @@ public class Jobs extends Auditable<Integer> implements Serializable {
 
     public void setStatus(Status status) {
         this.status = status;
-
     }
 
     public UsersRecruiter getUsersRecruiter() {
@@ -187,14 +172,14 @@ public class Jobs extends Auditable<Integer> implements Serializable {
         this.delFlag = delFlag;
     }
 
-//    public List<Comments> getCommentsList() {
-//        return commentsList;
-//    }
-//
-//    public void setCommentsList(List<Comments> commentsList) {
-//        this.commentsList = commentsList;
-//    }
-//
+    public List<Comments> getCommentsList() {
+        return commentsList;
+    }
+
+    public void setCommentsList(List<Comments> commentsList) {
+        this.commentsList = commentsList;
+    }
+
     public List<JobRequireProfessionJob> getJobRequireProfessionJobList() {
         return jobRequireProfessionJobList;
     }
@@ -203,19 +188,19 @@ public class Jobs extends Auditable<Integer> implements Serializable {
         this.jobRequireProfessionJobList = jobRequireProfessionJobList;
     }
 
-//    public List<JobRequireSkill> getJobRequireSkillList() {
-//        return jobRequireSkillList;
-//    }
-//
-//    public void setJobRequireSkillList(List<JobRequireSkill> jobRequireSkillList) {
-//        this.jobRequireSkillList = jobRequireSkillList;
-//    }
-//
-//    public List<UserFreelancerHasJob> getUserFreelancerHasJobList() {
-//        return userFreelancerHasJobList;
-//    }
-//
-//    public void setUserFreelancerHasJobList(List<UserFreelancerHasJob> userFreelancerHasJobList) {
-//        this.userFreelancerHasJobList = userFreelancerHasJobList;
-//    }
+    public List<JobRequireSkill> getJobRequireSkillList() {
+        return jobRequireSkillList;
+    }
+
+    public void setJobRequireSkillList(List<JobRequireSkill> jobRequireSkillList) {
+        this.jobRequireSkillList = jobRequireSkillList;
+    }
+
+    public List<UserFreelancerHasJob> getUserFreelancerHasJobList() {
+        return userFreelancerHasJobList;
+    }
+
+    public void setUserFreelancerHasJobList(List<UserFreelancerHasJob> userFreelancerHasJobList) {
+        this.userFreelancerHasJobList = userFreelancerHasJobList;
+    }
 }

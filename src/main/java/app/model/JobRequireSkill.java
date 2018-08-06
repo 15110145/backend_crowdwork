@@ -54,4 +54,19 @@ public class JobRequireSkill extends Auditable<Integer> implements Serializable 
         this.delFlag = delFlag;
     }
 
+    public Jobs getJobs() {
+        return jobs;
+    }
+
+    public void setJobs(Jobs jobs) {
+        this.jobs = jobs;
+    }
+
+    public Skills getSkills() {
+        return skills;
+    }
+
+    public void setSkills(Skills skills) {
+        this.skills = skills;
+    }
 }

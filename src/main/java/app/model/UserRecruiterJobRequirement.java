@@ -54,4 +54,19 @@ public class UserRecruiterJobRequirement extends Auditable<Integer> implements S
         this.delFlag = delFlag;
     }
 
+    public UsersRecruiter getUsersRecruiter() {
+        return usersRecruiter;
+    }
+
+    public void setUsersRecruiter(UsersRecruiter usersRecruiter) {
+        this.usersRecruiter = usersRecruiter;
+    }
+
+    public ProfessionJob getProfessionJob() {
+        return professionJob;
+    }
+
+    public void setProfessionJob(ProfessionJob professionJob) {
+        this.professionJob = professionJob;
+    }
 }

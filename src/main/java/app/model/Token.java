@@ -81,4 +81,5 @@ public class Token extends Auditable<Integer> implements Serializable {
     public void setDelFlag(Boolean delFlag) {
         this.delFlag = delFlag;
     }
+
 }

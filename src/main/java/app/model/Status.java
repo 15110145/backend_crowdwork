@@ -86,4 +86,35 @@ public class Status extends Auditable<Integer> implements Serializable {
         this.delFlag = delFlag;
     }
 
+    public List<Jobs> getJobsList() {
+        return jobsList;
+    }
+
+    public void setJobsList(List<Jobs> jobsList) {
+        this.jobsList = jobsList;
+    }
+
+    public List<UsersFreelancer> getUsersFreelancerList() {
+        return usersFreelancerList;
+    }
+
+    public void setUsersFreelancerList(List<UsersFreelancer> usersFreelancerList) {
+        this.usersFreelancerList = usersFreelancerList;
+    }
+
+    public List<Contracts> getContractsList() {
+        return contractsList;
+    }
+
+    public void setContractsList(List<Contracts> contractsList) {
+        this.contractsList = contractsList;
+    }
+
+    public List<Token> getTokenList() {
+        return tokenList;
+    }
+
+    public void setTokenList(List<Token> tokenList) {
+        this.tokenList = tokenList;
+    }
 }
