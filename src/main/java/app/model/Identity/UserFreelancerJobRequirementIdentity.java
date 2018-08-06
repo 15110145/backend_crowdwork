@@ -16,5 +16,39 @@ public class UserFreelancerJobRequirementIdentity implements Serializable {
     public UserFreelancerJobRequirementIdentity() {
     }
 
+    public UserFreelancerJobRequirementIdentity(Integer usersFreelancerId, Integer professionJobId) {
+        this.usersFreelancerId = usersFreelancerId;
+        this.professionJobId = professionJobId;
+    }
 
+    public Integer getUsersFreelancerId() {
+        return usersFreelancerId;
+    }
+
+    public void setUsersFreelancerId(Integer usersFreelancerId) {
+        this.usersFreelancerId = usersFreelancerId;
+    }
+
+    public Integer getProfessionJobId() {
+        return professionJobId;
+    }
+
+    public void setProfessionJobId(Integer professionJobId) {
+        this.professionJobId = professionJobId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserFreelancerJobRequirementIdentity that = (UserFreelancerJobRequirementIdentity) o;
+        return Objects.equals(usersFreelancerId, that.usersFreelancerId) &&
+                Objects.equals(professionJobId, that.professionJobId);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(usersFreelancerId, professionJobId);
+    }
 }
