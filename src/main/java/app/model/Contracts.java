@@ -27,8 +27,9 @@ public class Contracts extends Auditable<Integer> implements Serializable {
     @JoinColumn(name = "user_recruiter_user_id")
     private UsersRecruiter usersRecruiter;
 
-    @Column(name = "job_id")
-    private Integer jobId;
+    @ManyToOne
+    @JoinColumn(name = "job_id")
+    private Jobs jobs;
 
     @ManyToOne
     @JoinColumn(name = "status_id")
@@ -64,12 +65,12 @@ public class Contracts extends Auditable<Integer> implements Serializable {
         this.usersRecruiter = usersRecruiter;
     }
 
-    public Integer getJobId() {
-        return jobId;
+    public Jobs getJobs() {
+        return jobs;
     }
 
-    public void setJobId(Integer jobId) {
-        this.jobId = jobId;
+    public void setJobs(Jobs jobs) {
+        this.jobs = jobs;
     }
 
     public Status getStatus() {

@@ -73,7 +73,25 @@ public class Jobs extends Auditable<Integer> implements Serializable {
     @OneToMany(mappedBy = "jobs")
     private List<UserFreelancerHasJob> userFreelancerHasJobList;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "jobs")
+    private List<Contracts> contractsList;
+
     public Jobs() {
+    }
+
+    public Jobs(String jobName, Date deadline, Double salary, String title, String description, Integer experience, Integer slot, Status status, UsersRecruiter usersRecruiter, JobCategory jobCategory, Boolean delFlag) {
+        this.jobName = jobName;
+        this.deadline = deadline;
+        this.salary = salary;
+        this.title = title;
+        this.description = description;
+        this.experience = experience;
+        this.slot = slot;
+        this.status = status;
+        this.usersRecruiter = usersRecruiter;
+        this.jobCategory = jobCategory;
+        this.delFlag = delFlag;
     }
 
     public Integer getId() {
@@ -202,5 +220,13 @@ public class Jobs extends Auditable<Integer> implements Serializable {
 
     public void setUserFreelancerHasJobList(List<UserFreelancerHasJob> userFreelancerHasJobList) {
         this.userFreelancerHasJobList = userFreelancerHasJobList;
+    }
+
+    public List<Contracts> getContractsList() {
+        return contractsList;
+    }
+
+    public void setContractsList(List<Contracts> contractsList) {
+        this.contractsList = contractsList;
     }
 }
