@@ -184,7 +184,7 @@ public class UsersController {
      *
      */
 // tim kiem user thong qua id
-    @RequestMapping(value = "/finduser/{id}", //
+    @RequestMapping(value = "/user/{id}", //
             method = RequestMethod.GET, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public Optional<Users> findUser(@PathVariable int id){
@@ -192,7 +192,7 @@ public class UsersController {
     }
 
     //lay tat ca user
-    @RequestMapping(value = "/findalluser",//
+    @RequestMapping(value = "/user/list",//
             method = RequestMethod.GET, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<Users> findAllUser(){
@@ -200,7 +200,7 @@ public class UsersController {
     }
 
     //luu user
-    @RequestMapping(value = "/saveuser", //
+    @RequestMapping(value = "/user", //
             method = RequestMethod.POST, //
             produces = { MediaType.APPLICATION_JSON_VALUE })
     public String saveUser(@RequestBody Users user){
@@ -209,7 +209,7 @@ public class UsersController {
     }
 
     //update user
-    @RequestMapping(value = "/updateuser", //
+    @RequestMapping(value = "/user", //
             method = RequestMethod.PUT, //
             produces = { MediaType.APPLICATION_JSON_VALUE })
     public String updateUser(@RequestBody Users user){
@@ -218,7 +218,7 @@ public class UsersController {
     }
 
     //delete user
-    @RequestMapping(value = "/deleteuser/{id}", //
+    @RequestMapping(value = "/user/{id}", //
             method = RequestMethod.DELETE, //
             produces = { MediaType.APPLICATION_JSON_VALUE })
     public String deleteUser(@PathVariable int id){
@@ -232,7 +232,7 @@ public class UsersController {
      *
      */
     //tim kiem user freelancer theo id
-    @RequestMapping(value = "/finduserfreelancer/{id}", //
+    @RequestMapping(value = "/userfreelancer/{id}", //
             method = RequestMethod.GET, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public Optional<UsersFreelancer> findUserFrelancer(@PathVariable int id){
@@ -240,7 +240,7 @@ public class UsersController {
     }
 
     //lay tat ca user freelancer
-    @RequestMapping(value = "/findalluserfreelancer",//
+    @RequestMapping(value = "/userfreelancer/list",//
             method = RequestMethod.GET, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<UsersFreelancer> findAllUserFrelancer(){
@@ -248,7 +248,7 @@ public class UsersController {
     }
 
     //luu userfreelancer
-    @RequestMapping(value = "/saveuserfreelancer", //
+    @RequestMapping(value = "/userfreelancer", //
             method = RequestMethod.POST, //
             produces = { MediaType.APPLICATION_JSON_VALUE })
     public String saveUserFreelancer(@RequestBody UsersFreelancer user){
@@ -257,7 +257,7 @@ public class UsersController {
     }
 
     //update userfreelancer
-    @RequestMapping(value = "/updateuserfreelancer", //
+    @RequestMapping(value = "/userfreelancer", //
             method = RequestMethod.PUT, //
             produces = { MediaType.APPLICATION_JSON_VALUE })
     public String updateUserFreelancer(@RequestBody UsersFreelancer user){
@@ -266,7 +266,7 @@ public class UsersController {
     }
 
     //update userfreelancer
-    @RequestMapping(value = "/deleteuserfreelancer/{id}", //
+    @RequestMapping(value = "/userfreelancer/{id}", //
             method = RequestMethod.DELETE, //
             produces = { MediaType.APPLICATION_JSON_VALUE })
     public String deleteUserFreelancer(@PathVariable int id){
@@ -281,7 +281,7 @@ public class UsersController {
      *
      */
     //tim kiem user recruiter
-    @RequestMapping(value = "/finduserrecruiter/{id}", //
+    @RequestMapping(value = "/userrecruiter/{id}", //
                    method = RequestMethod.GET, //
                    produces = {MediaType.APPLICATION_JSON_VALUE})
     public Optional<UsersRecruiter> findUserRecruiter(@PathVariable int id){
@@ -290,7 +290,7 @@ public class UsersController {
     }
 
     //lay tat ca user recruiter
-    @RequestMapping(value = "/findalluserrecruiter",//
+    @RequestMapping(value = "/userrecruiter/list",//
             method = RequestMethod.GET, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<UsersRecruiter> findAllUsersRecruiter(){
@@ -298,7 +298,7 @@ public class UsersController {
     }
 
     //luu userrecruiter
-    @RequestMapping(value = "/saveuserrecruiter", //
+    @RequestMapping(value = "/userrecruiter", //
             method = RequestMethod.POST, //
             produces = { MediaType.APPLICATION_JSON_VALUE })
     public String saveUserRecruiter(@RequestBody UsersRecruiter user){
@@ -307,7 +307,7 @@ public class UsersController {
     }
 
     //update userrecruiter
-    @RequestMapping(value = "/updateuserrecruiter", //
+    @RequestMapping(value = "/userrecruiter", //
             method = RequestMethod.PUT, //
             produces = { MediaType.APPLICATION_JSON_VALUE })
     public String updateUserRecruiter(@RequestBody UsersRecruiter user){
@@ -316,7 +316,7 @@ public class UsersController {
     }
 
     //update userrecruiter
-    @RequestMapping(value = "/deleteuserrecruiter/{id}", //
+    @RequestMapping(value = "/userrecruiter/{id}", //
             method = RequestMethod.DELETE, //
             produces = { MediaType.APPLICATION_JSON_VALUE })
     public String updateUserRecruiter(@PathVariable int id){

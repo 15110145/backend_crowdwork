@@ -27,12 +27,12 @@ public class SkillsService {
         return skills;
     }
 
-    public void saveSkill(Skills skills){
+    public void save(Skills skills){
         skills.setDelFlag(false);
         skillsRepository.save(skills);
     }
 
-    public void updateSkill(Skills skills){
+    public void update(Skills skills){
         Optional<Skills> skill = findSkill(skills.getId());
         if(skill.isPresent()){
             Skills existingskill = skill.get();
@@ -46,7 +46,7 @@ public class SkillsService {
         }
     }
 
-    public void deleteSkill(int id){
+    public void delete(int id){
         Optional<Skills> skill = findSkill(id);
         if(skill.isPresent()) {
             Skills existingskill = skill.get();

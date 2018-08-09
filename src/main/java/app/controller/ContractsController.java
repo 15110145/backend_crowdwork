@@ -16,14 +16,14 @@ public class ContractsController {
     @Autowired
     ContractsService contractsService;
 
-    @RequestMapping(value = "/findallcontracts", //
+    @RequestMapping(value = "/contracts/list", //
             method = RequestMethod.GET, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<Contracts> findAllContracts(){
         return contractsService.findAllContracts();
     }
 
-    @RequestMapping(value = "/findcontract/{f_id}/{r_id}", //
+    @RequestMapping(value = "/contract/{f_id}/{r_id}", //
             method = RequestMethod.GET, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public Optional<Contracts> findContract(@PathVariable Integer f_id, @PathVariable Integer r_id){//f_id: freelancer user id, r_id: recruiter user id
@@ -31,7 +31,7 @@ public class ContractsController {
         return contractsService.findContract(f_id,r_id);
     }
 
-    @RequestMapping(value = "/savecontract", //
+    @RequestMapping(value = "/contract", //
             method = RequestMethod.POST, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public String saveContract(@RequestBody Contracts contracts){
@@ -39,7 +39,7 @@ public class ContractsController {
         return "Contract Saved!";
     }
 
-    @RequestMapping(value = "/updatecontract", //
+    @RequestMapping(value = "/contract", //
             method = RequestMethod.PUT, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public String updateContract(@RequestBody Contracts contracts){
@@ -47,7 +47,7 @@ public class ContractsController {
         return "Contract Updated!";
     }
 
-    @RequestMapping(value = "/deletecontract/{f_id}/{r_id}", //
+    @RequestMapping(value = "/contract/{f_id}/{r_id}", //
             method = RequestMethod.DELETE, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public String deleteContract(@PathVariable Integer f_id, @PathVariable Integer r_id){

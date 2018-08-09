@@ -15,21 +15,21 @@ public class UserFreelancerHasJobController {
     @Autowired
     UserFreelancerHasJobService userFreelancerHasJobService;
 
-    @RequestMapping(value = "/findalluserfreelancerhasjob", //
+    @RequestMapping(value = "/userfreelancerhasjob/list", //
             method = RequestMethod.GET, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<UserFreelancerHasJob> findAllUserFreelancerHasJob(){
         return userFreelancerHasJobService.findAllUserFreelancerHasJob();
     }
 
-    @RequestMapping(value = "/finduserfreelancerhasjob/{f_id}/{j_id}", //
+    @RequestMapping(value = "/userfreelancerhasjob/{f_id}/{j_id}", //
             method = RequestMethod.GET, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public Optional<UserFreelancerHasJob> findUserFreelancerHasJob(@PathVariable Integer f_id, @PathVariable Integer j_id){
         return userFreelancerHasJobService.findUserFreelancerHasJob(f_id, j_id);
     }
 
-    @RequestMapping(value = "/saveuserfreelancerhasjob", //
+    @RequestMapping(value = "/userfreelancerhasjob", //
             method = RequestMethod.POST, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public String saveUserFreelancerHasJob(@RequestBody UserFreelancerHasJob userFreelancerHasJob){
@@ -37,7 +37,7 @@ public class UserFreelancerHasJobController {
         return "FreelancerHasJob Saved!";
     }
 
-    @RequestMapping(value = "/updateuserfreelancerhasjob", //
+    @RequestMapping(value = "/userfreelancerhasjob", //
             method = RequestMethod.PUT, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public String updateUserFreelancerHasJob(@RequestBody UserFreelancerHasJob userFreelancerHasJob){
@@ -45,7 +45,7 @@ public class UserFreelancerHasJobController {
         return "FreelancerHasJob Updated!";
     }
 
-    @RequestMapping(value = "/deleteuserfreelancerhasjob/{f_id}/{j_id}", //
+    @RequestMapping(value = "/userfreelancerhasjob/{f_id}/{j_id}", //
             method = RequestMethod.DELETE, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public String deleteUserFreelancerHasJob(@PathVariable Integer f_id, @PathVariable Integer j_id){

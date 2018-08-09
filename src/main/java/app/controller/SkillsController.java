@@ -15,14 +15,14 @@ public class SkillsController {
     @Autowired
     SkillsService skillsService;
 
-    @RequestMapping(value = "/findskill/{id}", //
+    @RequestMapping(value = "/skill/{id}", //
             method = RequestMethod.GET, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public Optional<Skills> findskill(@PathVariable int id){
         return skillsService.findSkill(id);
     }
 
-    @RequestMapping(value = "/findallskills", //
+    @RequestMapping(value = "/skills/list", //
             method = RequestMethod.GET, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<Skills> findallskills(){
@@ -35,23 +35,23 @@ public class SkillsController {
             method = RequestMethod.POST, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public String saveSkill(@RequestBody Skills skills){
-        skillsService.saveSkill(skills);
+        skillsService.save(skills);
         return "Skill saved!";
     }
 
-    @RequestMapping(value = "/updateskill", //
+    @RequestMapping(value = "/skill", //
             method = RequestMethod.PUT, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public String updateSkill(@RequestBody Skills skills){
-        skillsService.updateSkill(skills);
+        skillsService.update(skills);
         return "Skill Updated!";
     }
 
-    @RequestMapping(value = "/deleteskill/{id}", //
+    @RequestMapping(value = "/skill/{id}", //
             method = RequestMethod.DELETE, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public String deleteSkill(@PathVariable int id){
-        skillsService.deleteSkill(id);
+        skillsService.delete(id);
         return "Skill Deleted!";
     }
 }

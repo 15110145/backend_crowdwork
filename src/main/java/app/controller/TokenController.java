@@ -15,21 +15,21 @@ public class TokenController {
     @Autowired
     TokenService tokenService;
 
-    @RequestMapping(value = "/findalltoken", //
+    @RequestMapping(value = "/token/list", //
             method = RequestMethod.GET, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<Token> findAllToken(){
         return tokenService.findAllToken();
     }
 
-    @RequestMapping(value = "/findtoken/{id}", //
+    @RequestMapping(value = "/token/{id}", //
             method = RequestMethod.GET, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public Optional<Token> findToken(@PathVariable Integer id){
         return tokenService.findToken(id);
     }
 
-    @RequestMapping(value = "/savetoken", //
+    @RequestMapping(value = "/token", //
             method = RequestMethod.POST, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public String saveToken(@RequestBody Token token){
@@ -37,7 +37,7 @@ public class TokenController {
         return "Token Saved!";
     }
 
-    @RequestMapping(value = "/updatetoken", //
+    @RequestMapping(value = "/token", //
             method = RequestMethod.PUT, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public String updateToken(@RequestBody Token token){
@@ -45,7 +45,7 @@ public class TokenController {
         return "Token Updated!";
     }
 
-    @RequestMapping(value = "/deletetoken/{id}", //
+    @RequestMapping(value = "/token/{id}", //
             method = RequestMethod.DELETE, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public String deleteToken(@PathVariable Integer id){
