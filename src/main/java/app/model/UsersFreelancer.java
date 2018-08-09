@@ -6,6 +6,7 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -27,7 +28,7 @@ public class UsersFreelancer extends Auditable<Integer> implements Serializable 
     private String workingTime;
 
     @Column(name = "salary_per_hour")
-    private Long salaryPerHour;
+    private Double salaryPerHour;
 
     @Column(name = "about")
     private String about;
@@ -66,7 +67,7 @@ public class UsersFreelancer extends Auditable<Integer> implements Serializable 
     public UsersFreelancer() {
     }
 
-    public UsersFreelancer(Integer userId, Status status, String workingTime, Long salaryPerHour, String about, String usernameGithub, String degree, Boolean delFlag) {
+    public UsersFreelancer(Integer userId, Status status, String workingTime, Double salaryPerHour, String about, String usernameGithub, String degree, Boolean delFlag) {
         this.userId = userId;
         this.status = status;
         this.workingTime = workingTime;
@@ -101,11 +102,11 @@ public class UsersFreelancer extends Auditable<Integer> implements Serializable 
         this.workingTime = workingTime;
     }
 
-    public Long getSalaryPerHour() {
+    public Double getSalaryPerHour() {
         return salaryPerHour;
     }
 
-    public void setSalaryPerHour(Long salaryPerHour) {
+    public void setSalaryPerHour(Double salaryPerHour) {
         this.salaryPerHour = salaryPerHour;
     }
 
