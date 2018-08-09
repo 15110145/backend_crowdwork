@@ -56,12 +56,17 @@ public class UsersRecruiterService {
             if(users.getDelFlag() != null){
                 existinguser.setDelFlag(users.getDelFlag());
             }
-            existinguser.setUpdateTime(new Date());
             usersRecruiterReponsitory.save(existinguser);
         }
     }
 
     public void delete(int id){
-        usersRecruiterReponsitory.deleteById(id);
+//        usersRecruiterReponsitory.deleteById(id);
+        Optional<UsersRecruiter> user = findUserRecruiter(id);
+        if(user.isPresent()) {
+            UsersRecruiter existinguser = user.get();
+            existinguser.setDelFlag(true);
+            usersRecruiterReponsitory.save(existinguser);
+        }
     }
 }

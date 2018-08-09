@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,7 +52,7 @@ public class UsersController {
             produces = { MediaType.APPLICATION_JSON_VALUE })
     public String saveUser(@RequestBody Users user){
         userService.save(user);
-        return "User saved !";
+        return "User Saved !";
     }
 
     //update user
@@ -62,7 +61,7 @@ public class UsersController {
             produces = { MediaType.APPLICATION_JSON_VALUE })
     public String updateUser(@RequestBody Users user){
         userService.update(user);
-        return "User updated !";
+        return "User Updated !";
     }
 
     //delete user
@@ -87,14 +86,6 @@ public class UsersController {
         return usersFreelancerService.findUserFreelancer(id);
     }
 
-//    //tim kiem user freelancer theo id
-//    @RequestMapping(value = "/finduserfreelancer1/{id}/{s_id}", //
-//            method = RequestMethod.GET, //
-//            produces = {MediaType.APPLICATION_JSON_VALUE})
-//    public List<UsersFreelancer> findUserFrelancer1(@PathVariable int id, @PathVariable int s_id){
-//        return usersFreelancerService.findUserFreelancer1(id, s_id);
-//    }
-
     //lay tat ca user freelancer
     @RequestMapping(value = "/findalluserfreelancer",//
             method = RequestMethod.GET, //
@@ -109,7 +100,7 @@ public class UsersController {
             produces = { MediaType.APPLICATION_JSON_VALUE })
     public String saveUserFreelancer(@RequestBody UsersFreelancer user){
         usersFreelancerService.save(user);
-        return "UserFreelancer saved !";
+        return "UserFreelancer Saved !";
     }
 
     //update userfreelancer
@@ -118,8 +109,18 @@ public class UsersController {
             produces = { MediaType.APPLICATION_JSON_VALUE })
     public String updateUserFreelancer(@RequestBody UsersFreelancer user){
         usersFreelancerService.update(user);
-        return "Freelancer updated !";
+        return "Freelancer Updated !";
     }
+
+    //update userfreelancer
+    @RequestMapping(value = "/deleteuserfreelancer/{id}", //
+            method = RequestMethod.DELETE, //
+            produces = { MediaType.APPLICATION_JSON_VALUE })
+    public String deleteUserFreelancer(@PathVariable int id){
+        usersFreelancerService.delete(id);
+        return "Freelancer Deleted !";
+    }
+
 
     /**
      *
@@ -149,7 +150,7 @@ public class UsersController {
             produces = { MediaType.APPLICATION_JSON_VALUE })
     public String saveUserRecruiter(@RequestBody UsersRecruiter user){
         usersRecruiterService.save(user);
-        return "UserRecruiter saved !";
+        return "UserRecruiter Saved !";
     }
 
     //update userrecruiter
@@ -158,7 +159,15 @@ public class UsersController {
             produces = { MediaType.APPLICATION_JSON_VALUE })
     public String updateUserRecruiter(@RequestBody UsersRecruiter user){
         usersRecruiterService.update(user);
-        return "Recruiter updated !";
+        return "Recruiter Updated !";
     }
 
+    //update userrecruiter
+    @RequestMapping(value = "/deleteuserrecruiter/{id}", //
+            method = RequestMethod.DELETE, //
+            produces = { MediaType.APPLICATION_JSON_VALUE })
+    public String updateUserRecruiter(@PathVariable int id){
+        usersRecruiterService.delete(id);
+        return "Recruiter Deleted !";
+    }
 }

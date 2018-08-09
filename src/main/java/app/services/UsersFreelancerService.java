@@ -27,10 +27,6 @@ public class UsersFreelancerService {
         return usersFreelancerReponsitory.findById(u_id);
     }
 
-//    public List<UsersFreelancer> findUserFreelancer1(int u_id, int s_id){
-//        return usersFreelancerReponsitory.findUsersFreelancerById(u_id,s_id);
-//    }
-
     public void save(UsersFreelancer usersFreelancer){
         usersFreelancer.setDelFlag(false);
         usersFreelancerReponsitory.save(usersFreelancer);
@@ -40,9 +36,6 @@ public class UsersFreelancerService {
         Optional<UsersFreelancer> user = findUserFreelancer(users.getUserId());
         if (user.isPresent()) {
             UsersFreelancer existinguser = user.get();
-            if (users.getStatus().getId() != null){
-                existinguser.setStatus(users.getStatus());
-            }
             if (users.getWorkingTime() != null){
                 existinguser.setWorkingTime(users.getWorkingTime());
             }
@@ -64,12 +57,20 @@ public class UsersFreelancerService {
             if(users.getDelFlag() != null){
                 existinguser.setDelFlag(users.getDelFlag());
             }
-            existinguser.setUpdateTime(new Date());
+            if (users.getStatus() != null){
+                existinguser.setStatus(users.getStatus());
+            }
             usersFreelancerReponsitory.save(existinguser);
         }
     }
 
     public void delete(int id){
-        usersFreelancerReponsitory.deleteById(id);
+//        usersFreelancerReponsitory.deleteById(id);
+        Optional<UsersFreelancer> user = findUserFreelancer(id);
+        if(user.isPresent()) {
+            UsersFreelancer existinguser = user.get();
+            existinguser.setDelFlag(true);
+            usersFreelancerReponsitory.save(existinguser);
+        }
     }
 }

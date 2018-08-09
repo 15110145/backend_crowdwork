@@ -18,14 +18,14 @@ public class SkillsController {
     @RequestMapping(value = "/findskill/{id}", //
             method = RequestMethod.GET, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Optional<Skills> findskill(int id){
+    public Optional<Skills> findskill(@PathVariable int id){
         return skillsService.findSkill(id);
     }
 
     @RequestMapping(value = "/findallskills", //
             method = RequestMethod.GET, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public List<Skills> findallskilld(){
+    public List<Skills> findallskills(){
         List<Skills> skills = new ArrayList<Skills>();
         skills.addAll(skillsService.findallskills());
         return skills;
@@ -48,7 +48,7 @@ public class SkillsController {
     }
 
     @RequestMapping(value = "/deleteskill/{id}", //
-            method = RequestMethod.GET, //
+            method = RequestMethod.DELETE, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public String deleteSkill(@PathVariable int id){
         skillsService.deleteSkill(id);
