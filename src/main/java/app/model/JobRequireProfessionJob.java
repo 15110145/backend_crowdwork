@@ -27,6 +27,18 @@ public class JobRequireProfessionJob extends Auditable<Integer> implements Seria
     @JoinColumn(name = "profession_job_id")
     private ProfessionJob professionJob;
 
+    @Column(name="del_flag")
+    private Boolean delFlag;
+
+    public JobRequireProfessionJob() {
+    }
+
+    public JobRequireProfessionJob(JobRequireProfessionJobIdentity jobRequireProfessionJobIdentity, Jobs jobs, ProfessionJob professionJob) {
+        this.jobRequireProfessionJobIdentity = jobRequireProfessionJobIdentity;
+        this.jobs = jobs;
+        this.professionJob = professionJob;
+    }
+
     public JobRequireProfessionJobIdentity getJobRequireProfessionJobIdentity() {
         return jobRequireProfessionJobIdentity;
     }
@@ -49,5 +61,13 @@ public class JobRequireProfessionJob extends Auditable<Integer> implements Seria
 
     public void setProfessionJob(ProfessionJob professionJob) {
         this.professionJob = professionJob;
+    }
+
+    public Boolean getDelFlag() {
+        return delFlag;
+    }
+
+    public void setDelFlag(Boolean delFlag) {
+        this.delFlag = delFlag;
     }
 }

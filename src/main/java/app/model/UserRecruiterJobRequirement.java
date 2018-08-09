@@ -33,6 +33,13 @@ public class UserRecruiterJobRequirement extends Auditable<Integer> implements S
     public UserRecruiterJobRequirement() {
     }
 
+    public UserRecruiterJobRequirement(UserRecruiterJobRequirementIdentity userRecruiterJobRequirementIdentity, UsersRecruiter usersRecruiter, ProfessionJob professionJob, Boolean delFlag) {
+        this.userRecruiterJobRequirementIdentity = userRecruiterJobRequirementIdentity;
+        this.usersRecruiter = usersRecruiter;
+        this.professionJob = professionJob;
+        this.delFlag = delFlag;
+    }
+
     public UserRecruiterJobRequirement(UserRecruiterJobRequirementIdentity userRecruiterJobRequirementIdentity, Boolean delFlag) {
         this.userRecruiterJobRequirementIdentity = userRecruiterJobRequirementIdentity;
         this.delFlag = delFlag;

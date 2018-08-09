@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -21,40 +22,55 @@ public class StatusService implements Serializable {
     public ArrayList<Status> findAll()
     {
         ArrayList<Status> lstJobCategory = new ArrayList<>();
-        for (Status status: statusRepository.findAll())
-        {
-            lstJobCategory.add(status);
-        }
+        lstJobCategory.addAll(statusRepository.findAll());
         return lstJobCategory;
     }
 
-    public Status getStatus(Integer statusId)
+    public Optional<Status> getStatus(Integer statusId)
     {
-        return statusRepository.findById(statusId).get();
+        return statusRepository.findById(statusId);
     }
 
-    public void addStatus(Status status,Integer currentUser)
+    public void addStatus(Status status)
     {
-        Status statusAdd = new Status();
-        statusAdd.setStatusName(status.getStatusName());
-        statusAdd.setKind(status.getKind());
+        status.setDelFlag(Boolean.FALSE);
         statusRepository.save(status);
     }
 
-    public void editJobCategory(Integer statusId, Status editedStatus, Integer currentUser)
+    public void editStatus(Status editedStatus)
     {
-        Status newStatus = getStatus(statusId);
-        newStatus.setStatusName(editedStatus.getStatusName());
-        newStatus.setKind(editedStatus.getKind());
-        newStatus.setUpdateUser(currentUser);
-        newStatus.setUpdateTime(new Date());
-        statusRepository.save(newStatus);
+        Optional<Status> optionalStatus = getStatus(editedStatus.getId());
+        if(optionalStatus.isPresent()) {
+            Status status = optionalStatus.get();
+            if (editedStatus.getDelFlag() != null){
+                status.setDelFlag(editedStatus.getDelFlag());
+            }
+            if (editedStatus.getStatusName() != null){
+                status.setStatusName(editedStatus.getStatusName());
+            }
+            if (editedStatus.getKind() != null){
+                status.setKind(editedStatus.getKind());
+            }
+            statusRepository.save(status);
+        }
+        else
+        {
+
+        }
+        //statusRepository.save(editedStatus);
     }
 
     public void deleteStatus(Integer statusId)
     {
-        Status deletedStatus = getStatus(statusId);
-        deletedStatus.setDelFlag(Boolean.TRUE);
-        statusRepository.save(deletedStatus);
+        Optional<Status> optionalStatus = getStatus(statusId);
+        if(optionalStatus.isPresent()) {
+            Status status = optionalStatus.get();
+            status.setDelFlag(Boolean.TRUE);
+            statusRepository.save(status);
+        }
+        else
+        {
+
+        }
     }
 }
