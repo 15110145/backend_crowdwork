@@ -11,18 +11,19 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping(value = "/skill")
 public class SkillsController {
     @Autowired
     SkillsService skillsService;
 
-    @RequestMapping(value = "/skill/{id}", //
+    @RequestMapping(value = "/{id}", //
             method = RequestMethod.GET, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public Optional<Skills> findskill(@PathVariable int id){
         return skillsService.findSkill(id);
     }
 
-    @RequestMapping(value = "/skills/list", //
+    @RequestMapping(value = "/list", //
             method = RequestMethod.GET, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<Skills> findallskills(){
@@ -31,7 +32,7 @@ public class SkillsController {
         return skills;
     }
 
-    @RequestMapping(value = "/saveskill", //
+    @RequestMapping(value = "/", //
             method = RequestMethod.POST, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public String saveSkill(@RequestBody Skills skills){
@@ -39,7 +40,7 @@ public class SkillsController {
         return "Skill saved!";
     }
 
-    @RequestMapping(value = "/skill", //
+    @RequestMapping(value = "/", //
             method = RequestMethod.PUT, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public String updateSkill(@RequestBody Skills skills){
@@ -47,7 +48,7 @@ public class SkillsController {
         return "Skill Updated!";
     }
 
-    @RequestMapping(value = "/skill/{id}", //
+    @RequestMapping(value = "/{id}", //
             method = RequestMethod.DELETE, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public String deleteSkill(@PathVariable int id){

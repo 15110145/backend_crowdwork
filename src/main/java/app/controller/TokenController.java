@@ -10,26 +10,27 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping(value = "/token")
 public class TokenController {
 
     @Autowired
     TokenService tokenService;
 
-    @RequestMapping(value = "/token/list", //
+    @RequestMapping(value = "/list", //
             method = RequestMethod.GET, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<Token> findAllToken(){
         return tokenService.findAllToken();
     }
 
-    @RequestMapping(value = "/token/{id}", //
+    @RequestMapping(value = "/{id}", //
             method = RequestMethod.GET, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public Optional<Token> findToken(@PathVariable Integer id){
         return tokenService.findToken(id);
     }
 
-    @RequestMapping(value = "/token", //
+    @RequestMapping(value = "/", //
             method = RequestMethod.POST, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public String saveToken(@RequestBody Token token){
@@ -37,7 +38,7 @@ public class TokenController {
         return "Token Saved!";
     }
 
-    @RequestMapping(value = "/token", //
+    @RequestMapping(value = "/", //
             method = RequestMethod.PUT, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public String updateToken(@RequestBody Token token){
@@ -45,7 +46,7 @@ public class TokenController {
         return "Token Updated!";
     }
 
-    @RequestMapping(value = "/token/{id}", //
+    @RequestMapping(value = "/{id}", //
             method = RequestMethod.DELETE, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public String deleteToken(@PathVariable Integer id){
