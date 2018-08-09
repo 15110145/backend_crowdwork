@@ -33,8 +33,10 @@ public class UserFreelancerJobRequirement extends Auditable<Integer> implements 
     public UserFreelancerJobRequirement() {
     }
 
-    public UserFreelancerJobRequirement(UserFreelancerJobRequirementIdentity userFreelancerJobRequirementIdentity, Boolean delFlag) {
+    public UserFreelancerJobRequirement(UserFreelancerJobRequirementIdentity userFreelancerJobRequirementIdentity, UsersFreelancer usersFreelancer, ProfessionJob professionJob, Boolean delFlag) {
         this.userFreelancerJobRequirementIdentity = userFreelancerJobRequirementIdentity;
+        this.usersFreelancer = usersFreelancer;
+        this.professionJob = professionJob;
         this.delFlag = delFlag;
     }
 

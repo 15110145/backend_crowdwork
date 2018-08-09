@@ -43,7 +43,7 @@ public class ProfessionJob extends Auditable<Integer> implements Serializable {
     public ProfessionJob() {
     }
 
-    public ProfessionJob(String professionJobName, Integer parrentId, Boolean delFlag) {
+    public ProfessionJob(String professionJobName, Integer parentId, Boolean delFlag) {
         this.professionJobName = professionJobName;
         this.parentId = parentId;
         this.delFlag = delFlag;

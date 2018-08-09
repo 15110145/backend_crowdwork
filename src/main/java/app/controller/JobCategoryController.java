@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 @RestController
 public class JobCategoryController {
@@ -16,7 +17,7 @@ public class JobCategoryController {
     JobCategoryService jobCategoryService;
 
     //show Job Category List
-    @RequestMapping(value = "/jobcategorylist",
+    @RequestMapping(value = "/jobCategorylist",
             method = RequestMethod.GET,
             produces = { MediaType.APPLICATION_JSON_VALUE })
     @ResponseBody
@@ -26,49 +27,40 @@ public class JobCategoryController {
     }
 
     //Find particular JobCategory
-    @RequestMapping(value = "/jobcategory/{jobCategoryId}", //
+    @RequestMapping(value = "/jobCategory/{jobCategoryId}", //
             method = RequestMethod.GET, //
             produces = { MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
-    public JobCategory getJobCategory(@PathVariable("jobCategoryId") String jobCategoryId) {
+    public Optional<JobCategory> getJobCategory(@PathVariable("jobCategoryId") String jobCategoryId) {
         return jobCategoryService.getJobCategory(Integer.valueOf(jobCategoryId));
     }
 
-//    //Find particular JobCategory
-//    @RequestMapping(value = "/jobcategory1", //
-//            method = RequestMethod.GET, //
-//            produces = { MediaType.APPLICATION_JSON_VALUE})
-//    @ResponseBody
-//    public JobCategory getJobCategory1(@RequestParam("Id") String jobCategoryId,
-//                                       @RequestParam("Name") String jobCategoryName) {
-//        return jobCategoryService.findbyIdandName(Integer.valueOf(jobCategoryId),jobCategoryName);
-//    }
     //Add JobCategory
-//    @RequestMapping(value = "/jobcategory", //
-//            method = RequestMethod.POST, //
-//            produces = { MediaType.APPLICATION_JSON_VALUE})
-//    @ResponseBody
-//    public JobCategory addJobCategory(@RequestBody JobCategory jobCategory) {
-//
-//        System.out.println("(Service Side) Creating jobCategory: " + jobCategory.getId());
-//        jobCategoryService.addJobCategory(jobCategory,0);
-//        return jobCategory;
-//    }
+    @RequestMapping(value = "/jobCategory", //
+            method = RequestMethod.POST, //
+            produces = { MediaType.APPLICATION_JSON_VALUE})
+    @ResponseBody
+    public JobCategory addJobCategory(@RequestBody JobCategory jobCategory) {
+
+        System.out.println("(Service Side) Creating jobCategory: " + jobCategory.getId());
+        jobCategoryService.addJobCategory(jobCategory);
+        return jobCategory;
+    }
 
     //
-    @RequestMapping(value = "/jobcategory", //
+    @RequestMapping(value = "/jobCategory", //
             method = RequestMethod.PUT, //
             produces = { MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
     public JobCategory updateEmployee(@RequestBody JobCategory jobCategory) {
 
         System.out.println("(Service Side) Editing JobCategory: " + jobCategory.getId());
-        jobCategoryService.editJobCategory(jobCategory.getId(),jobCategory,0);
+        jobCategoryService.editJobCategory(jobCategory);
         return jobCategory;
     }
 
     //
-    @RequestMapping(value = "/jobcategory/{jobCategoryId}", //
+    @RequestMapping(value = "/jobCategory/{jobCategoryId}", //
             method = RequestMethod.DELETE, //
             produces = { MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody

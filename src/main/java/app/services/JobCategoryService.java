@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -20,10 +21,7 @@ public class JobCategoryService {
     public ArrayList<JobCategory> findAll()
     {
         ArrayList<JobCategory> lstJobCategory = new ArrayList<>();
-        for (JobCategory jobs: jobCategoryRepository.findAll())
-        {
-            lstJobCategory.add(jobs);
-        }
+        lstJobCategory.addAll(jobCategoryRepository.findAll());
         return lstJobCategory;
     }
 
@@ -32,37 +30,41 @@ public class JobCategoryService {
         return jobCategoryRepository.findJobCategoriesByIdAndName(Id,name);
     }
 
-    public JobCategory getJobCategory(Integer jobCategoryId)
+    public Optional<JobCategory> getJobCategory(Integer jobCategoryId)
     {
-        return jobCategoryRepository.findById(jobCategoryId).get();
+        return jobCategoryRepository.findById(jobCategoryId);
     }
 
-//    public void addJobCategory(JobCategory jobCategory,Integer currentUser)
-//    {
-//        JobCategory jobCategoryAdd = new JobCategory(
-//                jobCategory.getName(),
-//                Boolean.FALSE,
-//                currentUser,
-//                null,
-//                new Date(),
-//                null
-//        );
-//        jobCategoryRepository.save(jobCategoryAdd);
-//    }
-
-    public void editJobCategory(Integer jobCategoryId, JobCategory editedJobCategory, Integer currentUser)
+    public void addJobCategory(JobCategory jobCategory)
     {
-        JobCategory newJobCategory = getJobCategory(jobCategoryId);
-        newJobCategory.setName(editedJobCategory.getName());
-        newJobCategory.setUpdateUser(currentUser);
-        newJobCategory.setUpdateTime(new Date());
-        jobCategoryRepository.save(newJobCategory);
+        jobCategory.setDelFlag(Boolean.FALSE);
+        jobCategoryRepository.save(jobCategory);
+    }
+
+    public void editJobCategory(JobCategory editedJobCategory)
+    {
+        Optional<JobCategory> optionalJobCategory = getJobCategory(editedJobCategory.getId());
+        if(optionalJobCategory.isPresent()) {
+            JobCategory jobCategory = optionalJobCategory.get();
+            jobCategory.setName(editedJobCategory.getName());
+            jobCategoryRepository.save(jobCategory);
+        }
+        else
+        {
+
+        }
     }
 
     public void deleteJobCategory(Integer jobCategoryId)
     {
-        JobCategory deletedJobCategory = getJobCategory(jobCategoryId);
-        deletedJobCategory.setDelFlag(Boolean.TRUE);
-        jobCategoryRepository.save(deletedJobCategory);
+        Optional<JobCategory> optionalJobCategory = getJobCategory(jobCategoryId);
+        if(optionalJobCategory.isPresent()) {
+            JobCategory jobCategory = optionalJobCategory.get();
+            jobCategory.setDelFlag(Boolean.TRUE);
+            jobCategoryRepository.save(jobCategory);
+        }
+        else {
+
+        }
     }
 }

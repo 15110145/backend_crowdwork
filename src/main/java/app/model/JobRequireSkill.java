@@ -33,8 +33,10 @@ public class JobRequireSkill extends Auditable<Integer> implements Serializable 
     public JobRequireSkill() {
     }
 
-    public JobRequireSkill(JobRequireSkillIdentity jobRequireSkillIdentity, Boolean delFlag) {
+    public JobRequireSkill(JobRequireSkillIdentity jobRequireSkillIdentity, Jobs jobs, Skills skills, Boolean delFlag) {
         this.jobRequireSkillIdentity = jobRequireSkillIdentity;
+        this.jobs = jobs;
+        this.skills = skills;
         this.delFlag = delFlag;
     }
 
