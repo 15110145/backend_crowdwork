@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value="status")
+@RequestMapping(value="/status")
 public class StatusController {
 
     @Autowired

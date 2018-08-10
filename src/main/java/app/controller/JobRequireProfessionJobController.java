@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(name="jobrequireprofessionjob")
+@RequestMapping(value="/jobrequireprofessionjob")
 public class JobRequireProfessionJobController {
 
     @Autowired

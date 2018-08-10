@@ -81,19 +81,35 @@ public class ProfessionJob extends Auditable<Integer> implements Serializable {
         this.delFlag = delFlag;
     }
 
-//    public List<UserRecruiterJobRequirement> getUserRecruiterJobRequirementList() {
-//        return userRecruiterJobRequirementList;
-//    }
-//
-//    public void setUserRecruiterJobRequirementList(List<UserRecruiterJobRequirement> userRecruiterJobRequirementList) {
-//        this.userRecruiterJobRequirementList = userRecruiterJobRequirementList;
-//    }
-//
+    public List<UserRecruiterJobRequirement> getUserRecruiterJobRequirementList() {
+        return userRecruiterJobRequirementList;
+    }
+
+    public void setUserRecruiterJobRequirementList(List<UserRecruiterJobRequirement> userRecruiterJobRequirementList) {
+        this.userRecruiterJobRequirementList = userRecruiterJobRequirementList;
+    }
+
     public List<JobRequireProfessionJob> getJobRequireProfessionJobList() {
         return jobRequireProfessionJobList;
     }
 
     public void setJobRequireProfessionJobList(List<JobRequireProfessionJob> jobRequireProfessionJobList) {
         this.jobRequireProfessionJobList = jobRequireProfessionJobList;
+    }
+
+    public Integer getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
+    }
+
+    public List<UserFreelancerJobRequirement> getUserFreelancerJobRequirementList() {
+        return userFreelancerJobRequirementList;
+    }
+
+    public void setUserFreelancerJobRequirementList(List<UserFreelancerJobRequirement> userFreelancerJobRequirementList) {
+        this.userFreelancerJobRequirementList = userFreelancerJobRequirementList;
     }
 }

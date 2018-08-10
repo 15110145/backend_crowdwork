@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(name="professionjob")
+@RequestMapping(value="/professionjob")
 public class ProfessionJobController {
     @Autowired
     ProfessionJobService professionJobService;
