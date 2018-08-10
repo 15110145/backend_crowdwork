@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,28 +17,27 @@ public class UsersRecruiterService {
     UsersRecruiterRepository usersRecruiterReponsitory;
 
     public List<UsersRecruiter> findAll(){
-        List<UsersRecruiter> usersRecruiters = new ArrayList<UsersRecruiter>();
-        usersRecruiters.addAll(usersRecruiterReponsitory.findAll());
+//        List<UsersRecruiter> usersRecruiters = new ArrayList<UsersRecruiter>();
+//        usersRecruiters.addAll(usersRecruiterReponsitory.findAll());
         //tuong duong
 //        for (UsersRecruiter usersRecruiter: usersRecruiterReponsitory.findAll()){
 //            usersRecruiters.add(usersRecruiter);
 //        }
-        return usersRecruiters;
+        return usersRecruiterReponsitory.findAllUsersRecruiter();
     }
 
-    public Optional<UsersRecruiter> findUserRecruiter(int id){
-        return usersRecruiterReponsitory.findById(id);
+    public List<UsersRecruiter> findUserRecruiter(Integer id){
+        return usersRecruiterReponsitory.findUsersRecruiterById(id);
     }
 
     public void save(UsersRecruiter usersRecruiter){
         usersRecruiterReponsitory.save(usersRecruiter);
     }
 
-    public void update(UsersRecruiter users) {
-//        Users existinguser = null;
-        Optional<UsersRecruiter> user = findUserRecruiter(users.getUserId());
-        if (user.isPresent()) {
-            UsersRecruiter existinguser = user.get();
+    public Boolean update(UsersRecruiter users) {
+        List<UsersRecruiter> user = findUserRecruiter(users.getUserId());
+        if (!user.isEmpty()) {
+            UsersRecruiter existinguser = user.get(0);
             if (users.getCompanyName() != null) {
                 existinguser.setCompanyName(users.getCompanyName());
             }
@@ -57,16 +54,20 @@ public class UsersRecruiterService {
                 existinguser.setDelFlag(users.getDelFlag());
             }
             usersRecruiterReponsitory.save(existinguser);
+            return true;
         }
+        return false;
     }
 
-    public void delete(int id){
+    public Boolean delete(int id){
 //        usersRecruiterReponsitory.deleteById(id);
-        Optional<UsersRecruiter> user = findUserRecruiter(id);
-        if(user.isPresent()) {
-            UsersRecruiter existinguser = user.get();
+        List<UsersRecruiter> user = findUserRecruiter(id);
+        if(!user.isEmpty()) {
+            UsersRecruiter existinguser = user.get(0);
             existinguser.setDelFlag(true);
             usersRecruiterReponsitory.save(existinguser);
+            return true;
         }
+        return false;
     }
 }

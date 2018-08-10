@@ -8,11 +8,16 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface UsersFreelancerRepository extends JpaRepository<UsersFreelancer, Integer> {
 
-//    @Modifying
-//    @Query("SELECT u FROM UsersFreelancer u WHERE u.userId = :u_id")
-//    List<UsersFreelancer> findUsersFreelancerById(@Param("u_id") Integer u_id);
+    @Modifying
+    @Query("SELECT u FROM UsersFreelancer u WHERE u.userId = :u_id and u.delFlag=false")
+    List<UsersFreelancer> findUsersFreelancerById(@Param("u_id") Integer u_id);
+
+    @Modifying
+    @Query("SELECT u FROM UsersFreelancer u WHERE u.delFlag=false")
+    List<UsersFreelancer> findAllUsersFreelancer();
 }

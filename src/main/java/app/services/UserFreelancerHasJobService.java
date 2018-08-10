@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -18,22 +17,22 @@ public class UserFreelancerHasJobService {
     UserFreelancerHasJobRepository userFreelancerHasJobRepository;
 
     public List<UserFreelancerHasJob> findAllUserFreelancerHasJob(){
-        return userFreelancerHasJobRepository.findAll();
+        return userFreelancerHasJobRepository.findAllByDelFlag(false);
     }
 
-    public Optional<UserFreelancerHasJob> findUserFreelancerHasJob(Integer f_id, Integer j_id){//f_id: freelancer_id, j_id:job_id
+    public List<UserFreelancerHasJob> findUserFreelancerHasJob(Integer f_id, Integer j_id){//f_id: freelancer_id, j_id:job_id
         UserFreelancerHasJobIdentity userFreelancerHasJobIdentity = new UserFreelancerHasJobIdentity(f_id,j_id);
-        return userFreelancerHasJobRepository.findById(userFreelancerHasJobIdentity);
+        return userFreelancerHasJobRepository.findByUserFreelancerHasJobIdentityAndDelFlag(userFreelancerHasJobIdentity, false);
     }
 
     public void save(UserFreelancerHasJob userFreelancerHasJob){
         userFreelancerHasJobRepository.save(userFreelancerHasJob);
     }
 
-    public void update(UserFreelancerHasJob userFreelancerHasJob){
-        Optional<UserFreelancerHasJob> userFreelancerHasJob1 = findUserFreelancerHasJob(userFreelancerHasJob.getUserFreelancerHasJobIdentity().getUsersFreelancerId(),userFreelancerHasJob.getUserFreelancerHasJobIdentity().getJobId());
-        if (userFreelancerHasJob1.isPresent()){
-            UserFreelancerHasJob existingUserFreelancerHasJob = userFreelancerHasJob1.get();
+    public Boolean update(UserFreelancerHasJob userFreelancerHasJob){
+        List<UserFreelancerHasJob> userFreelancerHasJob1 = findUserFreelancerHasJob(userFreelancerHasJob.getUserFreelancerHasJobIdentity().getUsersFreelancerId(),userFreelancerHasJob.getUserFreelancerHasJobIdentity().getJobId());
+        if (!userFreelancerHasJob1.isEmpty()){
+            UserFreelancerHasJob existingUserFreelancerHasJob = userFreelancerHasJob1.get(0);
             if (userFreelancerHasJob.getDateStart() != null){
                 existingUserFreelancerHasJob.setDateStart(userFreelancerHasJob.getDateStart());
             }
@@ -47,15 +46,19 @@ public class UserFreelancerHasJobService {
                 existingUserFreelancerHasJob.setDelFlag(userFreelancerHasJob.getDelFlag());
             }
             userFreelancerHasJobRepository.save(existingUserFreelancerHasJob);
+            return true;
         }
+        return false;
     }
 
-    public void delete(Integer f_id, Integer j_id) {
-        Optional<UserFreelancerHasJob> userFreelancerHasJob1 = findUserFreelancerHasJob(f_id, j_id);
-        if (userFreelancerHasJob1.isPresent()) {
-            UserFreelancerHasJob existingUserFreelancerHasJob = userFreelancerHasJob1.get();
+    public Boolean delete(Integer f_id, Integer j_id) {
+        List<UserFreelancerHasJob> userFreelancerHasJob1 = findUserFreelancerHasJob(f_id, j_id);
+        if (!userFreelancerHasJob1.isEmpty()) {
+            UserFreelancerHasJob existingUserFreelancerHasJob = userFreelancerHasJob1.get(0);
             existingUserFreelancerHasJob.setDelFlag(true);
             userFreelancerHasJobRepository.save(existingUserFreelancerHasJob);
+            return true;
         }
+        return false;
     }
 }

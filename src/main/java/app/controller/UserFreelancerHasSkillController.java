@@ -7,7 +7,6 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/userfreelancerhasskill")
@@ -26,7 +25,7 @@ public class UserFreelancerHasSkillController {
     @RequestMapping(value = "/{f_is}/{s_id}", //
             method = RequestMethod.GET, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Optional<UserFreelancerHasSkill> findUserFreelancerHasSkill(@PathVariable Integer f_id, @PathVariable Integer s_id){
+    public List<UserFreelancerHasSkill> findUserFreelancerHasSkill(@PathVariable Integer f_id, @PathVariable Integer s_id){
         return userFreelancerHasSkillService.findUserFreelancerHasSkill(f_id, s_id);
     }
 
@@ -42,15 +41,19 @@ public class UserFreelancerHasSkillController {
             method = RequestMethod.PUT, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public String updateUserFreelancerHasSkill(@RequestBody UserFreelancerHasSkill userFreelancerHasSkill){
-        userFreelancerHasSkillService.update(userFreelancerHasSkill);
-        return "UserFreelancerHasSkill Updated!";
+        if(userFreelancerHasSkillService.update(userFreelancerHasSkill)){
+            return "UserFreelancerHasSkill Updated!";
+        }
+        return "UserFreelancerHasSkill Not Found!";
     }
 
     @RequestMapping(value = "/{f_id}/{s_id}", //
             method = RequestMethod.DELETE, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public String deleteUserFreelancerHasSkill(@PathVariable Integer f_id, @PathVariable Integer s_id){
-        userFreelancerHasSkillService.delete(f_id, s_id);
-        return "UserFreelancerHasSkill Deleted!";
+        if(userFreelancerHasSkillService.delete(f_id, s_id)){
+            return "UserFreelancerHasSkill Deleted!";
+        }
+        return "UserFreelancerHasSkill Not Found!";
     }
 }

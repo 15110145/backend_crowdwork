@@ -17,18 +17,18 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
-    public Optional<Users> findUser(int id){
-        return userRepository.findById(id);
+    public List<Users> findUser(Integer id){
+        return userRepository.findUsersById(id);
     }
 
     public List<Users> findAll(){
-        List<Users> users = new ArrayList<Users>();
-        users.addAll(userRepository.findAll());
+//        List<Users> users = new ArrayList<Users>();
+//        users.addAll(userRepository.findAllUsers());
         //tuong duong
 //        for (UsersRecruiter usersRecruiter: usersRecruiterReponsitory.findAll()){
 //            usersRecruiters.add(usersRecruiter);
 //        }
-        return users;
+        return userRepository.findAllUsers();
     }
 
     public void save(Users users){
@@ -39,10 +39,10 @@ public class UserService {
 //        userRepository.updateUser(users.getId(),users.getName(),users.getUpdateTime());
 //    }
 
-    public void update(Users users){
-        Optional<Users> user = findUser(users.getId());
-        if(user.isPresent()) {
-            Users existinguser = user.get();
+    public Boolean update(Users users){
+        List<Users> user = findUser(users.getId());
+        if(!user.isEmpty()) {
+            Users existinguser = user.get(0);
             if (users.getName() != null){
                 existinguser.setName(users.getName());
             }
@@ -65,16 +65,20 @@ public class UserService {
                 existinguser.setVerifyEmail(users.getVerifyEmail());
             }
             userRepository.save(existinguser);
+            return true;
         }
+        return false;
     }
 
-    public void delete(int id){
+    public Boolean delete(Integer id){
         //        userRepository.deleteById(id);
-        Optional<Users> user = findUser(id);
-        if(user.isPresent()) {
-            Users existinguser = user.get();
+        List<Users> user = findUser(id);
+        if(!user.isEmpty()) {
+            Users existinguser = user.get(0);
             existinguser.setDelFlag(true);
             userRepository.save(existinguser);
+            return true;
         }
+        return false;
     }
 }

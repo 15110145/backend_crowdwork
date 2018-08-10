@@ -17,14 +17,14 @@ public class SkillsService {
     @Autowired
     SkillsRepository skillsRepository;
 
-    public Optional<Skills> findSkill(int id){
-        return skillsRepository.findById(id);
+    public List<Skills> findSkill(Integer id){
+        return skillsRepository.findSkillsById(id);
     }
 
     public List<Skills> findallskills(){
-        List<Skills> skills = new ArrayList<Skills>();
-        skills.addAll(skillsRepository.findAll());
-        return skills;
+//        List<Skills> skills = new ArrayList<Skills>();
+//        skills.addAll(skillsRepository.findAll());
+        return skillsRepository.findAllSkills();
     }
 
     public void save(Skills skills){
@@ -32,10 +32,10 @@ public class SkillsService {
         skillsRepository.save(skills);
     }
 
-    public void update(Skills skills){
-        Optional<Skills> skill = findSkill(skills.getId());
-        if(skill.isPresent()){
-            Skills existingskill = skill.get();
+    public Boolean update(Skills skills){
+        List<Skills> skill = findSkill(skills.getId());
+        if(!skill.isEmpty()){
+            Skills existingskill = skill.get(0);
             if (skills.getSkillName() != null){
                 existingskill.setSkillName(skills.getSkillName());
             }
@@ -43,15 +43,19 @@ public class SkillsService {
                 existingskill.setDelFlag(skills.getDelFlag());
             }
             skillsRepository.save(existingskill);
+            return true;
         }
+        return false;
     }
 
-    public void delete(int id){
-        Optional<Skills> skill = findSkill(id);
-        if(skill.isPresent()) {
-            Skills existingskill = skill.get();
+    public Boolean delete(Integer id){
+        List<Skills> skill = findSkill(id);
+        if(!skill.isEmpty()) {
+            Skills existingskill = skill.get(0);
             existingskill.setDelFlag(true);
             skillsRepository.save(existingskill);
+            return true;
         }
+        return false;
     }
 }
