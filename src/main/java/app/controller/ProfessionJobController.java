@@ -10,12 +10,13 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 @RestController
+@RequestMapping(name="professionjob")
 public class ProfessionJobController {
     @Autowired
     ProfessionJobService professionJobService;
 
     //show List
-    @RequestMapping(value = "/professionJoblist",
+    @RequestMapping(value = "/list",
             method = RequestMethod.GET,
             produces = { MediaType.APPLICATION_JSON_VALUE })
     @ResponseBody
@@ -25,7 +26,7 @@ public class ProfessionJobController {
     }
 
     //Find particular
-    @RequestMapping(value = "/professionJob/{professionJobId}", //
+    @RequestMapping(value = "/{professionJobId}", //
             method = RequestMethod.GET, //
             produces = { MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
@@ -34,7 +35,7 @@ public class ProfessionJobController {
     }
 
     //Add
-    @RequestMapping(value = "/professionJob", //
+    @RequestMapping(value = "/", //
             method = RequestMethod.POST, //
             produces = { MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
@@ -46,7 +47,7 @@ public class ProfessionJobController {
     }
 
     //Edit
-    @RequestMapping(value = "/professionJob", //
+    @RequestMapping(value = "/", //
             method = RequestMethod.PUT, //
             produces = { MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
@@ -58,7 +59,7 @@ public class ProfessionJobController {
     }
 
     //Delete
-    @RequestMapping(value = "/professionJob/{professionJobId}", //
+    @RequestMapping(value = "/{professionJobId}", //
             method = RequestMethod.DELETE, //
             produces = { MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody

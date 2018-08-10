@@ -10,13 +10,14 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 @RestController
+@RequestMapping(value = "/comments")
 public class CommentsController {
 
     @Autowired
     CommentsService commentsService;
 
     //show List
-    @RequestMapping(value = "/commentslist",
+    @RequestMapping(value = "/list",
             method = RequestMethod.GET,
             produces = { MediaType.APPLICATION_JSON_VALUE })
     @ResponseBody
@@ -26,7 +27,7 @@ public class CommentsController {
     }
 
     //Find particular
-    @RequestMapping(value = "/comments/{commentsId}", //
+    @RequestMapping(value = "/{commentsId}", //
             method = RequestMethod.GET, //
             produces = { MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
@@ -35,7 +36,7 @@ public class CommentsController {
     }
 
     //Add
-    @RequestMapping(value = "/comments", //
+    @RequestMapping(value = "/", //
             method = RequestMethod.POST, //
             produces = { MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
@@ -47,7 +48,7 @@ public class CommentsController {
     }
 
     //Edit
-    @RequestMapping(value = "/comments", //
+    @RequestMapping(value = "/", //
             method = RequestMethod.PUT, //
             produces = { MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
@@ -59,7 +60,7 @@ public class CommentsController {
     }
 
     //Delete
-    @RequestMapping(value = "/comments/{commentsId}", //
+    @RequestMapping(value = "/{commentsId}", //
             method = RequestMethod.DELETE, //
             produces = { MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
