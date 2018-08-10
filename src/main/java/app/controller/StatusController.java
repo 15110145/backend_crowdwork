@@ -10,13 +10,14 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 @RestController
+@RequestMapping(value="status")
 public class StatusController {
 
     @Autowired
     StatusService  statusService;
 
     //show List
-    @RequestMapping(value = "/statuslist",
+    @RequestMapping(value = "/list",
             method = RequestMethod.GET,
             produces = { MediaType.APPLICATION_JSON_VALUE })
     @ResponseBody
@@ -26,7 +27,7 @@ public class StatusController {
     }
 
     //Find particular
-    @RequestMapping(value = "/status/{statusId}", //
+    @RequestMapping(value = "/{statusId}", //
             method = RequestMethod.GET, //
             produces = { MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
@@ -35,7 +36,7 @@ public class StatusController {
     }
 
     //Add
-    @RequestMapping(value = "/status", //
+    @RequestMapping(value = "/", //
             method = RequestMethod.POST, //
             produces = { MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
@@ -47,7 +48,7 @@ public class StatusController {
     }
 
     //Edit
-    @RequestMapping(value = "/status", //
+    @RequestMapping(value = "/", //
             method = RequestMethod.PUT, //
             produces = { MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
@@ -59,7 +60,7 @@ public class StatusController {
     }
 
     //Delete
-    @RequestMapping(value = "/status/{statusId}", //
+    @RequestMapping(value = "/{statusId}", //
             method = RequestMethod.DELETE, //
             produces = { MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody

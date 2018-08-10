@@ -11,13 +11,14 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 @RestController
+@RequestMapping(value="jobcategory")
 public class JobCategoryController {
 
     @Autowired
     JobCategoryService jobCategoryService;
 
     //show Job Category List
-    @RequestMapping(value = "/jobCategorylist",
+    @RequestMapping(value = "/list",
             method = RequestMethod.GET,
             produces = { MediaType.APPLICATION_JSON_VALUE })
     @ResponseBody
@@ -27,7 +28,7 @@ public class JobCategoryController {
     }
 
     //Find particular JobCategory
-    @RequestMapping(value = "/jobCategory/{jobCategoryId}", //
+    @RequestMapping(value = "/{jobCategoryId}", //
             method = RequestMethod.GET, //
             produces = { MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
@@ -36,7 +37,7 @@ public class JobCategoryController {
     }
 
     //Add JobCategory
-    @RequestMapping(value = "/jobCategory", //
+    @RequestMapping(value = "/", //
             method = RequestMethod.POST, //
             produces = { MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
@@ -48,7 +49,7 @@ public class JobCategoryController {
     }
 
     //
-    @RequestMapping(value = "/jobCategory", //
+    @RequestMapping(value = "/", //
             method = RequestMethod.PUT, //
             produces = { MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
@@ -60,7 +61,7 @@ public class JobCategoryController {
     }
 
     //
-    @RequestMapping(value = "/jobCategory/{jobCategoryId}", //
+    @RequestMapping(value = "/{jobCategoryId}", //
             method = RequestMethod.DELETE, //
             produces = { MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody

@@ -11,12 +11,13 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 @RestController
+@RequestMapping(value="/jobquireskill")
 public class JobRequireSkillController {
     @Autowired
     JobRequireSkillService jobRequireSkillService;
 
     //show List
-    @RequestMapping(value = "/jobRequireSkilllist",
+    @RequestMapping(value = "/list",
             method = RequestMethod.GET,
             produces = { MediaType.APPLICATION_JSON_VALUE })
     @ResponseBody
@@ -26,7 +27,7 @@ public class JobRequireSkillController {
     }
 
     //Find particular
-    @RequestMapping(value = "/jobRequireSkill/{jobsId}+{skillsId}", //
+    @RequestMapping(value = "/{jobsId}{skillsId}", //
             method = RequestMethod.GET, //
             produces = { MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
@@ -36,7 +37,7 @@ public class JobRequireSkillController {
     }
 
     //Add
-    @RequestMapping(value = "/jobRequireSkill", //
+    @RequestMapping(value = "/", //
             method = RequestMethod.POST, //
             produces = { MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
@@ -48,7 +49,7 @@ public class JobRequireSkillController {
     }
 
     //Edit
-    @RequestMapping(value = "/jobRequireSkill", //
+    @RequestMapping(value = "/", //
             method = RequestMethod.PUT, //
             produces = { MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
@@ -60,7 +61,7 @@ public class JobRequireSkillController {
     }
 
     //Delete
-    @RequestMapping(value = "/jobRequireSkill/{jobsId}+{skillsId}", //
+    @RequestMapping(value = "/{jobsId}/{skillsId}", //
             method = RequestMethod.DELETE, //
             produces = { MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
