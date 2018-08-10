@@ -18,22 +18,22 @@ public class UserFreelancerHasSkillService {
     UserFreelancerhasSkillRepository userFreelancerhasSkillRepository;
 
     public List<UserFreelancerHasSkill> findAllUserFreelancerHasSkill(){
-        return userFreelancerhasSkillRepository.findAll();
+        return userFreelancerhasSkillRepository.findAllByDelFlag(false);
     }
 
-    public Optional<UserFreelancerHasSkill> findUserFreelancerHasSkill(Integer f_id, Integer s_id){//f_id: freelancer_id, s_id: status_id
+    public List<UserFreelancerHasSkill> findUserFreelancerHasSkill(Integer f_id, Integer s_id){//f_id: freelancer_id, s_id: status_id
         UserFreelancerHasSkillIdentity userFreelancerHasSkillIdentity = new UserFreelancerHasSkillIdentity(f_id,s_id);
-        return userFreelancerhasSkillRepository.findById(userFreelancerHasSkillIdentity);
+        return userFreelancerhasSkillRepository.findByUserFreelancerHasSkillIdentityAndDelFlag(userFreelancerHasSkillIdentity, false);
     }
 
     public void save(UserFreelancerHasSkill userFreelancerHasSkill){
         userFreelancerhasSkillRepository.save(userFreelancerHasSkill);
     }
 
-    public void update(UserFreelancerHasSkill userFreelancerHasSkill){
-        Optional<UserFreelancerHasSkill> userFreelancerHasSkill1 = findUserFreelancerHasSkill(userFreelancerHasSkill.getUserFreelancerHasSkillIdentity().getUsersFreelancerId(),userFreelancerHasSkill.getUserFreelancerHasSkillIdentity().getSkillId());
-        if (userFreelancerHasSkill1.isPresent()){
-            UserFreelancerHasSkill existingUserFreelancerHasSkill = userFreelancerHasSkill1.get();
+    public Boolean update(UserFreelancerHasSkill userFreelancerHasSkill){
+        List<UserFreelancerHasSkill> userFreelancerHasSkill1 = findUserFreelancerHasSkill(userFreelancerHasSkill.getUserFreelancerHasSkillIdentity().getUsersFreelancerId(),userFreelancerHasSkill.getUserFreelancerHasSkillIdentity().getSkillId());
+        if (!userFreelancerHasSkill1.isEmpty()){
+            UserFreelancerHasSkill existingUserFreelancerHasSkill = userFreelancerHasSkill1.get(0);
             if (userFreelancerHasSkill.getDelFlag() != null){
                 existingUserFreelancerHasSkill.setDelFlag(userFreelancerHasSkill.getDelFlag());
             }
@@ -47,15 +47,19 @@ public class UserFreelancerHasSkillService {
                 existingUserFreelancerHasSkill.setLevel(userFreelancerHasSkill.getLevel());
             }
             userFreelancerhasSkillRepository.save(existingUserFreelancerHasSkill);
+            return true;
         }
+        return false;
     }
 
-    public void delete(Integer f_id, Integer s_id) {
-        Optional<UserFreelancerHasSkill> userFreelancerHasSkill1 = findUserFreelancerHasSkill(f_id, s_id);
-        if (userFreelancerHasSkill1.isPresent()) {
-            UserFreelancerHasSkill existingUserFreelancerHasSkill = userFreelancerHasSkill1.get();
+    public Boolean delete(Integer f_id, Integer s_id) {
+        List<UserFreelancerHasSkill> userFreelancerHasSkill1 = findUserFreelancerHasSkill(f_id, s_id);
+        if (!userFreelancerHasSkill1.isEmpty()) {
+            UserFreelancerHasSkill existingUserFreelancerHasSkill = userFreelancerHasSkill1.get(0);
             existingUserFreelancerHasSkill.setDelFlag(true);
             userFreelancerhasSkillRepository.save(existingUserFreelancerHasSkill);
+            return true;
         }
+        return false;
     }
 }

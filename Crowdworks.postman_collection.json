@@ -1,0 +1,735 @@
+{
+	"info": {
+		"_postman_id": "b8a138ec-ed03-4e00-9173-15ee41bd675f",
+		"name": "Crowdworks",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"_postman_id": "87df3a24-48cb-4172-a834-ff81c00907f8",
+			"name": "Skills",
+			"item": [
+				{
+					"_postman_id": "c02694fa-18d9-4bbb-9c7b-ed28344fc4af",
+					"name": "findallskills",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"skillName\": \"C#\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/skill/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"skill",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"_postman_id": "6c545eaf-1d88-4d8f-ad68-699b75cc6948",
+					"name": "saveskill",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"skillName\": \"Java\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/skill",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"skill"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"_postman_id": "320992ac-ee92-4f81-8c32-1ddc6c02a002",
+					"name": "updateskill",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"id\": 8,\n        \"delFlag\": false\n    }"
+						},
+						"url": {
+							"raw": "http://localhost:8080/skill",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"skill"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"_postman_id": "3832c1c0-0b20-41a8-bbec-33179a58d18d",
+					"name": "deleteskill",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/skill/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"skill",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"_postman_id": "182ca61d-4c69-4500-a51a-5acf513270a6",
+					"name": "findskill",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/skill/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"skill",
+								"8"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"_postman_id": "43cea087-445b-4286-9b36-49bee680e0b3",
+			"name": "User",
+			"item": [
+				{
+					"_postman_id": "07181c4a-53e7-41d4-802e-e3de48761dc2",
+					"name": "updateuser",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 4,\n\t\"email\": \"ducquang.citynow\",\n    \"verifyEmail\": \"true\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user"
+							]
+						},
+						"description": "cập nhật user"
+					},
+					"response": []
+				},
+				{
+					"_postman_id": "534cc083-b4d7-4355-9867-eca7a454c6f0",
+					"name": "saveuser",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Đức Quang\",\n    \"email\": \"ducquang.citynow\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"_postman_id": "7bdb9f83-3d5d-4716-8b8f-8e3f339b6c86",
+					"name": "finduser",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 26,\n    \"name\": \"ccccb\",\n    \"description\": \"sfs\",\n    \"dateCreated\": \"2018-07-24T01:56:00.000+0000\",\n    \"finished\": \"true\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"_postman_id": "cc6eb4ba-2ffc-4812-bcf3-8e8098a246a7",
+					"name": "findalluser",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/user/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"_postman_id": "ae290551-e436-4dd8-8862-42bc1a308a95",
+					"name": "deleteuser",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/user/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"_postman_id": "6ee85f86-cf05-4e1d-bbbe-1b98b05cb107",
+			"name": "UserFreelancer",
+			"item": [
+				{
+					"_postman_id": "52e13e37-d598-4916-bbb9-d3d8aa2dc3d1",
+					"name": "findalluserfreelancer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/userfreelancer/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"userfreelancer",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"_postman_id": "76dbff73-3665-423a-b651-a1852d6d014b",
+					"name": "saveuserfreelancer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": 6,\n    \"status\": {\n        \"createdUser\": null,\n        \"createdTime\": null,\n        \"updateUser\": null,\n        \"updateTime\": null,\n        \"id\": 1,\n        \"statusName\": \"ACCEPT\",\n        \"kind\": \"USER\",\n        \"delFlag\": false\n    },\n    \"workingTime\": \"50\",\n    \"salaryPerHour\": null,\n    \"about\": null,\n    \"usernameGithub\": null,\n    \"degree\": null\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/userfreelancer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"userfreelancer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"_postman_id": "929fcad9-ecc1-4985-8741-7cb05dbc068b",
+					"name": "finduserfreelancer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/userfreelancer/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"userfreelancer",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"_postman_id": "dc36345e-bd9b-4824-97a4-a5ca32ac884a",
+					"name": "deleteuserfreelancer",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/userfreelancer/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"userfreelancer",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"_postman_id": "944204bd-0c61-49e7-b0ed-bf21f250cab5",
+					"name": "updateuserfreelancer",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": 6,\n    \"delFlag\": \"true\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/userfreelancer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"userfreelancer"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"_postman_id": "2dadbb06-99fa-4d67-bad7-aa547216d173",
+			"name": "UserRecruiter",
+			"item": [
+				{
+					"_postman_id": "897dfc23-56c6-485b-933d-10133807ae8a",
+					"name": "findalluserrecruiter",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/userrecruiter/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"userrecruiter",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"_postman_id": "30e00265-5938-4e9e-8c57-f4ec631cf551",
+					"name": "saveuserrecruiter",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"userId\": 6,\n\t\"companyName\": \"UIT\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/userrecruiter",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"userrecruiter"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"_postman_id": "e442bfcc-695d-43ea-8b3a-42733f7afe15",
+					"name": "finduserrecruiter",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/userrecruiter/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"userrecruiter",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"_postman_id": "77cc6eba-5e22-4677-9b31-4c5aa6b31915",
+					"name": "deleteuserrecruiter",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/userrecruiter/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"userrecruiter",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"_postman_id": "93f0bd29-8189-4b88-8439-f7393468f938",
+					"name": "updateuserrecruiter",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": 6,\n    \"delFlag\": true\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/userrecruiter",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"userrecruiter"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"_postman_id": "86ec0e14-5428-48c5-9b43-dbb9a69e1ec8",
+			"name": "Contract",
+			"item": [
+				{
+					"_postman_id": "df9e7b9f-2c82-4eac-b9f9-3932629a5fe3",
+					"name": "findallcontracts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/contract/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"contract",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"_postman_id": "94abceb1-b794-4935-bb3d-d7c2aa78855a",
+					"name": "findcontract",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/contract/4/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"contract",
+								"4",
+								"6"
+							]
+						},
+						"description": "findcontract/{freelancer_user_id}/{recruiter_user_id}"
+					},
+					"response": []
+				},
+				{
+					"_postman_id": "f7be93ce-80c8-40c5-8f80-04404820171b",
+					"name": "savecontract",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"contractsIdentity\": {\n        \"usersFreelancerId\": 5,\n        \"usersRecruiterId\": 6\n    },\n    \"usersFreelancer\": {\n        \"userId\": 5\n    },\n    \"usersRecruiter\": {\n        \"userId\": 6\n    },\n    \"jobs\": {\n        \"id\": 2\n    },\n    \"status\": {\n        \"id\": 4\n    }\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/contract",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"contract"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"_postman_id": "43d9f5ed-42a5-4a9c-9a6d-7309d27d1806",
+					"name": "updatecontract",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"contractsIdentity\": {\n        \"usersFreelancerId\": 4,\n        \"usersRecruiterId\": 6\n    },\n    \"jobId\": 1,\n    \"status\": {\n        \"id\": 4\n    }\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/contract",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"contract"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"_postman_id": "b9cd6b85-e569-4f85-abcb-e4117916ba82",
+					"name": "deletecontract",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/contract/4/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"contract",
+								"4",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"_postman_id": "0a77e435-f6db-4da5-b329-37a6bf460c8f",
+			"name": "UserFreelancerHasJob",
+			"item": [
+				{
+					"_postman_id": "d59b6b46-13f1-4479-82c3-09736244a8b6",
+					"name": "findalluserfreelancerhasjob",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/userfreelancerhasjob/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"userfreelancerhasjob",
+								"list"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"_postman_id": "39161973-3454-4301-b324-70528bab3a18",
+			"name": "UserFreelancerHasSkill",
+			"item": [
+				{
+					"_postman_id": "69790dfc-a2d7-4ac1-a336-b958eece5ae1",
+					"name": "userfreelancerhasskill",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/userfreelancerhasskill/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"userfreelancerhasskill",
+								"list"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

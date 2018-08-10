@@ -16,15 +16,15 @@ public class UsersFreelancerService {
     UsersFreelancerRepository usersFreelancerReponsitory;
 
     public List<UsersFreelancer> findAll(){
-        List<UsersFreelancer> usersFreelancers = new ArrayList<UsersFreelancer>();
-        for (UsersFreelancer usersFreelancer: usersFreelancerReponsitory.findAll()){
-            usersFreelancers.add(usersFreelancer);
-        }
-        return usersFreelancers;
+//        List<UsersFreelancer> usersFreelancers = new ArrayList<UsersFreelancer>();
+//        for (UsersFreelancer usersFreelancer: usersFreelancerReponsitory.findAllUsersFreelancer()){
+//            usersFreelancers.add(usersFreelancer);
+//        }
+        return usersFreelancerReponsitory.findAllUsersFreelancer();
     }
 
-    public Optional<UsersFreelancer> findUserFreelancer(int u_id){
-        return usersFreelancerReponsitory.findById(u_id);
+    public List<UsersFreelancer> findUserFreelancer(Integer u_id){
+        return usersFreelancerReponsitory.findUsersFreelancerById(u_id);
     }
 
     public void save(UsersFreelancer usersFreelancer){
@@ -32,10 +32,10 @@ public class UsersFreelancerService {
         usersFreelancerReponsitory.save(usersFreelancer);
     }
 
-    public void update(UsersFreelancer users) {
-        Optional<UsersFreelancer> user = findUserFreelancer(users.getUserId());
-        if (user.isPresent()) {
-            UsersFreelancer existinguser = user.get();
+    public Boolean update(UsersFreelancer users) {
+        List<UsersFreelancer> user = findUserFreelancer(users.getUserId());
+        if (!user.isEmpty()) {
+            UsersFreelancer existinguser = user.get(0);
             if (users.getWorkingTime() != null){
                 existinguser.setWorkingTime(users.getWorkingTime());
             }
@@ -61,16 +61,20 @@ public class UsersFreelancerService {
                 existinguser.setStatus(users.getStatus());
             }
             usersFreelancerReponsitory.save(existinguser);
+            return true;
         }
+        return false;
     }
 
-    public void delete(int id){
+    public Boolean delete(Integer id){
 //        usersFreelancerReponsitory.deleteById(id);
-        Optional<UsersFreelancer> user = findUserFreelancer(id);
-        if(user.isPresent()) {
-            UsersFreelancer existinguser = user.get();
-            existinguser.setDelFlag(true);
-            usersFreelancerReponsitory.save(existinguser);
-        }
+            List<UsersFreelancer> user = findUserFreelancer(id);
+            if(!user.isEmpty()) {
+                UsersFreelancer existinguser = user.get(0);
+                existinguser.setDelFlag(true);
+                usersFreelancerReponsitory.save(existinguser);
+                return true;
+            }
+            return false;
     }
 }

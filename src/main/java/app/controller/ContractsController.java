@@ -1,14 +1,12 @@
 package app.controller;
 
 import app.model.Contracts;
-import app.model.Identity.ContractsIdentity;
 import app.services.ContractsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/contract")
@@ -27,7 +25,7 @@ public class ContractsController {
     @RequestMapping(value = "/{f_id}/{r_id}", //
             method = RequestMethod.GET, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Optional<Contracts> findContract(@PathVariable Integer f_id, @PathVariable Integer r_id){//f_id: freelancer user id, r_id: recruiter user id
+    public List<Contracts> findContract(@PathVariable Integer f_id, @PathVariable Integer r_id){//f_id: freelancer user id, r_id: recruiter user id
 
         return contractsService.findContract(f_id,r_id);
     }

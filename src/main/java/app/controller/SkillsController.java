@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/skill")
@@ -19,7 +18,7 @@ public class SkillsController {
     @RequestMapping(value = "/{id}", //
             method = RequestMethod.GET, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Optional<Skills> findskill(@PathVariable int id){
+    public List<Skills> findskill(@PathVariable Integer id){
         return skillsService.findSkill(id);
     }
 
@@ -44,15 +43,19 @@ public class SkillsController {
             method = RequestMethod.PUT, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public String updateSkill(@RequestBody Skills skills){
-        skillsService.update(skills);
-        return "Skill Updated!";
+        if(skillsService.update(skills)){
+            return "Skill Updated!";
+        }
+        return "Skill Not Found!";
     }
 
     @RequestMapping(value = "/{id}", //
             method = RequestMethod.DELETE, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public String deleteSkill(@PathVariable int id){
-        skillsService.delete(id);
-        return "Skill Deleted!";
+    public String deleteSkill(@PathVariable Integer id){
+        if(skillsService.delete(id)){
+            return "Skill Deleted!";
+        }
+        return "Skill Not Found!";
     }
 }
