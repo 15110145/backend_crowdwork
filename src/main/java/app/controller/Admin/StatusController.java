@@ -1,4 +1,4 @@
-package app.controller;
+package app.controller.Admin;
 
 import app.model.Status;
 import app.services.StatusService;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value="/status")
+@RequestMapping(value="/admin/status")
 public class StatusController {
 
     @Autowired

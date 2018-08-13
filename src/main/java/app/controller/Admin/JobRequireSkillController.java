@@ -1,4 +1,4 @@
-package app.controller;
+package app.controller.Admin;
 
 import app.model.Identity.JobRequireSkillIdentity;
 import app.model.JobRequireSkill;
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value="/jobquireskill")
+@RequestMapping(value="/admin/jobquireskill")
 public class JobRequireSkillController {
     @Autowired
     JobRequireSkillService jobRequireSkillService;

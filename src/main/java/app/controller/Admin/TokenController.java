@@ -1,4 +1,4 @@
-package app.controller;
+package app.controller.Admin;
 
 import app.model.Token;
 import app.services.TokenService;
@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "/token")
+@RequestMapping(value = "/admin/token")
 public class TokenController {
 
     @Autowired

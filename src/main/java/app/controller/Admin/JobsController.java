@@ -1,4 +1,4 @@
-package app.controller;
+package app.controller.Admin;
 
 import app.model.*;
 import app.services.JobCategoryService;
@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value="/jobs")
+@RequestMapping(value="/admin/jobs")
 public class JobsController {
 
     @Autowired
@@ -25,8 +25,8 @@ public class JobsController {
     @Autowired
     ProfessionJobService professionJobService;
 
-    //show List
-    @RequestMapping(value = "/list&jobcategory={jobCategoryId}",
+    //filter job list by category
+    @RequestMapping(value = "/list/jobcategory={jobCategoryId}",
             method = RequestMethod.GET,
             produces = { MediaType.APPLICATION_JSON_VALUE })
     @ResponseBody
@@ -35,7 +35,8 @@ public class JobsController {
         return list;
     }
 
-    @RequestMapping(value = "/list&profession={professionJobId}",
+    //filter job list by profession
+    @RequestMapping(value = "/list/profession={professionJobId}",
             method = RequestMethod.GET,
             produces = { MediaType.APPLICATION_JSON_VALUE })
     @ResponseBody
@@ -49,7 +50,25 @@ public class JobsController {
         return list;
     }
 
+    //filter job no exp required
+    @RequestMapping(value = "/list/noexp",
+            method = RequestMethod.GET,
+            produces = { MediaType.APPLICATION_JSON_VALUE })
+    @ResponseBody
+    public List<Jobs> getJobsListNoExpRequirement() {
+        ArrayList<Jobs> list = jobsService.findAllJobsNoExperience();
+        return list;
+    }
 
+    //filter job no exp required
+    @RequestMapping(value = "/list/withexp",
+            method = RequestMethod.GET,
+            produces = { MediaType.APPLICATION_JSON_VALUE })
+    @ResponseBody
+    public List<Jobs> getJobsListWithExpRequirement() {
+        ArrayList<Jobs> list = jobsService.findAllJobsWithExperience();
+        return list;
+    }
     /**
      *
      * basic service

@@ -1,4 +1,4 @@
-package app.controller;
+package app.controller.Admin;
 
 import app.model.Contracts;
 import app.services.ContractsService;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/contract")
+@RequestMapping(value = "/admin/contract")
 public class ContractsController {
 
     @Autowired

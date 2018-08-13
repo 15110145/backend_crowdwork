@@ -1,4 +1,4 @@
-package app.controller;
+package app.controller.Admin;
 
 import app.model.Identity.JobRequireProfessionJobIdentity;
 import app.model.JobRequireProfessionJob;
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value="/jobrequireprofessionjob")
+@RequestMapping(value="/admin/jobrequireprofessionjob")
 public class JobRequireProfessionJobController {
 
     @Autowired

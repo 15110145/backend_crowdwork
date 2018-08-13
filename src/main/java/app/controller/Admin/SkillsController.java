@@ -1,4 +1,4 @@
-package app.controller;
+package app.controller.Admin;
 
 import app.model.Skills;
 import app.services.SkillsService;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/skill")
+@RequestMapping(value = "/admin/skill")
 public class SkillsController {
     @Autowired
     SkillsService skillsService;

@@ -1,4 +1,4 @@
-package app.controller;
+package app.controller.Admin;
 
 
 import app.model.JobCategory;
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value="/jobcategory")
+@RequestMapping(value="/admin/jobcategory")
 public class JobCategoryController {
 
     @Autowired

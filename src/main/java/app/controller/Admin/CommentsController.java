@@ -1,4 +1,4 @@
-package app.controller;
+package app.controller.Admin;
 
 import app.model.Comments;
 import app.services.CommentsService;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "/comments")
+@RequestMapping(value = "/admin/comments")
 public class CommentsController {
 
     @Autowired

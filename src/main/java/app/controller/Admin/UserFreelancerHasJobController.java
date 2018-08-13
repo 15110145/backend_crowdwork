@@ -1,4 +1,4 @@
-package app.controller;
+package app.controller.Admin;
 
 import app.model.UserFreelancerHasJob;
 import app.services.UserFreelancerHasJobService;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/userfreelancerhasjob")
+@RequestMapping(value = "/admin/userfreelancerhasjob")
 public class UserFreelancerHasJobController {
 
     @Autowired

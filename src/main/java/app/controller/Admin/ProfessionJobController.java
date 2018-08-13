@@ -1,4 +1,4 @@
-package app.controller;
+package app.controller.Admin;
 
 import app.model.ProfessionJob;
 import app.services.ProfessionJobService;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value="/professionjob")
+@RequestMapping(value="/admin/professionjob")
 public class ProfessionJobController {
     @Autowired
     ProfessionJobService professionJobService;
