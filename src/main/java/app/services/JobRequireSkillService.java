@@ -18,26 +18,22 @@ public class JobRequireSkillService {
     @Autowired
     JobRequireSkillRepository jobRequireSkillRepository;
     
-    public ArrayList<JobRequireSkill> findAll()
-    {
+    public ArrayList<JobRequireSkill> findAll() {
         ArrayList<JobRequireSkill> lstJobRequireSkill = new ArrayList<>();
         lstJobRequireSkill.addAll(jobRequireSkillRepository.findAll());
         return lstJobRequireSkill;
     }
 
-    public Optional<JobRequireSkill> getJobRequireSkill(JobRequireSkillIdentity jobRequireSkillIdentity)
-    {
+    public Optional<JobRequireSkill> getJobRequireSkill(JobRequireSkillIdentity jobRequireSkillIdentity) {
         return jobRequireSkillRepository.findById(jobRequireSkillIdentity);
     }
 
-    public void addJobRequireSkill(JobRequireSkill jobRequireSkill)
-    {
+    public void addJobRequireSkill(JobRequireSkill jobRequireSkill) {
         jobRequireSkill.setDelFlag(Boolean.FALSE);
         jobRequireSkillRepository.save(jobRequireSkill);
     }
 
-    public void editJobRequireSkill(JobRequireSkill editedJobRequireSkill)
-    {
+    public void editJobRequireSkill(JobRequireSkill editedJobRequireSkill) {
         Optional<JobRequireSkill> optionalJobRequireSkill = getJobRequireSkill(editedJobRequireSkill.getJobRequireSkillIdentity());
         if(optionalJobRequireSkill.isPresent()) {
             JobRequireSkill jobRequireSkill = optionalJobRequireSkill.get();
@@ -64,8 +60,9 @@ public class JobRequireSkillService {
         Optional<JobRequireSkill> optionalJobRequireSkill = getJobRequireSkill(jobRequireSkillIdentity);
         if(optionalJobRequireSkill.isPresent()) {
             JobRequireSkill jobRequireSkill = optionalJobRequireSkill.get();
-            jobRequireSkill.setDelFlag(Boolean.TRUE);
-            jobRequireSkillRepository.save(jobRequireSkill);
+//            jobRequireSkill.setDelFlag(Boolean.TRUE);
+//            jobRequireSkillRepository.save(jobRequireSkill);
+            jobRequireSkillRepository.delete(jobRequireSkill);
         }
         else
         {

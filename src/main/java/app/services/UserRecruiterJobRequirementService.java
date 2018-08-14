@@ -16,26 +16,22 @@ public class UserRecruiterJobRequirementService {
     @Autowired
     UserRecruiterJobRequirementRepository userRecruiterJobRequirementRepository;
 
-    public ArrayList<UserRecruiterJobRequirement> findAll()
-    {
+    public ArrayList<UserRecruiterJobRequirement> findAll() {
         ArrayList<UserRecruiterJobRequirement> lstUserRecruiterJobRequirement = new ArrayList<>();
         lstUserRecruiterJobRequirement.addAll(userRecruiterJobRequirementRepository.findAll());
         return lstUserRecruiterJobRequirement;
     }
 
-    public Optional<UserRecruiterJobRequirement> getUserRecruiterJobRequirement(UserRecruiterJobRequirementIdentity userRecruiterJobRequirementIdentity)
-    {
+    public Optional<UserRecruiterJobRequirement> getUserRecruiterJobRequirement(UserRecruiterJobRequirementIdentity userRecruiterJobRequirementIdentity) {
         return userRecruiterJobRequirementRepository.findById(userRecruiterJobRequirementIdentity);
     }
 
-    public void addUserRecruiterJobRequirement(UserRecruiterJobRequirement userRecruiterJobRequirement)
-    {
+    public void addUserRecruiterJobRequirement(UserRecruiterJobRequirement userRecruiterJobRequirement) {
         userRecruiterJobRequirement.setDelFlag(Boolean.FALSE);
         userRecruiterJobRequirementRepository.save(userRecruiterJobRequirement);
     }
 
-    public void editUserRecruiterJobRequirement(UserRecruiterJobRequirement editedUserRecruiterJobRequirement)
-    {
+    public void editUserRecruiterJobRequirement(UserRecruiterJobRequirement editedUserRecruiterJobRequirement) {
         Optional<UserRecruiterJobRequirement> optionalUserRecruiterJobRequirement = getUserRecruiterJobRequirement(editedUserRecruiterJobRequirement.getUserRecruiterJobRequirementIdentity());
         if(optionalUserRecruiterJobRequirement.isPresent()) {
             UserRecruiterJobRequirement userRecruiterJobRequirement = optionalUserRecruiterJobRequirement.get();
@@ -57,13 +53,13 @@ public class UserRecruiterJobRequirementService {
         //userRecruiterJobRequirementRepository.save(editedUserRecruiterJobRequirement);
     }
 
-    public void deleteUserRecruiterJobRequirement(UserRecruiterJobRequirementIdentity userRecruiterJobRequirementIdentity)
-    {
+    public void deleteUserRecruiterJobRequirement(UserRecruiterJobRequirementIdentity userRecruiterJobRequirementIdentity) {
         Optional<UserRecruiterJobRequirement> optionalUserRecruiterJobRequirement = getUserRecruiterJobRequirement(userRecruiterJobRequirementIdentity);
         if(optionalUserRecruiterJobRequirement.isPresent()) {
             UserRecruiterJobRequirement userRecruiterJobRequirement = optionalUserRecruiterJobRequirement.get();
-            userRecruiterJobRequirement.setDelFlag(Boolean.TRUE);
-            userRecruiterJobRequirementRepository.save(userRecruiterJobRequirement);
+//            userRecruiterJobRequirement.setDelFlag(Boolean.TRUE);
+//            userRecruiterJobRequirementRepository.save(userRecruiterJobRequirement);
+            userRecruiterJobRequirementRepository.delete(userRecruiterJobRequirement);
         }
         else
         {

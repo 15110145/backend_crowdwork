@@ -19,56 +19,6 @@ public class JobsController {
     @Autowired
     JobsService jobsService;
 
-    @Autowired
-    JobCategoryService jobCategoryService;
-
-    @Autowired
-    ProfessionJobService professionJobService;
-
-    //filter job list by category
-    @RequestMapping(value = "/list/jobcategory={jobCategoryId}",
-            method = RequestMethod.GET,
-            produces = { MediaType.APPLICATION_JSON_VALUE })
-    @ResponseBody
-    public List<Jobs> getJobsListWithJobCategory(@PathVariable("jobCategoryId") String jobCategoryId) {
-        List<Jobs> list = jobCategoryService.getJobCategory(Integer.valueOf(jobCategoryId)).get().getJobsList();
-        return list;
-    }
-
-    //filter job list by profession
-    @RequestMapping(value = "/list/profession={professionJobId}",
-            method = RequestMethod.GET,
-            produces = { MediaType.APPLICATION_JSON_VALUE })
-    @ResponseBody
-    public List<Jobs> getJobsListWithProfessionJob(@PathVariable("professionJobId") String professionJobId) {
-        List<JobRequireProfessionJob> listJobRequireSkill = professionJobService.getProfessionJob(Integer.valueOf(professionJobId)).get().getJobRequireProfessionJobList();
-        List<Jobs> list = new ArrayList<>();
-        for (JobRequireProfessionJob jobRequireProfessionJob: listJobRequireSkill)
-        {
-            list.add(jobRequireProfessionJob.getJobs());
-        }
-        return list;
-    }
-
-    //filter job no exp required
-    @RequestMapping(value = "/list/noexp",
-            method = RequestMethod.GET,
-            produces = { MediaType.APPLICATION_JSON_VALUE })
-    @ResponseBody
-    public List<Jobs> getJobsListNoExpRequirement() {
-        ArrayList<Jobs> list = jobsService.findAllJobsNoExperience();
-        return list;
-    }
-
-    //filter job no exp required
-    @RequestMapping(value = "/list/withexp",
-            method = RequestMethod.GET,
-            produces = { MediaType.APPLICATION_JSON_VALUE })
-    @ResponseBody
-    public List<Jobs> getJobsListWithExpRequirement() {
-        ArrayList<Jobs> list = jobsService.findAllJobsWithExperience();
-        return list;
-    }
     /**
      *
      * basic service

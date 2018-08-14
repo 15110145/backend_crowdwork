@@ -12,11 +12,26 @@ import java.util.Optional;
 @Service
 @Transactional
 public class CommentsService {
+
     @Autowired
     CommentsRepository commentsRepository;
 
-    public ArrayList<Comments> findAll()
+    public ArrayList<Comments> findAllComments() {
+        ArrayList<Comments> lstComments = new ArrayList<>();
+        lstComments.addAll(commentsRepository.findAllComments());
+        return lstComments;
+    }
+
+    public Optional<Comments> findCommentsById(Integer id)
     {
+        return commentsRepository.findCommentsById(id);
+    }
+    /*
+    *
+    * Admin
+    *
+    * */
+    public ArrayList<Comments> findAll() {
         ArrayList<Comments> lstComments = new ArrayList<>();
         lstComments.addAll(commentsRepository.findAll());
         return lstComments;
@@ -27,14 +42,12 @@ public class CommentsService {
         return commentsRepository.findById(commentsId);
     }
 
-    public void addComments(Comments comments)
-    {
+    public void addComments(Comments comments) {
         comments.setDelFlag(Boolean.FALSE);
         commentsRepository.save(comments);
     }
 
-    public void editComments(Comments editedComments)
-    {
+    public void editComments(Comments editedComments) {
         Optional<Comments> optionalComments = getComments(editedComments.getId());
         if(optionalComments.isPresent()) {
             Comments comments = optionalComments.get();
@@ -62,8 +75,7 @@ public class CommentsService {
         //commentsRepository.save(editedComments);
     }
 
-    public void deleteComments(Integer commentsId)
-    {
+    public void deleteComments(Integer commentsId) {
         Optional<Comments> optionalComments = getComments(commentsId);
         if(optionalComments.isPresent()) {
             Comments comments = optionalComments.get();

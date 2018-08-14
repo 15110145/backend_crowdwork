@@ -15,26 +15,36 @@ public class ProfessionJobService {
     @Autowired
     ProfessionJobRepository professionJobRepository;
 
-    public ArrayList<ProfessionJob> findAll()
-    {
+    public ArrayList<ProfessionJob> findAllProfessionJob() {
+        ArrayList<ProfessionJob> lstProfessionJob = new ArrayList<>();
+        lstProfessionJob.addAll(professionJobRepository.findAllProfessionJob());
+        return lstProfessionJob;
+    }
+
+    public Optional<ProfessionJob> findProfessionJobById(Integer id) {
+        return professionJobRepository.findProfessionJobById(id);
+    }
+    
+    /*
+    Admin
+     */
+
+    public ArrayList<ProfessionJob> findAll() {
         ArrayList<ProfessionJob> lstProfessionJob = new ArrayList<>();
         lstProfessionJob.addAll(professionJobRepository.findAll());
         return lstProfessionJob;
     }
 
-    public Optional<ProfessionJob> getProfessionJob(Integer professionJobId)
-    {
+    public Optional<ProfessionJob> getProfessionJob(Integer professionJobId) {
         return professionJobRepository.findById(professionJobId);
     }
 
-    public void addProfessionJob(ProfessionJob professionJob)
-    {
+    public void addProfessionJob(ProfessionJob professionJob) {
         professionJob.setDelFlag(Boolean.FALSE);
         professionJobRepository.save(professionJob);
     }
 
-    public void editProfessionJob(ProfessionJob editedProfessionJob)
-    {
+    public void editProfessionJob(ProfessionJob editedProfessionJob) {
         Optional<ProfessionJob> optionalProfessionJob = getProfessionJob(editedProfessionJob.getId());
         if(optionalProfessionJob.isPresent()) {
             ProfessionJob professionJob = optionalProfessionJob.get();
@@ -56,8 +66,7 @@ public class ProfessionJobService {
         //professionJobRepository.save(editedProfessionJob);
     }
 
-    public void deleteProfessionJob(Integer professionJobId)
-    {
+    public void deleteProfessionJob(Integer professionJobId) {
         Optional<ProfessionJob> optionalProfessionJob = getProfessionJob(professionJobId);
         if(optionalProfessionJob.isPresent()) {
             ProfessionJob professionJob = optionalProfessionJob.get();

@@ -19,11 +19,24 @@ public class StatusService implements Serializable {
     @Autowired
     StatusRepository statusRepository;
 
-    public ArrayList<Status> findAll()
-    {
-        ArrayList<Status> lstJobCategory = new ArrayList<>();
-        lstJobCategory.addAll(statusRepository.findAll());
-        return lstJobCategory;
+    public ArrayList<Status> findAllStatus(){
+        ArrayList<Status> lstStatus = new ArrayList<>();
+        lstStatus.addAll(statusRepository.findAllStatus());
+        return lstStatus;
+    }
+
+    public Optional<Status> findStatusById(Integer id){
+        return statusRepository.findStatusById(id);
+    }
+    
+    /*
+    Admin
+     */
+
+    public ArrayList<Status> findAll() {
+        ArrayList<Status> lstStatus = new ArrayList<>();
+        lstStatus.addAll(statusRepository.findAll());
+        return lstStatus;
     }
 
     public Optional<Status> getStatus(Integer statusId)
@@ -31,14 +44,12 @@ public class StatusService implements Serializable {
         return statusRepository.findById(statusId);
     }
 
-    public void addStatus(Status status)
-    {
+    public void addStatus(Status status) {
         status.setDelFlag(Boolean.FALSE);
         statusRepository.save(status);
     }
 
-    public void editStatus(Status editedStatus)
-    {
+    public void editStatus(Status editedStatus) {
         Optional<Status> optionalStatus = getStatus(editedStatus.getId());
         if(optionalStatus.isPresent()) {
             Status status = optionalStatus.get();
@@ -60,8 +71,7 @@ public class StatusService implements Serializable {
         //statusRepository.save(editedStatus);
     }
 
-    public void deleteStatus(Integer statusId)
-    {
+    public void deleteStatus(Integer statusId) {
         Optional<Status> optionalStatus = getStatus(statusId);
         if(optionalStatus.isPresent()) {
             Status status = optionalStatus.get();
