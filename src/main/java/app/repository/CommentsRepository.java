@@ -11,11 +11,7 @@ import java.util.Optional;
 
 public interface CommentsRepository extends JpaRepository<Comments,Integer> {
 
-    @Modifying
-    @Query("SELECT comments FROM Comments comments WHERE comments.id=:id and comments.delFlag=false")
-    Optional<Comments> findCommentsById(@Param("id") Integer id);
+    Optional<Comments> findByIdAndDelFlag(Integer Id, Boolean delFlag);
 
-    @Modifying
-    @Query("SELECT comments FROM Comments comments WHERE comments.delFlag=false")
-    List<Comments> findAllComments();
+    List<Comments> findAllByDelFlag(Boolean delFlag);
 }

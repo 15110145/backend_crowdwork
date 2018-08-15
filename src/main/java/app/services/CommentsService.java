@@ -18,13 +18,13 @@ public class CommentsService {
 
     public ArrayList<Comments> findAllComments() {
         ArrayList<Comments> lstComments = new ArrayList<>();
-        lstComments.addAll(commentsRepository.findAllComments());
+        lstComments.addAll(commentsRepository.findAllByDelFlag(Boolean.FALSE));
         return lstComments;
     }
 
     public Optional<Comments> findCommentsById(Integer id)
     {
-        return commentsRepository.findCommentsById(id);
+        return commentsRepository.findByIdAndDelFlag(id,Boolean.FALSE);
     }
     /*
     *

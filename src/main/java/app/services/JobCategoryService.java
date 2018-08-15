@@ -20,12 +20,12 @@ public class JobCategoryService {
 
     public ArrayList<JobCategory> findAllJobCategory(){
         ArrayList<JobCategory> lstJobCategory = new ArrayList<>();
-        lstJobCategory.addAll(jobCategoryRepository.findAllJobCategory());
+        lstJobCategory.addAll(jobCategoryRepository.findAllByDelFlag(Boolean.FALSE));
         return lstJobCategory;
     }
 
     public Optional<JobCategory> findJobCategoryById(Integer id){
-        return jobCategoryRepository.findJobCategoryById(id);
+        return jobCategoryRepository.findByIdAndDelFlag(id,Boolean.FALSE);
     }
 
     /*

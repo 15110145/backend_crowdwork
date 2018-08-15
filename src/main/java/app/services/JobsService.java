@@ -18,12 +18,12 @@ public class JobsService {
 
     public ArrayList<Jobs> findAllJobs(){
         ArrayList<Jobs> lstJobs = new ArrayList<>();
-        lstJobs.addAll(jobsRepository.findAllJobs());
+        lstJobs.addAll(jobsRepository.findAllByDelFlag(Boolean.FALSE));
         return lstJobs;
     }
 
     public Optional<Jobs> findJobsById(Integer id){
-        return jobsRepository.findJobsById(id);
+        return jobsRepository.findByIdAndDelFlag(id,Boolean.FALSE);
     }
 
     public ArrayList<Jobs> findAllJobsNoExperience() {

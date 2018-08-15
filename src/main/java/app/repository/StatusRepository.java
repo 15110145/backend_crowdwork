@@ -10,12 +10,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface StatusRepository extends JpaRepository<Status,Integer> {
-    
-    @Modifying
-    @Query("SELECT status FROM Status status WHERE status.id=:id and status.delFlag=false")
-    Optional<Status> findStatusById(@Param("id") Integer id);
 
-    @Modifying
-    @Query("SELECT status FROM Status status WHERE status.delFlag=false")
-    List<Status> findAllStatus();
+    Optional<Status> findByIdAndDelFlag(Integer Id, Boolean delFlag);
+
+    List<Status> findAllByDelFlag(Boolean delFlag);
 }

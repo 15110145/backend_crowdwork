@@ -17,12 +17,12 @@ public class ProfessionJobService {
 
     public ArrayList<ProfessionJob> findAllProfessionJob() {
         ArrayList<ProfessionJob> lstProfessionJob = new ArrayList<>();
-        lstProfessionJob.addAll(professionJobRepository.findAllProfessionJob());
+        lstProfessionJob.addAll(professionJobRepository.findAllByDelFlag(Boolean.FALSE));
         return lstProfessionJob;
     }
 
     public Optional<ProfessionJob> findProfessionJobById(Integer id) {
-        return professionJobRepository.findProfessionJobById(id);
+        return professionJobRepository.findByIdAndDelFlag(id,Boolean.FALSE);
     }
     
     /*

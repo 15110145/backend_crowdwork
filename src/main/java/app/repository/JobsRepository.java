@@ -11,13 +11,9 @@ import java.util.Optional;
 
 public interface JobsRepository extends JpaRepository<Jobs, Integer> {
 
-    @Modifying
-    @Query("SELECT jobs FROM Jobs jobs WHERE jobs.id=:id and jobs.delFlag=false")
-    Optional<Jobs> findJobsById(@Param("id") Integer id);
+    Optional<Jobs> findByIdAndDelFlag(Integer Id, Boolean delFlag);
 
-    @Modifying
-    @Query("SELECT jobs FROM Jobs jobs WHERE jobs.delFlag=false")
-    List<Jobs> findAllJobs();
+    List<Jobs> findAllByDelFlag(Boolean delFlag);
 
     @Modifying
     @Query("SELECT jobs FROM Jobs jobs WHERE jobs.experience=0 and jobs.delFlag=false")

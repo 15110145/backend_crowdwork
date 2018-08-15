@@ -21,12 +21,12 @@ public class StatusService implements Serializable {
 
     public ArrayList<Status> findAllStatus(){
         ArrayList<Status> lstStatus = new ArrayList<>();
-        lstStatus.addAll(statusRepository.findAllStatus());
+        lstStatus.addAll(statusRepository.findAllByDelFlag(Boolean.FALSE));
         return lstStatus;
     }
 
     public Optional<Status> findStatusById(Integer id){
-        return statusRepository.findStatusById(id);
+        return statusRepository.findByIdAndDelFlag(id,Boolean.FALSE);
     }
     
     /*

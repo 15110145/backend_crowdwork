@@ -11,11 +11,7 @@ import java.util.Optional;
 
 public interface ProfessionJobRepository extends JpaRepository<ProfessionJob,Integer> {
 
-    @Modifying
-    @Query("SELECT professionJob FROM ProfessionJob professionJob WHERE professionJob.id=:id and professionJob.delFlag=false")
-    Optional<ProfessionJob> findProfessionJobById(@Param("id") Integer id);
+    Optional<ProfessionJob> findByIdAndDelFlag(Integer Id, Boolean delFlag);
 
-    @Modifying
-    @Query("SELECT professionJob FROM ProfessionJob professionJob WHERE professionJob.delFlag=false")
-    List<ProfessionJob> findAllProfessionJob();
+    List<ProfessionJob> findAllByDelFlag(Boolean delFlag);
 }
