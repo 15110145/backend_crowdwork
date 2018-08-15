@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,8 +16,8 @@ public class SkillsService {
     @Autowired
     SkillsRepository skillsRepository;
 
-    public List<Skills> findSkill(Integer id){
-        return skillsRepository.findSkillsById(id);
+    public Optional<Skills> findSkill(Integer id){
+        return skillsRepository.findByIdAndDelFlag(id, false);
     }
 
     public List<Skills> findallskills(){
@@ -33,9 +32,9 @@ public class SkillsService {
     }
 
     public Boolean update(Skills skills){
-        List<Skills> skill = findSkill(skills.getId());
-        if(!skill.isEmpty()){
-            Skills existingskill = skill.get(0);
+        Optional<Skills> skill = findSkill(skills.getId());
+        if(!skill.isPresent()){
+            Skills existingskill = skill.get();
             if (skills.getSkillName() != null){
                 existingskill.setSkillName(skills.getSkillName());
             }
@@ -49,9 +48,9 @@ public class SkillsService {
     }
 
     public Boolean delete(Integer id){
-        List<Skills> skill = findSkill(id);
-        if(!skill.isEmpty()) {
-            Skills existingskill = skill.get(0);
+        Optional<Skills> skill = findSkill(id);
+        if(!skill.isPresent()) {
+            Skills existingskill = skill.get();
             existingskill.setDelFlag(true);
             skillsRepository.save(existingskill);
             return true;

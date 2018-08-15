@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value="/admin")
@@ -34,7 +35,7 @@ public class UsersController {
     @RequestMapping(value = "/user/{id}", //
             method = RequestMethod.GET, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public List<Users> findUser(@PathVariable Integer id){
+    public Optional<Users> findUser(@PathVariable Integer id){
         return userService.findUser(id);
     }
 
@@ -84,7 +85,7 @@ public class UsersController {
     @RequestMapping(value = "/userfreelancer/{id}", //
             method = RequestMethod.GET, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public List<UsersFreelancer> findUserFrelancer(@PathVariable int id){
+    public Optional<UsersFreelancer> findUserFrelancer(@PathVariable int id){
         return usersFreelancerService.findUserFreelancer(id);
     }
 
@@ -137,7 +138,7 @@ public class UsersController {
     @RequestMapping(value = "/userrecruiter/{id}", //
                    method = RequestMethod.GET, //
                    produces = {MediaType.APPLICATION_JSON_VALUE})
-    public List<UsersRecruiter> findUserRecruiter(@PathVariable Integer id){
+    public Optional<UsersRecruiter> findUserRecruiter(@PathVariable Integer id){
         return usersRecruiterService.findUserRecruiter(id);
     }
 

@@ -8,11 +8,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface UserFreelancerHasJobRepository extends JpaRepository<UserFreelancerHasJob, UserFreelancerHasJobIdentity> {
 
-    List<UserFreelancerHasJob> findByUserFreelancerHasJobIdentityAndDelFlag(UserFreelancerHasJobIdentity userFreelancerHasJobIdentity, Boolean delFlag);
+    Optional<UserFreelancerHasJob> findByUserFreelancerHasJobIdentityAndDelFlag(UserFreelancerHasJobIdentity userFreelancerHasJobIdentity, Boolean delFlag);
 
     List<UserFreelancerHasJob> findAllByDelFlag(Boolean delFlag);
 }

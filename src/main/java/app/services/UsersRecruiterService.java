@@ -26,8 +26,8 @@ public class UsersRecruiterService {
         return usersRecruiterReponsitory.findAllUsersRecruiter();
     }
 
-    public List<UsersRecruiter> findUserRecruiter(Integer id){
-        return usersRecruiterReponsitory.findUsersRecruiterById(id);
+    public Optional<UsersRecruiter> findUserRecruiter(Integer id){
+        return usersRecruiterReponsitory.findByUserIdAndDelFlag(id,false);
     }
 
     public void save(UsersRecruiter usersRecruiter){
@@ -35,9 +35,9 @@ public class UsersRecruiterService {
     }
 
     public Boolean update(UsersRecruiter users) {
-        List<UsersRecruiter> user = findUserRecruiter(users.getUserId());
-        if (!user.isEmpty()) {
-            UsersRecruiter existinguser = user.get(0);
+        Optional<UsersRecruiter> user = findUserRecruiter(users.getUserId());
+        if (!user.isPresent()) {
+            UsersRecruiter existinguser = user.get();
             if (users.getCompanyName() != null) {
                 existinguser.setCompanyName(users.getCompanyName());
             }
@@ -61,9 +61,9 @@ public class UsersRecruiterService {
 
     public Boolean delete(int id){
 //        usersRecruiterReponsitory.deleteById(id);
-        List<UsersRecruiter> user = findUserRecruiter(id);
-        if(!user.isEmpty()) {
-            UsersRecruiter existinguser = user.get(0);
+        Optional<UsersRecruiter> user = findUserRecruiter(id);
+        if(!user.isPresent()) {
+            UsersRecruiter existinguser = user.get();
             existinguser.setDelFlag(true);
             usersRecruiterReponsitory.save(existinguser);
             return true;

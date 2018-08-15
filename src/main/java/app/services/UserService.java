@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,8 +16,8 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
-    public List<Users> findUser(Integer id){
-        return userRepository.findUsersById(id);
+    public Optional<Users> findUser(Integer id){
+        return userRepository.findByIdAndDelFlag(id,false);
     }
 
     public List<Users> findAll(){
@@ -40,9 +39,9 @@ public class UserService {
 //    }
 
     public Boolean update(Users users){
-        List<Users> user = findUser(users.getId());
-        if(!user.isEmpty()) {
-            Users existinguser = user.get(0);
+        Optional<Users> user = findUser(users.getId());
+        if(!user.isPresent()) {
+            Users existinguser = user.get();
             if (users.getName() != null){
                 existinguser.setName(users.getName());
             }
@@ -72,9 +71,9 @@ public class UserService {
 
     public Boolean delete(Integer id){
         //        userRepository.deleteById(id);
-        List<Users> user = findUser(id);
-        if(!user.isEmpty()) {
-            Users existinguser = user.get(0);
+        Optional<Users> user = findUser(id);
+        if(!user.isPresent()) {
+            Users existinguser = user.get();
             existinguser.setDelFlag(true);
             userRepository.save(existinguser);
             return true;

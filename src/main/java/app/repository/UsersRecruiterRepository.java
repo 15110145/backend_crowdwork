@@ -7,12 +7,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UsersRecruiterRepository extends JpaRepository<UsersRecruiter, Integer> {
 
-    @Modifying
-    @Query("SELECT u FROM UsersRecruiter u WHERE u.userId = :u_id and u.delFlag=false")
-    List<UsersRecruiter> findUsersRecruiterById(@Param("u_id") Integer u_id);
+    Optional<UsersRecruiter> findByUserIdAndDelFlag(Integer id, Boolean delFag);
 
     @Modifying
     @Query("SELECT u FROM UsersRecruiter u WHERE u.delFlag=false")

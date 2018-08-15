@@ -6,11 +6,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface UserFreelancerhasSkillRepository extends JpaRepository<UserFreelancerHasSkill, UserFreelancerHasSkillIdentity> {
 
     List<UserFreelancerHasSkill> findAllByDelFlag(Boolean delFlag);
 
-    List<UserFreelancerHasSkill> findByUserFreelancerHasSkillIdentityAndDelFlag(UserFreelancerHasSkillIdentity userFreelancerHasSkillIdentity, Boolean delFlag);
+    Optional<UserFreelancerHasSkill> findByUserFreelancerHasSkillIdentityAndDelFlag(UserFreelancerHasSkillIdentity userFreelancerHasSkillIdentity, Boolean delFlag);
 }

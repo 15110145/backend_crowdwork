@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface UserRepository extends JpaRepository<Users, Integer> {
@@ -17,9 +18,7 @@ public interface UserRepository extends JpaRepository<Users, Integer> {
 //    @Query("UPDATE Users SET name = :name, update_time = :updateTime WHERE id = :id")
 //    void updateUser(@Param("id") Integer id, @Param("name") String name, @Param("updateTime")Date updateTime);
 
-    @Modifying
-    @Query("SELECT u FROM Users u WHERE u.id = :u_id and u.delFlag=false")
-    List<Users> findUsersById(@Param("u_id") Integer u_id);
+    Optional<Users> findByIdAndDelFlag(Integer id, Boolean delFag);
 
     @Modifying
     @Query("SELECT u FROM Users u WHERE u.delFlag=false")

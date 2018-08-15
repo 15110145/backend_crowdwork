@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/admin/userfreelancerhasskill")
@@ -25,7 +26,7 @@ public class UserFreelancerHasSkillController {
     @RequestMapping(value = "/{f_is}/{s_id}", //
             method = RequestMethod.GET, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public List<UserFreelancerHasSkill> findUserFreelancerHasSkill(@PathVariable Integer f_id, @PathVariable Integer s_id){
+    public Optional<UserFreelancerHasSkill> findUserFreelancerHasSkill(@PathVariable Integer f_id, @PathVariable Integer s_id){
         return userFreelancerHasSkillService.findUserFreelancerHasSkill(f_id, s_id);
     }
 

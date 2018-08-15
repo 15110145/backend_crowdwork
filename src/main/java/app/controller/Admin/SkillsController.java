@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/admin/skill")
@@ -18,7 +19,7 @@ public class SkillsController {
     @RequestMapping(value = "/{id}", //
             method = RequestMethod.GET, //
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public List<Skills> findskill(@PathVariable Integer id){
+    public Optional<Skills> findskill(@PathVariable Integer id){
         return skillsService.findSkill(id);
     }
 
