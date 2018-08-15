@@ -18,31 +18,36 @@ public class JobCategoryService {
     @Autowired
     JobCategoryRepository jobCategoryRepository;
 
-    public ArrayList<JobCategory> findAll()
-    {
+    public ArrayList<JobCategory> findAllJobCategory(){
+        ArrayList<JobCategory> lstJobCategory = new ArrayList<>();
+        lstJobCategory.addAll(jobCategoryRepository.findAllByDelFlag(Boolean.FALSE));
+        return lstJobCategory;
+    }
+
+    public Optional<JobCategory> findJobCategoryById(Integer id){
+        return jobCategoryRepository.findByIdAndDelFlag(id,Boolean.FALSE);
+    }
+
+    /*
+    Admin
+     */
+
+    public ArrayList<JobCategory> findAll() {
         ArrayList<JobCategory> lstJobCategory = new ArrayList<>();
         lstJobCategory.addAll(jobCategoryRepository.findAll());
         return lstJobCategory;
     }
 
-    public JobCategory findbyIdandName(Integer Id,String name)
-    {
-        return jobCategoryRepository.findJobCategoriesByIdAndName(Id,name);
-    }
-
-    public Optional<JobCategory> getJobCategory(Integer jobCategoryId)
-    {
+    public Optional<JobCategory> getJobCategory(Integer jobCategoryId) {
         return jobCategoryRepository.findById(jobCategoryId);
     }
 
-    public void addJobCategory(JobCategory jobCategory)
-    {
+    public void addJobCategory(JobCategory jobCategory) {
         jobCategory.setDelFlag(Boolean.FALSE);
         jobCategoryRepository.save(jobCategory);
     }
 
-    public void editJobCategory(JobCategory editedJobCategory)
-    {
+    public void editJobCategory(JobCategory editedJobCategory) {
         Optional<JobCategory> optionalJobCategory = getJobCategory(editedJobCategory.getId());
         if(optionalJobCategory.isPresent()) {
             JobCategory jobCategory = optionalJobCategory.get();
@@ -55,8 +60,7 @@ public class JobCategoryService {
         }
     }
 
-    public void deleteJobCategory(Integer jobCategoryId)
-    {
+    public void deleteJobCategory(Integer jobCategoryId) {
         Optional<JobCategory> optionalJobCategory = getJobCategory(jobCategoryId);
         if(optionalJobCategory.isPresent()) {
             JobCategory jobCategory = optionalJobCategory.get();

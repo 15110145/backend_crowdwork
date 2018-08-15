@@ -16,26 +16,22 @@ public class UserFreelancerJobRequirementService {
     @Autowired
     UserFreelancerJobRequirementRepository userFreelancerJobRequirementRepository;
 
-    public ArrayList<UserFreelancerJobRequirement> findAll()
-    {
+    public ArrayList<UserFreelancerJobRequirement> findAll() {
         ArrayList<UserFreelancerJobRequirement> lstUserFreelancerJobRequirement = new ArrayList<>();
         lstUserFreelancerJobRequirement.addAll(userFreelancerJobRequirementRepository.findAll());
         return lstUserFreelancerJobRequirement;
     }
 
-    public Optional<UserFreelancerJobRequirement> getUserFreelancerJobRequirement(UserFreelancerJobRequirementIdentity userFreelancerJobRequirementIdentity)
-    {
+    public Optional<UserFreelancerJobRequirement> getUserFreelancerJobRequirement(UserFreelancerJobRequirementIdentity userFreelancerJobRequirementIdentity) {
         return userFreelancerJobRequirementRepository.findById(userFreelancerJobRequirementIdentity);
     }
 
-    public void addUserFreelancerJobRequirement(UserFreelancerJobRequirement userFreelancerJobRequirement)
-    {
+    public void addUserFreelancerJobRequirement(UserFreelancerJobRequirement userFreelancerJobRequirement) {
         userFreelancerJobRequirement.setDelFlag(Boolean.FALSE);
         userFreelancerJobRequirementRepository.save(userFreelancerJobRequirement);
     }
 
-    public void editUserFreelancerJobRequirement(UserFreelancerJobRequirement editedUserFreelancerJobRequirement)
-    {
+    public void editUserFreelancerJobRequirement(UserFreelancerJobRequirement editedUserFreelancerJobRequirement) {
         Optional<UserFreelancerJobRequirement> optionalUserFreelancerJobRequirement = getUserFreelancerJobRequirement(editedUserFreelancerJobRequirement.getUserFreelancerJobRequirementIdentity());
         if(optionalUserFreelancerJobRequirement.isPresent()) {
             UserFreelancerJobRequirement userFreelancerJobRequirement = optionalUserFreelancerJobRequirement.get();
@@ -57,13 +53,13 @@ public class UserFreelancerJobRequirementService {
         //userFreelancerJobRequirementRepository.save(editedUserFreelancerJobRequirement);
     }
 
-    public void deleteUserFreelancerJobRequirement(UserFreelancerJobRequirementIdentity userFreelancerJobRequirementIdentity)
-    {
+    public void deleteUserFreelancerJobRequirement(UserFreelancerJobRequirementIdentity userFreelancerJobRequirementIdentity) {
         Optional<UserFreelancerJobRequirement> optionalUserFreelancerJobRequirement = getUserFreelancerJobRequirement(userFreelancerJobRequirementIdentity);
         if(optionalUserFreelancerJobRequirement.isPresent()) {
             UserFreelancerJobRequirement userFreelancerJobRequirement = optionalUserFreelancerJobRequirement.get();
-            userFreelancerJobRequirement.setDelFlag(Boolean.TRUE);
-            userFreelancerJobRequirementRepository.save(userFreelancerJobRequirement);
+//            userFreelancerJobRequirement.setDelFlag(Boolean.TRUE);
+//            userFreelancerJobRequirementRepository.save(userFreelancerJobRequirement);
+            userFreelancerJobRequirementRepository.delete(userFreelancerJobRequirement);
         }
         else
         {

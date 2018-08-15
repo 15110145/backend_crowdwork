@@ -16,8 +16,33 @@ public class JobsService {
     @Autowired
     JobsRepository jobsRepository;
 
-    public ArrayList<Jobs> findAll()
-    {
+    public ArrayList<Jobs> findAllJobs(){
+        ArrayList<Jobs> lstJobs = new ArrayList<>();
+        lstJobs.addAll(jobsRepository.findAllByDelFlag(Boolean.FALSE));
+        return lstJobs;
+    }
+
+    public Optional<Jobs> findJobsById(Integer id){
+        return jobsRepository.findByIdAndDelFlag(id,Boolean.FALSE);
+    }
+
+    public ArrayList<Jobs> findAllJobsNoExperience() {
+        ArrayList<Jobs> lstJobs = new ArrayList<>();
+        lstJobs.addAll(jobsRepository.findJobsNoExperience());
+        return lstJobs;
+    }
+
+    public ArrayList<Jobs> findAllJobsWithExperience() {
+        ArrayList<Jobs> lstJobs = new ArrayList<>();
+        lstJobs.addAll(jobsRepository.findJobsWithExperience());
+        return lstJobs;
+    }
+
+    /*
+    Admin
+     */
+
+    public ArrayList<Jobs> findAll() {
         ArrayList<Jobs> lstJobs = new ArrayList<>();
         lstJobs.addAll(jobsRepository.findAll());
         return lstJobs;
@@ -28,14 +53,12 @@ public class JobsService {
         return jobsRepository.findById(jobId);
     }
 
-    public void addJobs(Jobs jobs)
-    {
+    public void addJobs(Jobs jobs) {
         jobs.setDelFlag(Boolean.FALSE);
         jobsRepository.save(jobs);
     }
 
-    public void editJobs(Jobs editedjobs)
-    {
+    public void editJobs(Jobs editedjobs) {
         Optional<Jobs> optionalJobs = getJobs(editedjobs.getId());
         if(optionalJobs.isPresent()) {
             Jobs jobs = optionalJobs.get();
@@ -80,8 +103,7 @@ public class JobsService {
         }
     }
 
-    public void deleteJobs(Integer jobsId)
-    {
+    public void deleteJobs(Integer jobsId) {
         Optional<Jobs> optionalJobs = getJobs(jobsId);
         if(optionalJobs.isPresent()) {
             Jobs jobs = optionalJobs.get();
@@ -93,4 +115,6 @@ public class JobsService {
 
         }
     }
+
+
 }

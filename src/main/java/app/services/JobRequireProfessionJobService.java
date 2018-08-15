@@ -16,26 +16,22 @@ public class JobRequireProfessionJobService {
     @Autowired
     JobRequireProfessionJobRepository jobRequireProfessionJobRepository;
 
-    public ArrayList<JobRequireProfessionJob> findAll()
-    {
+    public ArrayList<JobRequireProfessionJob> findAll() {
         ArrayList<JobRequireProfessionJob> lstJobRequireProfessionJob = new ArrayList<>();
         lstJobRequireProfessionJob.addAll(jobRequireProfessionJobRepository.findAll());
         return lstJobRequireProfessionJob;
     }
 
-    public Optional<JobRequireProfessionJob> getJobRequireProfessionJob(JobRequireProfessionJobIdentity jobRequireProfessionJobIdentity)
-    {
+    public Optional<JobRequireProfessionJob> getJobRequireProfessionJob(JobRequireProfessionJobIdentity jobRequireProfessionJobIdentity) {
         return jobRequireProfessionJobRepository.findById(jobRequireProfessionJobIdentity);
     }
 
-    public void addJobRequireProfessionJob(JobRequireProfessionJob jobRequireProfessionJob)
-    {
+    public void addJobRequireProfessionJob(JobRequireProfessionJob jobRequireProfessionJob) {
         jobRequireProfessionJob.setDelFlag(Boolean.FALSE);
         jobRequireProfessionJobRepository.save(jobRequireProfessionJob);
     }
 
-    public void editJobRequireProfessionJob(JobRequireProfessionJob editedJobRequireProfessionJob)
-    {
+    public void editJobRequireProfessionJob(JobRequireProfessionJob editedJobRequireProfessionJob) {
         Optional<JobRequireProfessionJob> optionalJobRequireProfessionJob = getJobRequireProfessionJob(editedJobRequireProfessionJob.getJobRequireProfessionJobIdentity());
         if(optionalJobRequireProfessionJob.isPresent()) {
             JobRequireProfessionJob jobRequireProfessionJob = optionalJobRequireProfessionJob.get();
@@ -57,13 +53,13 @@ public class JobRequireProfessionJobService {
         //jobRequireProfessionJobRepository.save(editedJobRequireProfessionJob);
     }
 
-    public void deleteJobRequireProfessionJob(JobRequireProfessionJobIdentity jobRequireProfessionJobIdentity)
-    {
+    public void deleteJobRequireProfessionJob(JobRequireProfessionJobIdentity jobRequireProfessionJobIdentity) {
         Optional<JobRequireProfessionJob> optionalJobRequireProfessionJob = getJobRequireProfessionJob(jobRequireProfessionJobIdentity);
         if(optionalJobRequireProfessionJob.isPresent()) {
             JobRequireProfessionJob jobRequireProfessionJob = optionalJobRequireProfessionJob.get();
-            jobRequireProfessionJob.setDelFlag(Boolean.TRUE);
-            jobRequireProfessionJobRepository.save(jobRequireProfessionJob);
+//            jobRequireProfessionJob.setDelFlag(Boolean.TRUE);
+//            jobRequireProfessionJobRepository.save(jobRequireProfessionJob);
+            jobRequireProfessionJobRepository.delete(jobRequireProfessionJob);
         }
         else
         {
