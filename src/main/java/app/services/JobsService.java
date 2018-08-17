@@ -1,13 +1,15 @@
 package app.services;
 
 import app.model.Jobs;
+import app.model.ProfessionJob;
+import app.repository.JobRequireProfessionJobRepository;
 import app.repository.JobsRepository;
+import app.repository.ProfessionJobRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @Transactional
@@ -15,6 +17,10 @@ public class JobsService {
 
     @Autowired
     JobsRepository jobsRepository;
+
+    @Autowired
+    JobRequireProfessionJobRepository jobRequireProfessionJobRepository;
+
 
     public ArrayList<Jobs> findAllJobs(){
         ArrayList<Jobs> lstJobs = new ArrayList<>();
@@ -38,6 +44,14 @@ public class JobsService {
         return lstJobs;
     }
 
+    public List<Jobs> findAllJobByProfession(List<ProfessionJob> lstProfessionJobs) {
+        List<Jobs> lstJob = jobRequireProfessionJobRepository.findAllJobByProfession(lstProfessionJobs);
+        Set<Jobs> jobsSet= new HashSet<>();
+        jobsSet.addAll(lstJob);
+        lstJob.clear();
+        lstJob.addAll(jobsSet);
+        return lstJob;
+    }
     /*
     Admin
      */

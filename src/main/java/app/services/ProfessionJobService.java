@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -14,6 +15,10 @@ import java.util.Optional;
 public class ProfessionJobService {
     @Autowired
     ProfessionJobRepository professionJobRepository;
+
+    /*
+    User
+     */
 
     public ArrayList<ProfessionJob> findAllProfessionJob() {
         ArrayList<ProfessionJob> lstProfessionJob = new ArrayList<>();
@@ -24,7 +29,26 @@ public class ProfessionJobService {
     public Optional<ProfessionJob> findProfessionJobById(Integer id) {
         return professionJobRepository.findByIdAndDelFlag(id,Boolean.FALSE);
     }
-    
+
+    public List<ProfessionJob> getAllChildProfessionJob(Integer id) {
+        Optional<ProfessionJob> cat= professionJobRepository.findById(Integer.valueOf(id));
+        List<ProfessionJob> list = new ArrayList<>();
+        if(cat.isPresent()) {
+            ProfessionJob category = cat.get();
+            recursiveTree(category,list);
+        }
+        return list;
+    }
+
+    private void recursiveTree(ProfessionJob cat,List<ProfessionJob> list) {
+        list.add(cat);
+        if (cat.getProfessionJobChildList().size() > 0) {
+            for (ProfessionJob c : cat.getProfessionJobChildList()) {
+                recursiveTree(c,list);
+            }
+        }
+    }
+
     /*
     Admin
      */
@@ -51,8 +75,8 @@ public class ProfessionJobService {
             if (editedProfessionJob.getDelFlag() != null){
                 professionJob.setDelFlag(editedProfessionJob.getDelFlag());
             }
-            if (editedProfessionJob.getparentId() != null){
-                professionJob.setparentId(editedProfessionJob.getparentId());
+            if (editedProfessionJob.getProfessionJob() != null){
+                professionJob.setProfessionJob(editedProfessionJob.getProfessionJob());
             }
             if (editedProfessionJob.getProfessionJobName() != null){
                 professionJob.setProfessionJobName(editedProfessionJob.getProfessionJobName());

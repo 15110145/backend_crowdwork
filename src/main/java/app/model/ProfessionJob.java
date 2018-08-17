@@ -6,6 +6,7 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -22,8 +23,13 @@ public class ProfessionJob extends Auditable<Integer> implements Serializable {
     @Column(name="pjobname")
     private String professionJobName;
 
-    @Column(name="parent_id")
-    private Integer parentId;
+    @ManyToOne
+    @JoinColumn(name="parent_id")
+    private ProfessionJob professionJob;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "professionJob",orphanRemoval = true)
+    private List<ProfessionJob> professionJobChildList= new ArrayList<>();
 
     @Column(name="del_flag")
     private Boolean delFlag;
@@ -43,9 +49,9 @@ public class ProfessionJob extends Auditable<Integer> implements Serializable {
     public ProfessionJob() {
     }
 
-    public ProfessionJob(String professionJobName, Integer parentId, Boolean delFlag) {
+    public ProfessionJob(String professionJobName, ProfessionJob professionJob, Boolean delFlag) {
         this.professionJobName = professionJobName;
-        this.parentId = parentId;
+        this.professionJob = professionJob;
         this.delFlag = delFlag;
     }
 
@@ -65,12 +71,20 @@ public class ProfessionJob extends Auditable<Integer> implements Serializable {
         this.professionJobName = professionJobName;
     }
 
-    public Integer getparentId() {
-        return parentId;
+    public ProfessionJob getProfessionJob() {
+        return professionJob;
     }
 
-    public void setparentId(Integer parentId) {
-        this.parentId = parentId;
+    public void setProfessionJob(ProfessionJob professionJob) {
+        this.professionJob = professionJob;
+    }
+
+    public List<ProfessionJob> getProfessionJobChildList() {
+        return professionJobChildList;
+    }
+
+    public void setProfessionJobChildList(List<ProfessionJob> professionJobChildList) {
+        this.professionJobChildList = professionJobChildList;
     }
 
     public Boolean getDelFlag() {
@@ -95,14 +109,6 @@ public class ProfessionJob extends Auditable<Integer> implements Serializable {
 
     public void setJobRequireProfessionJobList(List<JobRequireProfessionJob> jobRequireProfessionJobList) {
         this.jobRequireProfessionJobList = jobRequireProfessionJobList;
-    }
-
-    public Integer getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(Integer parentId) {
-        this.parentId = parentId;
     }
 
     public List<UserFreelancerJobRequirement> getUserFreelancerJobRequirementList() {
