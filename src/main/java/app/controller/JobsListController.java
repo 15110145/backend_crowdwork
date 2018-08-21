@@ -1,6 +1,7 @@
 package app.controller;
 
 import app.model.Contracts;
+import app.model.JobCategory;
 import app.model.JobRequireProfessionJob;
 import app.model.Jobs;
 import app.services.*;
@@ -35,7 +36,8 @@ public class JobsListController {
             produces = { MediaType.APPLICATION_JSON_VALUE })
     @ResponseBody
     public List<Jobs> getJobsListWithJobCategory(@PathVariable("jobCategoryId") String jobCategoryId) {
-        List<Jobs> list = jobCategoryService.getJobCategory(Integer.valueOf(jobCategoryId)).get().getJobsList();
+        JobCategory jobCategory = jobCategoryService.findJobCategoryById(Integer.valueOf(jobCategoryId)).get();
+        List<Jobs> list = jobsService.findAllJobByCategory(jobCategory);
         return list;
     }
 
@@ -54,6 +56,8 @@ public class JobsListController {
 
         return jobsService.findAllJobByProfession(professionJobService.getAllChildProfessionJob(Integer.valueOf(professionJobId)));
     }
+
+    //filter job list
 
     //filter job no exp required
     @RequestMapping(value = "/list/noexp",
@@ -98,5 +102,17 @@ public class JobsListController {
             list.add(contracts.getJobs());
         }
         return list;
+    }
+
+    //filter job list by profession
+    @RequestMapping(value = "/list/jobcategory={jobCategoryId}/profession={professionJobId}",
+            method = RequestMethod.GET,
+            produces = { MediaType.APPLICATION_JSON_VALUE })
+    @ResponseBody
+    public List<Jobs> getJobsListWithProfessionJobAndCategory(@PathVariable("professionJobId") String professionJobId) {
+
+
+        return jobsService.findAllJobByProfessionAndCategory(professionJobService.getAllChildProfessionJob(Integer.valueOf(professionJobId)),
+                                                            getJobsListWithJobCategory(professionJobId));
     }
 }

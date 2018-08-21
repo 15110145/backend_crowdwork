@@ -1,5 +1,6 @@
 package app.repository;
 
+import app.model.JobCategory;
 import app.model.Jobs;
 import app.model.ProfessionJob;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -24,7 +25,7 @@ public interface JobsRepository extends JpaRepository<Jobs, Integer> {
     @Query("SELECT jobs FROM Jobs jobs WHERE jobs.experience>0 and jobs.delFlag=false")
     List<Jobs> findJobsWithExperience();
 
-//    @Modifying
-//    @Query("Select delFlag from Jobs where jobs.p in :cateList")
-//    List<Jobs> findAllJobByCategory(@Param("cateList") List<ProfessionJob> categoryList);
+    @Modifying
+    @Query("Select jobs from Jobs jobs where jobs.jobCategory=:jobCategory and jobs.delFlag=false ")
+    List<Jobs> findAllJobByCategory(@Param("jobCategory") JobCategory jobCategory);
 }

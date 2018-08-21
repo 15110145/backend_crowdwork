@@ -1,5 +1,6 @@
 package app.services;
 
+import app.model.JobCategory;
 import app.model.Jobs;
 import app.model.ProfessionJob;
 import app.repository.JobRequireProfessionJobRepository;
@@ -21,6 +22,8 @@ public class JobsService {
     @Autowired
     JobRequireProfessionJobRepository jobRequireProfessionJobRepository;
 
+    @Autowired
+    JobCategoryService jobCategory;
 
     public ArrayList<Jobs> findAllJobs(){
         ArrayList<Jobs> lstJobs = new ArrayList<>();
@@ -44,6 +47,12 @@ public class JobsService {
         return lstJobs;
     }
 
+    public ArrayList<Jobs> findAllJobByCategory(JobCategory jobCategory) {
+        ArrayList<Jobs> lstJobs = new ArrayList<>();
+        lstJobs.addAll(jobsRepository.findAllJobByCategory(jobCategory));
+        return lstJobs;
+    }
+
     public List<Jobs> findAllJobByProfession(List<ProfessionJob> lstProfessionJobs) {
         List<Jobs> lstJob = jobRequireProfessionJobRepository.findAllJobByProfession(lstProfessionJobs);
         Set<Jobs> jobsSet= new HashSet<>();
@@ -52,6 +61,16 @@ public class JobsService {
         lstJob.addAll(jobsSet);
         return lstJob;
     }
+
+    public List<Jobs> findAllJobByProfessionAndCategory(List<ProfessionJob> lstProfessionJobs,List<Jobs> lstJobs) {
+        List<Jobs> lstJob = jobRequireProfessionJobRepository.findAllJobByProfessionAndCategory(lstProfessionJobs,lstJobs);
+        Set<Jobs> jobsSet= new HashSet<>();
+        jobsSet.addAll(lstJob);
+        lstJob.clear();
+        lstJob.addAll(jobsSet);
+        return lstJob;
+    }
+
     /*
     Admin
      */
