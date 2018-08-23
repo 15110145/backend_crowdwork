@@ -5,7 +5,9 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.UUID;
 
 @Entity
 @Table(name = "token")
@@ -18,6 +20,9 @@ public class Token extends Auditable<Integer> implements Serializable {
     @Column(name = "id")
     private Integer id;
 
+    @Column(name = "token")
+    private String token;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private Users users;
@@ -26,19 +31,31 @@ public class Token extends Auditable<Integer> implements Serializable {
     @JoinColumn(name = "status_id")
     private Status status;
 
-    @Column(name = "time")
-    private Integer time;
+    @Column(name = "issued_datetime")
+    private LocalDateTime issuedDateTime;
+
+    @Column(name = "expired_datetime")
+    private LocalDateTime expiredDateTime;
+
+    @Column(name = "confirmed_datetime")
+    private LocalDateTime confirmedDateTime;
 
     @Column(name = "del_flag")
     private Boolean delFlag;
 
-    public Token() {
+    public Token(){
+        this.token = UUID.randomUUID().toString();
+        this.issuedDateTime = LocalDateTime.now();
+        this.expiredDateTime = this.issuedDateTime.plusDays(1);
     }
 
-    public Token(Users users, Status status, Integer time, Boolean delFlag) {
+    public Token(String token, Users users, Status status, LocalDateTime issuedDateTime, LocalDateTime expiredDateTime, LocalDateTime confirmedDateTime, Boolean delFlag) {
+        this.token = token;
         this.users = users;
         this.status = status;
-        this.time = time;
+        this.issuedDateTime = issuedDateTime;
+        this.expiredDateTime = expiredDateTime;
+        this.confirmedDateTime = confirmedDateTime;
         this.delFlag = delFlag;
     }
 
@@ -48,6 +65,14 @@ public class Token extends Auditable<Integer> implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public Users getUsers() {
@@ -66,12 +91,28 @@ public class Token extends Auditable<Integer> implements Serializable {
         this.status = status;
     }
 
-    public Integer getTime() {
-        return time;
+    public LocalDateTime getIssuedDateTime() {
+        return issuedDateTime;
     }
 
-    public void setTime(Integer time) {
-        this.time = time;
+    public void setIssuedDateTime(LocalDateTime issuedDateTime) {
+        this.issuedDateTime = issuedDateTime;
+    }
+
+    public LocalDateTime getExpiredDateTime() {
+        return expiredDateTime;
+    }
+
+    public void setExpiredDateTime(LocalDateTime expiredDateTime) {
+        this.expiredDateTime = expiredDateTime;
+    }
+
+    public LocalDateTime getConfirmedDateTime() {
+        return confirmedDateTime;
+    }
+
+    public void setConfirmedDateTime(LocalDateTime confirmedDateTime) {
+        this.confirmedDateTime = confirmedDateTime;
     }
 
     public Boolean getDelFlag() {

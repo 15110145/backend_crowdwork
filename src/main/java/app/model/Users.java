@@ -69,6 +69,12 @@ public class Users extends Auditable<Integer> implements Serializable {
     public Users() {
     }
 
+    public Users(String name, String email, String password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
+
     public Users(String name, Date date_of_birth, String email, String password, String address, String cmnd, String avatar, String role, Boolean delFlag, Boolean isVerifyEmail) {
         this.name = name;
         this.date_of_birth = date_of_birth;

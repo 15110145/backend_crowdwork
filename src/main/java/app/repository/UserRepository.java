@@ -14,9 +14,9 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<Users, Integer> {
 
-//    @Modifying
-//    @Query("UPDATE Users SET name = :name, update_time = :updateTime WHERE id = :id")
-//    void updateUser(@Param("id") Integer id, @Param("name") String name, @Param("updateTime")Date updateTime);
+    Optional<Users> findByEmailAndDelFlag(String email, Boolean delFlag);
+
+    Boolean existsByEmail(String email);
 
     Optional<Users> findByIdAndDelFlag(Integer id, Boolean delFag);
 

@@ -11,6 +11,8 @@ import java.util.Optional;
 
 public interface StatusRepository extends JpaRepository<Status,Integer> {
 
+    Optional<Status> findByStatusName(String name);
+
     Optional<Status> findByIdAndDelFlag(Integer Id, Boolean delFlag);
 
     List<Status> findAllByDelFlag(Boolean delFlag);
