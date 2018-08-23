@@ -41,7 +41,7 @@ public class Token extends Auditable<Integer> implements Serializable {
     private LocalDateTime confirmedDateTime;
 
     @Column(name = "del_flag")
-    private Boolean delFlag;
+    private Boolean delFlag= false;
 
     public Token(){
         this.token = UUID.randomUUID().toString();

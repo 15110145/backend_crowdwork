@@ -28,7 +28,7 @@ public class UserRecruiterJobRequirement extends Auditable<Integer> implements S
     private ProfessionJob professionJob;
 
     @Column(name="del_flag")
-    private Boolean delFlag;
+    private Boolean delFlag= false;
 
     public UserRecruiterJobRequirement() {
     }

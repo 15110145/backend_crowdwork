@@ -24,7 +24,7 @@ public class Skills extends Auditable<Integer> implements Serializable {
     private String skillName;
 
     @Column(name = "del_flag")
-    private Boolean delFlag;
+    private Boolean delFlag= false;
 
     @JsonIgnore
     @OneToMany(mappedBy = "skills")

@@ -40,7 +40,7 @@ public class UsersFreelancer extends Auditable<Integer> implements Serializable 
     private String degree;
 
     @Column(name = "del_flag")
-    private Boolean delFlag;
+    private Boolean delFlag= false;
 
     @JsonIgnore
     @MapsId("userId")

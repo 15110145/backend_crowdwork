@@ -33,7 +33,7 @@ public class Comments extends Auditable<Integer> implements Serializable {
     private Integer parentId;
 
     @Column(name="del_flag")
-    private Boolean delFlag;
+    private Boolean delFlag= false;
 
     public Comments() { }
 

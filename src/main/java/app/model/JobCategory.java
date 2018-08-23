@@ -23,7 +23,7 @@ public class JobCategory extends Auditable<Integer> implements Serializable {
     private  String name;
 
     @Column(name="del_flag")
-    private Boolean delFlag;
+    private Boolean delFlag = false;
 
     @JsonIgnore
     @OneToMany(mappedBy = "jobCategory")

@@ -37,7 +37,7 @@ public class UserFreelancerHasSkill extends Auditable<Integer> implements Serial
     private String description;
 
     @Column(name = "del_flag")
-    private Boolean delFlag;
+    private Boolean delFlag= false;
 
     public UserFreelancerHasSkill() {
     }

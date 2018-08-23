@@ -27,7 +27,7 @@ public class Status extends Auditable<Integer> implements Serializable {
     private String kind;
 
     @Column(name = "del_flag")
-    private Boolean delFlag;
+    private Boolean delFlag= false;
 
     @JsonIgnore
     @OneToMany(mappedBy = "status")

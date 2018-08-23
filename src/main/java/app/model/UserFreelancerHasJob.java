@@ -37,7 +37,7 @@ public class UserFreelancerHasJob extends Auditable<Integer> implements Serializ
     private String fileURL;
 
     @Column(name = "del_flag")
-    private Boolean delFlag;
+    private Boolean delFlag= false;
 
     public UserFreelancerHasJob() {
     }

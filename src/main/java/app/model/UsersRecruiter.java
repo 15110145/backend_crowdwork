@@ -29,7 +29,7 @@ public class UsersRecruiter extends Auditable<Integer> implements Serializable {
     private Boolean approved;
 
     @Column(name = "del_flag")
-    private Boolean delFlag;
+    private Boolean delFlag= false;
 
     @JsonIgnore
     @MapsId("userId")

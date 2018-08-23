@@ -46,7 +46,7 @@ public class Users extends Auditable<Integer> implements Serializable {
     private String role;
 
     @Column(name = "del_flag")
-    private Boolean delFlag;
+    private Boolean delFlag= false;
 
     @Column(name = "isverifyemail")
     private Boolean isVerifyEmail;
