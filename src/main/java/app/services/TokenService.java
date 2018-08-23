@@ -84,16 +84,6 @@ public class TokenService {
     }
 
     public void createVerification(Users users) throws MessagingException {
-//        Optional<Users> users = userRepository.findByEmailAndDelFlag(email,false);
-//        Users user;
-//        if (users.isPresent()) {
-//            user = users.get();
-//        } else {
-//            user = new Users();
-//            user.setEmail(email);
-//            userRepository.save(user);
-//
-//        }
 
         Status status_PENDING = statusRepository.findByStatusName("PENDING").get();
         Optional<Token> verificationTokens = tokenRepository.findByUsers_Email(users.getEmail());
@@ -108,7 +98,7 @@ public class TokenService {
 
         }
 
-        notificationService.sendNotification(users, verificationToken.getToken());
+        notificationService.sendVerifyEmail(users, verificationToken.getToken());
     }
 
     public ResponseEntity<?> verifyEmail(String token){
@@ -130,5 +120,31 @@ public class TokenService {
         delete(verificationToken.getId());
 
         return ResponseEntity.ok(new ApiResponse(true,"You have successfully verified your email address."));
+    }
+
+    public ResponseEntity<?> forgetPassword(String token){
+        Optional<Token> verificationTokens = tokenRepository.findByTokenAndDelFlag(token,false);
+        if (!verificationTokens.isPresent()) {
+            return ResponseEntity.ok(new ApiResponse(false,"Invalid token."));
+        }
+
+        Token verificationToken = verificationTokens.get();
+        if (verificationToken.getExpiredDateTime().isBefore(LocalDateTime.now())) {
+            return ResponseEntity.ok(new ApiResponse(false,"Expired token."));
+        }
+
+        Status status_VERIFIED = statusRepository.findByStatusName("VERIFIED").get();
+        verificationToken.setConfirmedDateTime(LocalDateTime.now());
+        verificationToken.setStatus(status_VERIFIED);
+        tokenRepository.save(verificationToken);
+        String string = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm";
+        String pass = "";
+        for (int i = 0; i < 10; i++) {
+            int temp = (int) Math.round(Math.random() * string.length());
+            pass += pass.charAt(temp);
+        }
+        delete(verificationToken.getId());
+
+        return ResponseEntity.ok(new ApiResponse(true,pass));
     }
 }

@@ -16,7 +16,7 @@ public interface UserRepository extends JpaRepository<Users, Integer> {
 
     Optional<Users> findByEmailAndDelFlag(String email, Boolean delFlag);
 
-    Boolean existsByEmail(String email);
+    Boolean existsByEmailAndDelFlag(String email, Boolean delFlag);
 
     Optional<Users> findByIdAndDelFlag(Integer id, Boolean delFag);
 

@@ -21,7 +21,7 @@ public class NotificationService {
         this.javaMailSender = javaMailSender;
     }
 
-    public void sendNotification(Users users, String verificationCode) throws MailException, MessagingException {
+    public void sendVerifyEmail(Users users, String verificationCode) throws MailException, MessagingException {
         MimeMessage mail = javaMailSender.createMimeMessage();
         boolean multipart = true;
         MimeMessageHelper helper = new MimeMessageHelper(mail, multipart, "UTF-8");
@@ -32,6 +32,20 @@ public class NotificationService {
         mail.setFrom("${spring.mail.username}");
         helper.addTo(users.getEmail());
         helper.setSubject("Xác Thực Email");
+        javaMailSender.send(mail);
+    }
+
+    public void sendForgetPassword(Users users, String pass) throws MailException, MessagingException {
+        MimeMessage mail = javaMailSender.createMimeMessage();
+        boolean multipart = true;
+        MimeMessageHelper helper = new MimeMessageHelper(mail, multipart, "UTF-8");
+        String htmlMsg = "Hi " + users.getName() + "<br/>Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi!<br/>"
+                + "Bạn đã sử dụng chức năng quên mật khẩu, mật khẩu mới của bạn là:<br/>"
+                + "<b>" + pass + "</b><br/>";
+        mail.setContent(htmlMsg,"text/html; charset=utf-8");
+        mail.setFrom("${spring.mail.username}");
+        helper.addTo(users.getEmail());
+        helper.setSubject("Khôi Phục Mật Khẩu");
         javaMailSender.send(mail);
     }
 }

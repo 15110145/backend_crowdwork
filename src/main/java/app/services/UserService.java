@@ -3,6 +3,7 @@ package app.services;
 import app.repository.UserRepository;
 import app.model.Users;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +16,9 @@ public class UserService {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     public Optional<Users> findUser(Integer id){
         return userRepository.findByIdAndDelFlag(id,false);
@@ -31,6 +35,7 @@ public class UserService {
     }
 
     public void save(Users users){
+        users.setPassword(passwordEncoder.encode(users.getPassword()));
         userRepository.save(users);
     }
 
@@ -63,6 +68,9 @@ public class UserService {
             if(users.getVerifyEmail() != null){
                 existinguser.setVerifyEmail(users.getVerifyEmail());
             }
+            if(users.getPassword() != null){
+                existinguser.setPassword(passwordEncoder.encode(users.getPassword()));
+            }
             userRepository.save(existinguser);
             return true;
         }
@@ -70,7 +78,6 @@ public class UserService {
     }
 
     public Boolean delete(Integer id){
-        //        userRepository.deleteById(id);
         Optional<Users> user = findUser(id);
         if(!user.isPresent()) {
             Users existinguser = user.get();

@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.MailException;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -41,7 +42,12 @@ public class AuthController {
     @Autowired
     JwtTokenProvider tokenProvider;
 
-    @PostMapping("/signin")
+    @Autowired
+    private NotificationService notificationService;
+
+    @RequestMapping(value = "/signin", //
+            method = RequestMethod.POST, //
+            produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
         Authentication authentication = authenticationManager.authenticate(
@@ -57,9 +63,11 @@ public class AuthController {
         return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
     }
 
-    @PostMapping("/signup")
+    @RequestMapping(value = "/signup", //
+            method = RequestMethod.POST, //
+            produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) throws MessagingException {
-        if(userRepository.existsByEmail(signUpRequest.getEmail())) {
+        if(userRepository.existsByEmailAndDelFlag(signUpRequest.getEmail(),false)) {
             return new ResponseEntity( new ApiResponse(false,"Email is already taken!"),
                     HttpStatus.BAD_REQUEST);
         }
@@ -79,7 +87,9 @@ public class AuthController {
         return ResponseEntity.ok(new ApiResponse(true,"User registered successfully"));
     }
 
-    @GetMapping("/verify-email/{token}")
+    @RequestMapping(value = "/verify-email/{token}", //
+            method = RequestMethod.GET, //
+            produces = {MediaType.APPLICATION_JSON_VALUE})
     public String verifyEmail(@PathVariable String token){
         ApiResponse apiResponse = (ApiResponse) tokenService.verifyEmail(token).getBody();
         if (apiResponse.getSuccess()==true){
@@ -87,5 +97,27 @@ public class AuthController {
         }else {
             return "Lỗi không xác định.";
         }
+    }
+
+    @RequestMapping(value = "/forget-password/{email}", //
+            method = RequestMethod.GET, //
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> forgetPassword(@PathVariable String email) throws MessagingException {
+            if (userRepository.existsByEmailAndDelFlag(email,false)){
+                Users users = userRepository.findByEmailAndDelFlag(email,false).get();
+                String string = "QWERTYUIOPASDFGHJKLZXCVBNMqưertyuiopasdfghjklzxcvbnm";
+                String pass = "";
+                for (int i = 0; i < 10; i++) {
+                    int temp = (int) Math.round(Math.random() * string.length());
+                    pass += string.charAt(temp);
+                }
+
+                notificationService.sendForgetPassword(users, pass);
+                users.setPassword(passwordEncoder.encode(pass));
+                userRepository.save(users);
+                return ResponseEntity.ok(new ApiResponse(true,"Password Changed!"));
+            }else {
+                return ResponseEntity.ok(new ApiResponse(false,"Password Not Changed!"));
+            }
     }
 }
