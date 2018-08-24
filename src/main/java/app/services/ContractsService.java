@@ -2,8 +2,12 @@ package app.services;
 
 import app.model.Contracts;
 import app.model.Identity.ContractsIdentity;
+import app.model.Jobs;
 import app.repository.ContractsRepository;
+import app.security.UserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +21,12 @@ public class ContractsService {
 
     @Autowired
     ContractsRepository contractsRepository;
+
+    @Autowired
+    UsersFreelancerService usersFreelancerService;
+
+    @Autowired
+    StatusService statusService;
 
     public List<Contracts> findAllContracts(){
         List<Contracts> contracts = new ArrayList<Contracts>();
@@ -58,5 +68,29 @@ public class ContractsService {
             existingContract.setDelFlag(true);
             contractsRepository.save(existingContract);
         }
+    }
+
+
+    /*
+    Chức năng
+     */
+    public void apply(Jobs jobs){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserPrincipal loginedUser = (UserPrincipal) authentication.getPrincipal();
+        Integer currentUserId = loginedUser.getId();
+
+        Contracts contracts = new Contracts();
+        contracts.setContractsIdentity(new ContractsIdentity(currentUserId,jobs.getUsersRecruiter().getUserId()));
+        contracts.setUsersRecruiter(jobs.getUsersRecruiter());
+        contracts.setStatus(statusService.findStatusByNameAndKind("PENDING","CONTRACT").get());
+        contracts.setUsersFreelancer(usersFreelancerService.findUserFreelancer(currentUserId).get());
+        contracts.setJobs(jobs);
+        contractsRepository.save(contracts);
+    }
+
+    public void contractVerified(Contracts contracts)
+    {
+        contracts.setStatus(statusService.findStatusByNameAndKind("VERIFIED","CONTRACT").get());
+        contractsRepository.save(contracts);
     }
 }

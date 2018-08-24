@@ -3,10 +3,14 @@ package app.services;
 import app.model.JobCategory;
 import app.model.Jobs;
 import app.model.ProfessionJob;
+import app.model.UsersRecruiter;
 import app.repository.JobRequireProfessionJobRepository;
 import app.repository.JobsRepository;
 import app.repository.ProfessionJobRepository;
+import app.security.UserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +28,9 @@ public class JobsService {
 
     @Autowired
     JobCategoryService jobCategory;
+
+    @Autowired
+    UsersRecruiterService usersRecruiterService;
 
     public ArrayList<Jobs> findAllJobs(){
         ArrayList<Jobs> lstJobs = new ArrayList<>();
@@ -87,7 +94,13 @@ public class JobsService {
     }
 
     public void addJobs(Jobs jobs) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserPrincipal loginedUser = (UserPrincipal) authentication.getPrincipal();
+        Integer currentUserId = loginedUser.getId();
+
+
         jobs.setDelFlag(Boolean.FALSE);
+        jobs.setUsersRecruiter(usersRecruiterService.findUserRecruiter(currentUserId).get());
         jobsRepository.save(jobs);
     }
 

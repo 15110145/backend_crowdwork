@@ -28,6 +28,10 @@ public class StatusService implements Serializable {
     public Optional<Status> findStatusById(Integer id){
         return statusRepository.findByIdAndDelFlag(id,Boolean.FALSE);
     }
+
+    public Optional<Status> findStatusByNameAndKind(String name, String kind){
+        return statusRepository.findByStatusNameAndKind(name,kind);
+    }
     
     /*
     Admin

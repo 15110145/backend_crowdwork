@@ -16,4 +16,6 @@ public interface StatusRepository extends JpaRepository<Status,Integer> {
     Optional<Status> findByIdAndDelFlag(Integer Id, Boolean delFlag);
 
     List<Status> findAllByDelFlag(Boolean delFlag);
+
+    Optional<Status> findByStatusNameAndKind(String statusName, String kind);
 }

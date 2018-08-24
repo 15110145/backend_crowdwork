@@ -43,7 +43,6 @@ public class JobCategoryService {
     }
 
     public void addJobCategory(JobCategory jobCategory) {
-        jobCategory.setDelFlag(Boolean.FALSE);
         jobCategoryRepository.save(jobCategory);
     }
 
